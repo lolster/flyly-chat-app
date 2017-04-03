@@ -1,5 +1,5 @@
 # Flyly
-This is a chat application built on an unholy amalgamation of Node.js and socket.io and PHP.
+This is a chat application built on an unholy amalgamation of Node.js, socket.io, Apache and PHP.
 
 The main aim of this is to create a [Slack](https://slack.com/) like platform, combined with the informality and familiarity of [WhatsApp](https://www.whatsapp.com).
 
