@@ -89,11 +89,13 @@ a:hover {
 #hamburger {
 	font-size: 20px;
 	cursor: pointer;
+	color: white;
 }
 
 #threads-list {
+	height: 100%;
 	padding: 0 0 0 0;
-	background-color: #ccc;
+	background-color: gray;
 }
 
 #chat-area {
@@ -108,7 +110,7 @@ a:hover {
 		overflow: hidden;
 		white-space: nowrap;
 		width: 0px;
-		transition: 1s ease-out;
+		transition: 0.5s;
 		z-index: 1;
 	}
 	#full-view {

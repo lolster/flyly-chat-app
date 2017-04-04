@@ -12,11 +12,10 @@
 		<script>
 			function openNav() {
 				document.getElementById("threads-list").style.width = "100%";
-				document.getElementById("chat-area").style.display = "none";
+				
 			}
 
 			function closeNav() {
-				document.getElementById("chat-area").style.display = "block";
 				document.getElementById("threads-list").style.width = "0%";
 			}
 		</script>
@@ -32,16 +31,16 @@
 						<hr class="colorgraph">
 					</div>
 					<div class="well">
-						LEFT
+						LEFT LEFT LEFT 
 					</div>
 					<div class="well">
-						LEFT
+						LEFT LEFT LEFT 
 					</div>
 					<div class="well">
-						LEFT
+						LEFT LEFT LEFT 
 					</div>
 					<div class="well">
-						LEFT
+						LEFT LEFT LEFT 
 					</div>
 					<hr class="colorgraph">
 				</div>
@@ -51,16 +50,16 @@
 						<hr class="colorgraph">
 					</div>
 					<div class="well">
-						RIGHT
+						--------RIGHT ----
 					</div>
 					<div class="well">
-						RIGHT
+						--------RIGHT ----
 					</div>
 					<div class="well">
-						RIGHT
+						--------RIGHT ----
 					</div>
 					<div class="well">
-						RIGHT
+						--------RIGHT ----
 					</div>
 					<hr class="colorgraph">
 				</div>
