@@ -11,8 +11,8 @@
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script>
 			function openNav() {
-				document.getElementById("chat-area").style.display = "none";
 				document.getElementById("threads-list").style.width = "100%";
+				document.getElementById("chat-area").style.display = "none";
 			}
 
 			function closeNav() {

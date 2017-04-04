@@ -93,20 +93,22 @@ a:hover {
 
 #threads-list {
 	padding: 0 0 0 0;
+	background-color: #ccc;
 }
 
 #chat-area {
 	padding: 0 0 0 0;
 }
 
-@media all and (max-width: 992px) {
+@media all and (max-width: 692px) {
 	/* mobile view */
 	#threads-list {
 		position: fixed;
 		/*display: none;*/
 		overflow: hidden;
+		white-space: nowrap;
 		width: 0px;
-		transition: 1s;
+		transition: 1s ease-out;
 		z-index: 1;
 	}
 	#full-view {
@@ -114,7 +116,7 @@ a:hover {
 	}
 }
 
-@media all and (min-width: 992px) {
+@media all and (min-width: 692px) {
 	/* large screen view */
 	#hamburger {
 		display: none;
