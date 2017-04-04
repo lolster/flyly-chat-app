@@ -10,7 +10,15 @@
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script>
+			function openNav() {
+				document.getElementById("chat-area").style.display = "none";
+				document.getElementById("threads-list").style.width = "100%";
+			}
 
+			function closeNav() {
+				document.getElementById("chat-area").style.display = "block";
+				document.getElementById("threads-list").style.width = "0%";
+			}
 		</script>
 	</head>
 	<body>
@@ -19,6 +27,10 @@
 			<hr id="full-view" class="colorgraph">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-4" id="threads-list">
+					<div id="hamburger">
+						<span onclick="closeNav()">&#9776; close</span>
+						<hr class="colorgraph">
+					</div>
 					<div class="well">
 						LEFT
 					</div>

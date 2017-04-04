@@ -91,20 +91,32 @@ a:hover {
 	cursor: pointer;
 }
 
+#threads-list {
+	padding: 0 0 0 0;
+}
+
+#chat-area {
+	padding: 0 0 0 0;
+}
+
 @media all and (max-width: 992px) {
+	/* mobile view */
 	#threads-list {
+		position: fixed;
+		/*display: none;*/
+		overflow: hidden;
+		width: 0px;
+		transition: 1s;
+		z-index: 1;
+	}
+	#full-view {
 		display: none;
 	}
 }
 
 @media all and (min-width: 992px) {
-	#hamburger, #close-button {
-		display: none;
-	}
-}
-
-@media all and (max-width: 992px) {
-	#full-view {
+	/* large screen view */
+	#hamburger {
 		display: none;
 	}
 }
