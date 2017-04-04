@@ -86,3 +86,25 @@ a:hover {
 /* ------------------------------------------------------------------------------------------------------------------------------*/
 /* chat page*/ 
 
+#hamburger {
+	font-size: 20px;
+	cursor: pointer;
+}
+
+@media all and (max-width: 992px) {
+	#threads-list {
+		display: none;
+	}
+}
+
+@media all and (min-width: 992px) {
+	#hamburger, #close-button {
+		display: none;
+	}
+}
+
+@media all and (max-width: 992px) {
+	#full-view {
+		display: none;
+	}
+}
