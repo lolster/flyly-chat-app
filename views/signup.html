@@ -15,18 +15,24 @@
 			function uploadProfile() {
 				console.log('upload');
 			}
+
+			// "asthetic value"
+			function expandCard() {
+				document.getElementById('signup-card').style.maxWidth = "750px";
+				console.log('poop');
+			}
 		</script>
 		<script type="text/javascript" src="../public/javascripts/confirmPassword.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 	</head>
-	<body>
+	<body onload="expandCard()">
 		<div class="jumbotron">
 			<div class="container">
 				<a href="index.html"><h1>flyly</h1></a>
 			</div>
 		</div>
 		<div id="login" class="container">
-			<div class="card signup-card-container">
+			<div class="card signup-card-container" id="signup-card">
 
 				<form action="../public/phpscripts/signup.php" method="POST" role="form" onsubmit=" return validate();">
 					<img id="profile-img" class="profile-img-card" src="../public/images/profile.png" onclick="uploadProfile()">
