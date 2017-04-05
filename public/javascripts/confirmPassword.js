@@ -43,6 +43,7 @@ function validating(){
                 type: "error",
                 confirmButtonText: "Cool"
             });
+            document.getElementById("input-username").value = "";
         }
         console.log("hlloo")
     }
