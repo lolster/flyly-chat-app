@@ -11,11 +11,11 @@
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script>
 			function open() {
-				document.getElementById("threads-list").style.width = "100%";
+				document.getElementById("left-pane").style.width = "100%";
 				
 			}
 			function close() {
-				document.getElementById("threads-list").style.width = "0%";
+				document.getElementById("left-pane").style.width = "0%";
 			}
 
 			// select particular thread for chatting
@@ -28,19 +28,18 @@
 
 	<body>
 		<div class="container">
-			<div class="row">
-				<!-- threads-list left -->
-				<div class="col-xs-12 col-sm-12 col-md-4" id="threads-list">
+			<div class="row" id="area">
+				<!-- threads-list and search left -->
+				<div class="col-xs-12 col-sm-12 col-md-4" id="left-pane">
 					<div id="hamburger">
 						<span onclick="close()">&#9776; close</span>
 					</div>
 					<div id="search">
 						<input type="text" placeholder="search">
 					</div>
-					<hr class="colorgraph">
 
 					<!-- the threads -->
-					<div class="list">
+					<div id="threads-list">
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
 							<span class="name">Sushrith Arkal</span>
@@ -94,21 +93,21 @@
 					</div>
 
 				</div>
-				<!-- chat-area right -->
-				<div class="col-xs-12 col-sm-12 col-md-8" id="chat-area">
+				<!-- chat-are right -->
+				<div class="col-xs-12 col-sm-12 col-md-8" id="right-pane">
 					<div id="hamburger">
 						<span onclick="open()">&#9776; threads</span>
 					</div>
-					<div id="chat-area-header">
+					<div id="right-pane-header">
+						names and stuff here
 					</div>
-					<hr class="colorgraph">
-
 					<!-- conversation area -->
 					<div id="conversation-area">
-						<div class="jumbotron text-center">
-							<h1>TODO</h1>
-						</div>
 					</div>
+					<div id="msg-input">
+						<input type="text" id="message-box" class="form-control" required="required" placeholder="type in here..">
+					</div>
+					
 				</div>
 			</div>
 		</div>
