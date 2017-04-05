@@ -8,12 +8,33 @@ body, html {
 	background-repeat: no-repeat;
 	/*background-image: linear-gradient(rgb(126, 158, 83), rgb(66, 196, 231));*/
 	/*background-color: rgb(161, 195, 227);*/
-	background-color: #74afad;
+	background-color: rgb(122, 169, 207);
+}
+
+h1 {
+	font-family: "PilGi";
 }
 
 a:hover {
 	cursor: pointer;
 	text-decoration: none;
+}
+
+.jumbotron {
+	padding-top: 25px;
+	padding-bottom: 25px;
+	background-color: white;
+	padding-left: 50px;
+}
+
+.front-page-image-left {
+	float: left;
+	margin-left: 30px;
+}
+
+.front-page-image-right {
+	float: right;
+	margin-right: 30px;
 }
 
 .card-container.card {
@@ -181,7 +202,6 @@ a:hover {
 }
 
 #conversation-area {
-<<<<<<< Updated upstream
 	height: 80%;
 	background-color: rgb(242, 245, 248);
 }
@@ -190,10 +210,6 @@ a:hover {
 	height: 10%;
 	background-color: white;
 	border-bottom-right-radius: 10px;
-=======
-	height: 78%;
-	background-color: rgb(242, 245, 248);
->>>>>>> Stashed changes
 }
 
 #msg-input input {
