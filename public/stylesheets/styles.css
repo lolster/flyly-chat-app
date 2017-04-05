@@ -181,6 +181,7 @@ a:hover {
 }
 
 #conversation-area {
+<<<<<<< Updated upstream
 	height: 80%;
 	background-color: rgb(242, 245, 248);
 }
@@ -189,6 +190,10 @@ a:hover {
 	height: 10%;
 	background-color: white;
 	border-bottom-right-radius: 10px;
+=======
+	height: 78%;
+	background-color: rgb(242, 245, 248);
+>>>>>>> Stashed changes
 }
 
 #msg-input input {
