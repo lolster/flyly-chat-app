@@ -9,6 +9,13 @@
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
+
+		<script type="text/javascript">
+			// move to external script files
+			function uploadProfile() {
+				console.log('upload');
+			}
+		</script>
 	</head>
 	<body>
 		<div class="jumbotron">
@@ -18,52 +25,55 @@
 		</div>
 		<div id="login" class="container">
 			<div class="card signup-card-container">
-				<img id="profile-img" class="profile-img-card" src="../public/images/profile.png"/>
-				<hr class="colorgraph">
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-6">
-						<div class="form-group">
-	                        <input type="text" id="first_name" class="form-control input-md" placeholder="First Name" tabindex="1">
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6">
-						<div class="form-group">
-							<input type="text" id="last-name" class="form-control input-md" placeholder="Last Name" tabindex="2">
-						</div>
-					</div>
-				</div>
 
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-6">
-						<div class="form-group">
-							<input type="text" class="form-control input-md" id="input-username" placeholder="Username">
+				<form action="///TODO" method="POST" role="form">
+					<img id="profile-img" class="profile-img-card" src="../public/images/profile.png" onclick="uploadProfile()">
+					<hr class="colorgraph">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+		                        <input type="text" id="first_name" class="form-control input-md" placeholder="First Name" tabindex="1">
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="text" id="last-name" class="form-control input-md" placeholder="Last Name" tabindex="2">
+							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6">
-						<div class="form-group">
-							<input type="email" id="email" class="form-control input-md" placeholder="Email Address">
-						</div>
-					</div>
-				</div>
 
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-6">
-						<div class="form-group">
-							<input type="password" class="form-control input-md" id="password" placeholder="Password">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="text" class="form-control input-md" id="input-username" placeholder="Username">
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="email" id="email" class="form-control input-md" placeholder="Email Address">
+							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6">
-						<div class="form-group">
-							<input type="password" id="password-confirmation" class="form-control input-md" placeholder="Confirm Password">
-						</div>
-					</div>
-				</div>
-		
-				<br>
 
-				<div class="form-group">
-					<input type="submit" class="btn btn-md btn-success btn-block" value="Register">
-				</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="password" class="form-control input-md" id="password" placeholder="Password">
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="password" id="password-confirmation" class="form-control input-md" placeholder="Confirm Password">
+							</div>
+						</div>
+					</div>
+			
+					<br>
+
+					<div class="form-group">
+						<input type="submit" class="btn btn-md btn-success btn-block" value="Register">
+					</div>
+				</form>
 
 				<hr class="colorgraph">
 
