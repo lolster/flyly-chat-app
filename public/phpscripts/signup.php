@@ -25,7 +25,7 @@
     if (!$stmt->execute()) {
         die(json_encode(array(
             'status' => 'error',
-            'msg' => 'Could not perform this action!'
+            'msg' => 'Could not perform this action! Please check your username!'
         )));
     }
 

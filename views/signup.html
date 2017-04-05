@@ -9,13 +9,15 @@
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
-
+		<link rel="stylesheet" href="../public/sweetalert/dist/sweetalert.css">
 		<script type="text/javascript">
 			// move to external script files
 			function uploadProfile() {
 				console.log('upload');
 			}
 		</script>
+		<script type="text/javascript" src="../public/javascripts/confirmPassword.js"></script>
+		<script type="text/javascript" src="../public/sweetalert/dist/sweetalert.min.js"></script>]
 	</head>
 	<body>
 		<div class="jumbotron">
@@ -26,31 +28,18 @@
 		<div id="login" class="container">
 			<div class="card signup-card-container">
 
-				<form action="///TODO" method="POST" role="form">
+				<form action="../public/phpscripts/signup.php" method="POST" role="form" onsubmit=" return validate();">
 					<img id="profile-img" class="profile-img-card" src="../public/images/profile.png" onclick="uploadProfile()">
 					<hr class="colorgraph">
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-		                        <input type="text" id="first_name" class="form-control input-md" placeholder="First Name" tabindex="1">
+		                        <input type="text" id="first_name" class="form-control input-md" placeholder="First Name" tabindex="1" name="firstname" required />
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="text" id="last-name" class="form-control input-md" placeholder="Last Name" tabindex="2">
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-12 col-sm-6 col-md-6">
-							<div class="form-group">
-								<input type="text" class="form-control input-md" id="input-username" placeholder="Username">
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-6 col-md-6">
-							<div class="form-group">
-								<input type="email" id="email" class="form-control input-md" placeholder="Email Address">
+								<input type="text" id="last-name" class="form-control input-md" placeholder="Last Name" tabindex="2" name="lastname" required />
 							</div>
 						</div>
 					</div>
@@ -58,12 +47,25 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="password" class="form-control input-md" id="password" placeholder="Password">
+								<input type="text" class="form-control input-md" id="input-username" placeholder="Username" name="username" onblur = "validateUsername()" required />
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="password" id="password-confirmation" class="form-control input-md" placeholder="Confirm Password">
+								<input type="email" id="email" class="form-control input-md" placeholder="Email Address" name="email" required />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="password" class="form-control input-md" id="password" placeholder="Password" name="password" required />
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="password" id="password-confirmation" class="form-control input-md" placeholder="Confirm Password" required />
 							</div>
 						</div>
 					</div>
