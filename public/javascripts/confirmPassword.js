@@ -22,6 +22,16 @@ function validatePassword() {
     return pass === pass_confirm;
 }
 
+function verifyPassword() {
+    console.log('password');
+    if(!validatePassword()) {
+        //show error here
+    }
+    else {
+        //remove error here
+    }
+}
+
 function validateUsername(){
     givenusername = document.getElementById("input-username").value;
     xhr = new XMLHttpRequest();
