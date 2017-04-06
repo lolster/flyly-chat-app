@@ -19,21 +19,33 @@
 
 			// select particular thread for chatting
 			function selectThread() {
-				// TODO
-				console.log('poop 💩');
-
-				/*
+				// test stuff
 				var newMsg = document.createElement("div");
 				newMsg.className = "conv-left";
-				newMsg.innerHTML = "it works! 😎"
-				document.getElementById("conversation-area").appendChild(newMsg);
-				*/
+				newMsg.innerHTML = "it works! 😎";
+				document.getElementById("conversation-area").append(newMsg);
+
+				// go to bottom once a message is added
+				beAtBottom();
 			}
 
 			function beAtBottom() {
-				//// doesnt work
 				document.getElementById("conversation-area").scrollTop = document.getElementById("conversation-area").scrollHeight;
 			}
+
+			function sendMsg() {
+				// test function as well
+				var newMsg = document.createElement("div");
+				newMsg.className = "conv-right";
+				sentMsg = document.getElementById("msg-box").value;
+				if (sentMsg) {
+					// check if empty
+					newMsg.innerHTML = sentMsg;
+					document.getElementById("conversation-area").append(newMsg);
+					beAtBottom();
+				}
+			}
+
 		</script>
 	</head>
 
@@ -140,7 +152,8 @@
 
 					<!-- input box -->
 					<div id="msg-input">
-						<input type="text" id="message-box" class="form-control" required="required" placeholder="type in here..">
+						<input type="text" id="msg-box" class="form-control" required="required" placeholder="type in here..">
+						<button type="submit" id="send-btn" class="btn btn-primary" onclick="sendMsg()">Send</button>
 					</div>
 					
 				</div>

@@ -256,13 +256,14 @@ a:hover {
 }
 
 #msg-input input {
-	height: 55%;
+	display: flex;
+	align-items: center;
+	width: 70%;
+	margin: 0 auto;
+
 	border: none;
 	color: black;
-	margin-left: 10%;
-	margin-right: 10%;
 	padding-left: 15px;
-	width: 80%;
 	background-color: #6A6C75;
 	border-radius: 5px;
 	font-size: 17px;
@@ -325,6 +326,12 @@ a:hover {
 
 	float: right;
 	align-self: flex-start;
+}
+
+#send-btn {
+	margin-right: 5%;
+	background-color: #6A6C75;
+	color: white;
 }
 
 @media all and (max-width: 992px) {
