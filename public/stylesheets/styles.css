@@ -30,6 +30,10 @@ a:hover {
 	height: 17%;
 }
 
+#register-btn {
+	transition: 0.5s;
+}
+
 .jumbotron {
 	padding-top: 25px;
 	padding-bottom: 25px;

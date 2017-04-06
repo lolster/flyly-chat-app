@@ -16,7 +16,7 @@
 				console.log('upload');
 			}
 
-			// "asthetic value"
+			// "aesthetic value"
 			function expandCard() {
 				document.getElementById('signup-card').style.maxWidth = "750px";
 				console.log('poop');
@@ -66,12 +66,12 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="password" class="form-control input-md" id="password" placeholder="Password" name="password" onkeyup="verifyPassword();" required />
+								<input type="password" class="form-control input-md" id="password" placeholder="Password" name="password" onkeyup="verifyPassword()" required>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="password" id="password-confirmation" class="form-control input-md" placeholder="Confirm Password" onkeyup="verifyPassword();" required />
+								<input type="password" id="password-confirmation" class="form-control input-md" placeholder="Confirm Password" onkeyup="verifyPassword();" required data-toggle="popover" data-placement="top" data-content="Error">
 							</div>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 					<br>
 
 					<div class="form-group">
-						<input type="submit" class="btn btn-md btn-success btn-block" value="Register">
+						<input type="submit" id="register-btn" class="btn btn-md btn-success btn-block" value="Register">
 					</div>
 				</form>
 
