@@ -141,8 +141,10 @@ a:hover {
 
 .threads {
 	transition: 0.3s;
-	padding: 4%;
+	height: 7%;
 	padding-left: 10%;
+	padding-top: 2vh;
+	padding-bottom: 8vh;
 }
 
 .threads:hover {
@@ -152,8 +154,7 @@ a:hover {
 }
 
 .threads img {
-	width: 15%;
-	height: 15%;
+	height: 6vh;
 }
 
 .threads .name {
@@ -172,7 +173,7 @@ a:hover {
 
 #search {
 	height: 10%;
-
+	border-bottom: 2px solid #ccc;
 }
 
 #search input {
@@ -337,6 +338,7 @@ a:hover {
 		z-index: 1;
 		border-bottom-left-radius: 0px;
 		border-top-left-radius: 0px;
+		background-color: rgba(68, 70, 83, 0.95);
 	}
 	#full-view {
 		display: none;
@@ -346,8 +348,13 @@ a:hover {
 		border-bottom-right-radius: 0px;
 	}
 	#hamburger {
-		font-size: 100%;
+		font-size: 4vh;
 		color: black;
+	}
+	#hamburger-left {
+		font-size: 4vh;
+		color: white;
+		padding-left: 15px;
 	}
 	#area {
 		margin-top: 0;
@@ -364,11 +371,15 @@ a:hover {
 	.front-page-elem-left, .front-page-elem-right {
 		margin: auto;
 	}
+
+	.threads {
+		position: relative;
+	}
 }
 
 @media all and (min-width: 992px) {
 	/* large screen view */
-	#hamburger {
+	#hamburger, #hamburger-left {
 		display: none;
 	}
 }

@@ -21,6 +21,13 @@
 			function selectThread() {
 				// TODO
 				console.log('poop 💩');
+
+				/*
+				var newMsg = document.createElement("div");
+				newMsg.className = "conv-left";
+				newMsg.innerHTML = "it works! 😎"
+				document.getElementById("conversation-area").appendChild(newMsg);
+				*/
 			}
 
 			function beAtBottom() {
@@ -36,7 +43,7 @@
 				<!-- threads-list and search left -->
 				<div class="col-xs-12 col-sm-12 col-md-4" id="left-pane">
 					<div id="search">
-						<span id="hamburger" onclick="closePane()">&#9776;</span>
+						<span id="hamburger-left" onclick="closePane()">&#9776;</span>
 						<input type="text" placeholder="search">
 					</div>
 
