@@ -1,5 +1,5 @@
 // put whatever urls here
-var imgSrc = ['../public/images/Elefantasia.jpg', '../public/images/Hanuman.jpg', '../public/images/Leonine.jpg', '../public/images/profile.png'];
+var imgSrc = ['../public/images/dog.jpg', '../public/images/dog.jpg', '../public/images/dog.jpg', '../public/images/dog.jpg'];
 
 $(window).on('load', () => {
 	var imgList = $('img');

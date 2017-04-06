@@ -10,11 +10,10 @@
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script>
-			function open() {
+			function openPane() {
 				document.getElementById("left-pane").style.width = "100%";
-				
 			}
-			function close() {
+			function closePane() {
 				document.getElementById("left-pane").style.width = "0%";
 			}
 
@@ -26,7 +25,7 @@
 
 			function beAtBottom() {
 				//// doesnt work
-				document.getElementById("conversation-area").scrollTop = objDiv.scrollHeight;
+				document.getElementById("conversation-area").scrollTop = document.getElementById("conversation-area").scrollHeight;
 			}
 		</script>
 	</head>
@@ -36,10 +35,8 @@
 			<div class="row" id="area">
 				<!-- threads-list and search left -->
 				<div class="col-xs-12 col-sm-12 col-md-4" id="left-pane">
-					<div id="hamburger">
-						<span onclick="close()">&#9776; close</span>
-					</div>
 					<div id="search">
+						<span id="hamburger" onclick="closePane()">&#9776;</span>
 						<input type="text" placeholder="search">
 					</div>
 
@@ -48,7 +45,7 @@
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
 							<span class="name">Sushrith Arkal</span>
-							<span class="preview">I like macbook</span>
+							<span class="preview">I am happy</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
@@ -96,14 +93,11 @@
 							<span class="preview">&nbsp;</span>
 						</div>
 					</div>
-
 				</div>
 				<!-- chat-are right -->
 				<div class="col-xs-12 col-sm-12 col-md-8" id="right-pane">
-					<div id="hamburger">
-						<span onclick="open()">&#9776; threads</span>
-					</div>
 					<div id="right-pane-header">
+						<span id="hamburger" onclick="openPane()">&#9776;</span>
 						<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
 						<div id="profile-name">Sushrith</div>
 					</div>
@@ -131,7 +125,9 @@
 						<div class="conv-right">
 							1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea & Infusions Association. 
 						</div>
-
+						<div class="conv-left">
+							Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.
+						</div>
 
 					</div>
 
