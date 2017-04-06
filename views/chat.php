@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
+		<script src="../public/javascripts/bootstrap.min.js"></script>
+		
 		<script>
 			function openPane() {
 				document.getElementById("left-pane").style.width = "100%";
@@ -42,6 +44,7 @@
 					// check if empty
 					newMsg.innerHTML = sentMsg;
 					document.getElementById("conversation-area").append(newMsg);
+					document.getElementById("msg-box").value = "";
 					beAtBottom();
 				}
 			}

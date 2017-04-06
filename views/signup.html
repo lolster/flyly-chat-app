@@ -9,7 +9,8 @@
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+		<script src="../public/javascripts/bootstrap.min.js"></script>
+		
 		<script type="text/javascript">
 			// move to external script files
 			function uploadProfile() {
@@ -23,7 +24,6 @@
 			}
 		</script>
 		<script type="text/javascript" src="../public/javascripts/confirmPassword.js"></script>
-		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> -->
 	</head>
 	<body onload="expandCard()">
 		<div class="jumbotron">
@@ -40,7 +40,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-		                        <input type="text" id="first_name" class="form-control input-md" placeholder="First Name" tabindex="1" name="firstname" required />
+								<input type="text" id="first_name" class="form-control input-md" placeholder="First Name" tabindex="1" name="firstname" required />
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
@@ -71,7 +71,7 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="password" id="password-confirmation" class="form-control input-md" placeholder="Confirm Password" onkeyup="verifyPassword();" required data-toggle="popover" data-placement="top" data-content="Error">
+								<input type="password" id="password-confirmation" class="form-control input-md" placeholder="Confirm Password" onkeyup="verifyPassword();" required data-toggle="popover" data-placement="top" data-content="Mismatched Passwords">
 							</div>
 						</div>
 					</div>
@@ -87,6 +87,5 @@
 
 			</div>
 		</div>
-		<script src="../public/javascripts/bootstrap.js"></script>
 	</body>
 </html>
