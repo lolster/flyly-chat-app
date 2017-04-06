@@ -23,10 +23,15 @@
 				// TODO
 				console.log('poop 💩');
 			}
+
+			function beAtBottom() {
+				//// doesnt work
+				document.getElementById("conversation-area").scrollTop = objDiv.scrollHeight;
+			}
 		</script>
 	</head>
 
-	<body>
+	<body onload="beAtBottom()">
 		<div class="container">
 			<div class="row" id="area">
 				<!-- threads-list and search left -->
@@ -99,11 +104,38 @@
 						<span onclick="open()">&#9776; threads</span>
 					</div>
 					<div id="right-pane-header">
-						names and stuff here
+						<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
+						<div id="profile-name">Sushrith</div>
 					</div>
+
 					<!-- conversation area -->
 					<div id="conversation-area">
+						<div class="conv-left">
+							test 123
+						</div>
+						<div class="conv-left">
+							other person
+						</div>
+						<div class="conv-right">
+							hello me
+						</div>
+						<div class="conv-left">
+							On April 3rd, the 2017 edition of éclat was launched by Professor D. Jawahar, Pro Chancellor, PES University and CEO, PES institutions, in the presence of Dr V. Krishna, the Chairperson of the Mechanical Engineering Department of PES University. This edition consists of articles compiled by talented, creative minds of PES during the course of the preceding two years. The student copies shall be passed on to every department soon. We hope you enjoy dwelling into an ocean of thoughts articulated to enlighten, entertain and blow your mind!
+						</div>
+						<div class="conv-right">
+							Noice!! 😃
+						</div>
+						<div class="conv-right">
+							Here's some more stuff:
+						</div>
+						<div class="conv-right">
+							1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea & Infusions Association. 
+						</div>
+
+
 					</div>
+
+					<!-- input box -->
 					<div id="msg-input">
 						<input type="text" id="message-box" class="form-control" required="required" placeholder="type in here..">
 					</div>

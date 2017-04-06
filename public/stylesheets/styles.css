@@ -168,6 +168,7 @@ a:hover {
 
 #search {
 	height: 10%;
+
 }
 
 #search input {
@@ -224,19 +225,28 @@ a:hover {
 #right-pane-header {
 	height: 10%;
 	font-size: 22px;
-	background-color: #ccc;
+	background-color: rgb(242, 245, 248);
 	border-top-right-radius: 10px;
+	border-bottom: 2px solid #ccc;
+	padding-left: 15px;
+	display: flex;
+	align-items: center;
 }
 
 #conversation-area {
 	height: 80%;
 	background-color: rgb(242, 245, 248);
+	overflow: scroll;
 }
 
 #msg-input {
 	height: 10%;
-	background-color: white;
+	background-color: rgb(242, 245, 248);
 	border-bottom-right-radius: 10px;
+	border-top: 2px solid #ccc;
+	/* vertical align */
+	display: flex;
+	align-items: center;
 }
 
 #msg-input input {
@@ -258,6 +268,58 @@ a:hover {
 	outline: none;
 }
 
+#profile-pic {
+	height: 5vh;
+	margin-left: 5%;
+}
+
+#profile-name {
+	/* try to fix this */
+	float: right;
+	margin-left: 60%;
+	font-size: 20px;
+}
+
+.conv-left {
+	position: relative;
+	width: 60%;
+	font-size: 15px;
+	border-radius: 5px;
+	border: none;
+	background-color: rgb(115, 195, 112);
+
+	margin-left: 5%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	float: left;
+	align-self: flex-start;
+}
+
+.conv-right {
+	position: relative;
+	width: 60%;
+	font-size: 15px;
+	border-radius: 5px;
+	border: none;
+	background-color: rgb(141, 193, 231);
+
+	margin-right: 5%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	padding-right: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: right;
+
+	float: right;
+	align-self: flex-start;
+}
 
 @media all and (max-width: 992px) {
 	/* mobile view */
@@ -274,10 +336,11 @@ a:hover {
 	#full-view {
 		display: none;
 	}
-	#right-pane {
+	#right-pane, #msg-input, #right-pane-header {
 		border-top-right-radius: 0px;
 		border-bottom-right-radius: 0px;
 	}
+
 }
 
 @media all and (min-width: 992px) {
