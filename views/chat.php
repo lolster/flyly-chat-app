@@ -13,10 +13,14 @@
 		
 		<script>
 			function openPane() {
-				document.getElementById("left-pane").style.width = "100%";
+				if (window.innerWidth < 992) {
+					document.getElementById("left-pane").style.width = "100%";
+				}
 			}
 			function closePane() {
-				document.getElementById("left-pane").style.width = "0%";
+				if (window.innerWidth < 992) {
+					document.getElementById("left-pane").style.width = "0%";
+				}
 			}
 
 			// select particular thread for chatting
