@@ -1,9 +1,10 @@
-function validate(){
-	var ret_val = true;
+function validate() {
+	var retVal = true;
 	if(!validatePassword()) {
-		showError('Passwords do not match');
-		ret_val = false
-		return ret_val
+		//showError('Passwords do not match');
+		console.log('Passwords do not match')
+		retVal = false
+		return retVal
 	}
 
 	//validate all fields
@@ -13,13 +14,13 @@ function validate(){
 	//in the readState handler, check for success
 	//if not success, show the error message to the user
 
-	return ret_val;
+	return retVal;
 }
 
 function validatePassword() {
-	var pass = document.getElementById("password").value;
-	var pass_confirm = document.getElementById("password-confirmation").value;
-	return pass === pass_confirm;
+	var pass = document.getElementById('password').value;
+	var passConfirm = document.getElementById('password-confirmation').value;
+	return pass === passConfirm;
 }
 
 function verifyPassword() {
@@ -40,34 +41,28 @@ function verifyPassword() {
 	}
 }
 
-function validateUsername(){
-	givenusername = document.getElementById("input-username").value;
+function validateUsername() {
+	givenusername = document.getElementById('input-username').value;
 	xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = validating;
-	xhr.open("POST","../public/phpscripts/checkusername.php",true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send("username="+encodeURI(givenusername));
-	console.log("coming here?")
+	xhr.open('POST', '../public/phpscripts/checkusername.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.send('username=' + encodeURI(givenusername));
 }
 
-function validating(){
+function validating() {
 	if(xhr.readyState == 4  && xhr.status == 200){
-		console.log("coming inside chr readystate?");
-		var thingy = xhr.responseText;
-		console.log(thingy);
-		if(thingy == 'false'){
+		var response = xhr.responseText;
+		console.log(response);
+		if(response == 'false'){
+			/* sweet alert
 			swal({
 				title: "Error!",
 				text: "user name not available",
 				type: "error",
 				confirmButtonText: "Cool"
-			});
-			document.getElementById("input-username").value = "";
+			}); */
+			document.getElementById('input-username').value = '';
 		}
-		console.log("hlloo")
 	}
-}
-
-function showError(msg) {
-	sweetAlert(msg);
 }

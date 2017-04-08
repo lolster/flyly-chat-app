@@ -3,10 +3,10 @@
 	TODO: find a good font;
 */
 
+/* global styles */
 body, html {
 	height: 100%;
 	background-repeat: no-repeat;
-	/*background-color: rgb(122, 169, 207);*/
 	background-color: #2b3f51;
 	background-image: url("../images/wp.jpg");
 }
@@ -25,29 +25,49 @@ a:hover {
 	text-decoration: none;
 }
 
+.jumbotron {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: white;
+	padding-left: 50px;
+	margin-bottom: 0;
+}
+
+/* unnecessary stuff. looks good so why not ¯\_(ツ)_/¯ */
+.colorgraph {
+	height: 5px;
+	border-top: 0;
+	background: #c4e17f;
+	border-radius: 5px;
+	background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* home page */
+
+/* modifying background of container */
 #body {
+	margin-top: 0;
+	padding-top: 0;
 	background-color: white;
 }
 
+/* modifying jumbotron of home page */
+/* might change it later */
 #header {
 	background-color: rgb(122, 169, 207);
 }
 
+/* div that gives an intro to project */
 #description {
 	height: 17%;
 }
 
-#register-btn {
-	transition: 0.5s;
-}
-
-.jumbotron {
-	padding-top: 25px;
-	padding-bottom: 25px;
-	background-color: white;
-	padding-left: 50px;
-}
-
+/* elements that show the feature list */
 .front-page-elem {
 	margin-top: 3%;
 	margin-bottom: 3%;
@@ -71,7 +91,19 @@ a:hover {
 }
 
 
-.card-container.card {
+/* -------------------------------------------------------------------------- */
+/* login and signup page */
+
+/* styles for login and signup cards */
+.card {
+	background-color: #F7F7F7;
+	padding: 20px 25px 30px;
+	margin: 0 auto 25px;
+	margin-top: 9%;
+	border-radius: 5px;
+}
+
+.login-card-container.card {
 	max-width: 350px;
 	padding: 40px 40px;
 }
@@ -80,72 +112,102 @@ a:hover {
 	padding: 40px 40px;
 }
 
-#signup-card {
-	max-width: 350px;
-	transition: 0.7s ease-in-out;
-}
-
-.btn {
-	font-weight: 700;
-	height: 36px;
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;
-	cursor: default;
-}
-
-.card {
-	background-color: #F7F7F7;
-	padding: 20px 25px 30px;
-	margin: 0 auto 25px;
-	margin-top: 50px;
-	border-radius: 5px;
-	/*box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);*/
-}
-
 .profile-img-card {
 	width: 96px;
 	height: 96px;
 	margin: 0 auto 10px;
 	display: block;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
 	border-radius: 50%;
 }
 
-.profile-name-card {
-	font-size: 16px;
-	font-weight: bold;
-	text-align: center;
-	margin: 10px 0 0;
-	min-height: 1em;
-}
-
 .forgot-password {
-	color: rgb(104, 145, 162);
+	color: rgba(104, 145, 162, 0.6);
 }
 
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-	color: rgb(12, 97, 33);
+.forgot-password:hover {
+	color: blue;
 }
 
-/* unnecessary stuff. looks good so why not ¯\_(ツ)_/¯ */
-.colorgraph {
-	height: 5px;
-	border-top: 0;
-	background: #c4e17f;
-	border-radius: 5px;
-	background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+/* used for lading animation */
+#signup-card {
+	max-width: 350px;
+	transition: 1s ease-in-out;
 }
 
-/* ------------------------------------------------------------------------------------------------------------------------------*/
+/* used for enabling and disabling w/ js */
+#register-btn {
+	transition: 0.5s;
+}
+
+
+/* -------------------------------------------------------------------------- */
 /* chat page*/ 
 
+/* hamburger menu icon */
+#hamburger {
+	font-size: 17px;
+	cursor: pointer;
+	color: white;
+}
+
+/* left + right
+ * used for fixing a bug with mobile view */
+#area {
+	margin-top: 7vh;
+	margin-bottom: 7vh;
+}
+
+#left-pane, #right-pane {
+	/* vh => percentage of viewport height */
+	height: 83vh;
+	padding: 0 0 0 0;
+}
+
+#left-pane {
+	border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+	background-color: #322e32;
+	color: white;
+}
+
+#right-pane {
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+
+/* left pane elements */
+
+/* search bar */
+#search {
+	height: 10%;
+	border-bottom: 2px solid #ccc;
+}
+
+#search input {
+	height: 55%;
+	border: none;
+	color: white;
+	margin-top: 4%;
+	margin-bottom: 4%;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-left: 15px;
+	width: 80%;
+	background: #6A6C75;
+	border-radius: 5px;
+	font-size: 17px;
+	transition: 0.2s ease-in-out;
+}
+
+#search input:focus, #search input:hover {
+	/* TODO */
+	outline: none;
+	background-color: rgb(204, 204, 204);
+	transition: 0.2s ease-in-out;
+}
+
+/* conversation threads classes */
 .threads {
 	transition: 0.3s;
 	height: 7%;
@@ -170,70 +232,21 @@ a:hover {
 }
 
 .threads .preview {
-	/* todo */
+	/* TODO */
+	/* make it appear in the next line */
 }
 
+/* div containing the threads */
 #threads-list {
 	height: 90%;
 	overflow: scroll;
 }
 
-#search {
-	height: 10%;
-	border-bottom: 2px solid #ccc;
-}
 
-#search input {
-	height: 55%;
-	border: none;
-	color: white;
-	margin-top: 4%;
-	margin-bottom: 4%;
-	margin-left: 10%;
-	margin-right: 10%;
-	padding-left: 15px;
-	width: 80%;
-	background: #6A6C75;
-	border-radius: 5px;
-	font-size: 17px;
-	transition: 0.2s ease-in-out;
-}
+/* right pane elements */
 
-#search input:focus, #search input:hover {
-	outline: none;
-	background-color: rgb(204, 204, 204);
-	transition: 0.2s ease-in-out;
-}
-
-#hamburger {
-	font-size: 17px;
-	cursor: pointer;
-	color: white;
-}
-
-#area {
-	margin-top: 7vh;
-	margin-bottom: 7vh;
-}
-
-#left-pane, #right-pane {
-	/* vh => percentage of viewport height */
-	height: 83vh;
-	padding: 0 0 0 0;
-}
-
-#left-pane {
-	border-bottom-left-radius: 10px;
-	border-top-left-radius: 10px;
-	background-color: #322e32;
-	color: white;
-}
-
-#right-pane {
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
-}
-
+/* place for profile pic and name
+ * and probably the search feature */
 #right-pane-header {
 	height: 10%;
 	font-size: 22px;
@@ -241,45 +254,11 @@ a:hover {
 	border-top-right-radius: 10px;
 	border-bottom: 2px solid #ccc;
 	padding-left: 15px;
-	display: flex;
-	align-items: center;
 	overflow: hidden;
-}
-
-#conversation-area {
-	height: 80%;
-	background-color: rgb(242, 245, 248);
-	overflow: scroll;
-}
-
-#msg-input {
-	height: 10%;
-	background-color: rgb(242, 245, 248);
-	border-bottom-right-radius: 10px;
-	border-top: 2px solid #ccc;
 	/* vertical align */
 	display: flex;
 	align-items: center;
-}
-
-#msg-input input {
-	display: flex;
-	align-items: center;
-	width: 70%;
-	margin: 0 auto;
-
-	border: none;
-	color: black;
-	padding-left: 15px;
-	background-color: #61686a;
-	border-radius: 5px;
-	font-size: 17px;
-	transition: 0.2s ease-in-out;
-}
-
-#msg-input input:hover, #msg-input input:focus {
-	background-color: white;
-	outline: none;
+	
 }
 
 #profile-pic {
@@ -294,89 +273,148 @@ a:hover {
 	font-size: 20px;
 }
 
-.conv-left {
+/* area for messages */
+#conversation-area {
+	height: 80%;
+	background-color: rgb(242, 245, 248);
+	overflow: scroll;
+}
+
+.conv-left, .conv-right {
 	position: relative;
 	width: 60%;
 	font-size: 15px;
 	border-radius: 5px;
 	border: none;
-	background-color: #cbcac6;
-
-	margin-left: 5%;
 	margin-top: 10px;
 	margin-bottom: 10px;
-
-	padding-left: 15px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
 
+/* other person */
+.conv-left {
+	background-color: #cbcac6;
+	margin-left: 5%;
+	padding-left: 15px;
+	
+	/* flex-start (default): items are packed toward the start line 
+	 * more on it:
+	 * 	https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+	 */
 	float: left;
 	align-self: flex-start;
 }
 
+/* user */
 .conv-right {
-	position: relative;
-	width: 60%;
-	font-size: 15px;
-	border-radius: 5px;
-	border: none;
 	background-color: #72a9d1;
-
 	margin-right: 5%;
-	margin-top: 10px;
-	margin-bottom: 10px;
-
 	padding-right: 15px;
-	padding-top: 10px;
-	padding-bottom: 10px;
 	text-align: right;
 
 	float: right;
 	align-self: flex-start;
 }
 
+/* field to enter message and send
+ * TODO:
+ * 	add a button for adding source code
+ *	prism.js
+ */
+
+#msg-input {
+	height: 10%;
+	background-color: rgb(242, 245, 248);
+	border-bottom-right-radius: 10px;
+	border-top: 2px solid #ccc;
+	display: flex;
+	align-items: center;
+}
+
+#msg-input input {
+	/* TODO */
+	display: flex;
+	align-items: center;
+	width: 70%;
+	margin: 0 auto;
+	border: none;
+	color: black;
+	padding-left: 15px;
+	background-color: #61686a;
+	border-radius: 5px;
+	font-size: 17px;
+	transition: 0.2s ease-in-out;
+}
+
+#msg-input input:hover, #msg-input input:focus {
+	/* TODO */
+	background-color: white;
+	outline: none;
+}
+
+/* send button */
 #send-btn {
 	margin-right: 5%;
 	background-color: #6A6C75;
 	color: white;
 }
 
+/* button for highlighted code */
+#sned-code-btn {
+	/* TODO */
+	/* prism.js or highlight.js */
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* handling mobile view */
+
+/* mobile view */
 @media all and (max-width: 992px) {
-	/* mobile view */
+	/* make left pane hidden[width = 0] and add transition to set width to 100%; */
 	#left-pane {
+		width: 0%;
 		position: fixed;
 		overflow: hidden;
 		white-space: nowrap;
-		width: 0%;
-		transition: 0.5s ease-in-out;
 		z-index: 1;
 		border-bottom-left-radius: 0px;
 		border-top-left-radius: 0px;
 		background-color: rgba(68, 70, 83, 0.95);
+		transition: 0.5s ease-in-out;
 	}
-	#full-view {
-		display: none;
-	}
+
+	/* remove borders radius in mobile view */
 	#right-pane, #msg-input, #right-pane-header {
 		border-top-right-radius: 0px;
 		border-bottom-right-radius: 0px;
 	}
+
+	/* hanburgers */
 	#hamburger {
 		font-size: 4vh;
 		color: black;
 	}
+
 	#hamburger-left {
 		font-size: 4vh;
 		color: white;
 		padding-left: 15px;
 	}
+
+	/* make area full screen */
 	#area {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
+
 	#left-pane, #right-pane {
 		height: 100vh;
 	}
+	
+	/* center search bar */
 	#search {
 		display: flex;
 		align-items: center;
@@ -386,6 +424,9 @@ a:hover {
 		height: 80vh;
 	}
 
+	/* TODO
+	 * still broken
+	 */
 	.front-page-elem-left, .front-page-elem-right {
 		margin: auto;
 	}
@@ -393,11 +434,24 @@ a:hover {
 	.threads {
 		position: relative;
 	}
+
+	.card {
+		margin-top: 8vh;
+	}
 }
 
+
+/* large screen view */
 @media all and (min-width: 992px) {
-	/* large screen view */
+	/* hamburgers invisble in web view */
 	#hamburger, #hamburger-left {
 		display: none;
+	}
+
+	/* shouldv'e fixed
+	 * is still broken
+	 * feelsbadman */
+	#left-pane {
+		width: 33.33%;
 	}
 }
