@@ -21,5 +21,8 @@
         unset($_SESSION['email']);
     }
     session_destroy();
-    echo "<h2>Logged out</h2>";
+    echo "Redirecting...";
 ?>
+<script>
+    window.location = "/flyly-chat-app/views";
+</script>
