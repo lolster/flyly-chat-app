@@ -1,3 +1,9 @@
+/*
+	1. Slight code refining and refactoring
+	2. fml
+	3. MySQL integration
+	4. (very low priority) Change the change room event to a handshake time (on connection)
+*/
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
@@ -10,7 +16,7 @@ const io = require('socket.io').listen(http);
 // folder to find the file.
 // can set multiple static folder
 // server searches in top to bottom order
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 http.listen(3000, function() {
   console.log('listening on 3000')
@@ -33,7 +39,7 @@ io.on('connection', (socket) => {
 
 	socket.on('chat message', (data) => {
 		console.log(data.msg);
-		socket.to([data.sender, data.receiver].sort().join('')).broadcast.emit('chat message', data);
+		socket.to(data.receiver/*[data.sender, data.receiver].sort().join('')*/).broadcast.emit('chat message', data);
 	});
 
 	socket.on('disconnect', () => {

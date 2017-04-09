@@ -28,7 +28,7 @@
 	  
     //var socket = io({transports: ['websocket'], upgrade: false});
     var socket = io('http://localhost:3000');
-    var currRoom = [user, recv].sort().join('');
+    var currRoom = user;
 
     socket.emit('change room', {room:currRoom});
 
@@ -37,7 +37,7 @@
       $('#messages').append($('<li>').text(data.sender + ': ' + data.msg));
     });
 
-	  function sendMsg(){
+	  function sendMsg() {
       socket.emit('chat message', {
         msg:$('#m').val(),
         sender: user,
