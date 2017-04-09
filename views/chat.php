@@ -4,9 +4,6 @@
 	<head>
 		<title>chat</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
@@ -67,30 +64,35 @@
 
 			function sendMsg() {
 				// test function as well
-				var newMsg = document.createElement('div');
-				newMsg.className = 'conv-right';
 				sentMsg = document.getElementById('msg-box').value;
+				// check if empty
 				if (sentMsg) {
-					// check if empty
 					// use regex to search for code
 					if (hasCode(sentMsg)) {
-						alert('has code');
-						//newMsg = highligtCode(sentMsg);
+						newMsg = $('<div/>', {'class':'code-right'});
+						result = sentMsg.match(/```(.*)\n/);
+						language = result[1];
+						console.log('language: ' + language);
+						
+						sentMsg = getCode(sentMsg);
+
+						pre = $('<pre/>', {'class':'code-toolbars line-numbers'});
+						code = $('<code/>', {'class':'language-' + language});
+
+						code.text(sentMsg);
+						pre.append(code);
+
+						newMsg.append(pre);
+						$('#conversation-area').append(newMsg);
+						$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
+					} else {
+						newMsg = $('<div/>', {'class':'conv-right'});
+						newMsg.html(sentMsg);
+						$('#conversation-area').append(newMsg);
 					}
-					//newMsg.innerHTML = sentMsg;
-					//document.getElementById('conversation-area').append(newMsg);
-					//document.getElementById('msg-box').value = '';
-				
-					var $newMsg = $('<div/>', {'class':'conv-right'});
-					var $pre = $('<pre/>', {'class':'language-python code-toolbar'});
-					var $code = $('<code/>', {'class':'language-c'});
-					//$code.text('int main() {\nprintf("Hello world\\n"); }');
-					$code.text(sentMsg);
-					$pre.append($code);
-					$newMsg.append($pre);
-					$('#conversation-area').append($newMsg);
-					$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
+					
 					beAtBottom();
+					document.getElementById('msg-box').value = '';
 				}
 			}
 
@@ -102,8 +104,8 @@
 				return true;
 			}
 
-			function highlightCode(message) {
-				// TODO
+			function getCode(message) {
+				return(message.substring(message.indexOf("\n") + 1, message.lastIndexOf("\n")));
 			}
 
 			function logOut() {
@@ -204,38 +206,14 @@
 
 					<!-- conversation area -->
 					<div id="conversation-area" onclick="contractChatArea()">
-						<div class="conv-left">
-							test 123
-						</div>
-						<div class="conv-left">
-							other person
-						</div>
-						<div class="conv-right">
-							hello me
-						</div>
-						<div class="conv-left">
-							On April 3rd, the 2017 edition of éclat was launched by Professor D. Jawahar, Pro Chancellor, PES University and CEO, PES institutions, in the presence of Dr V. Krishna, the Chairperson of the Mechanical Engineering Department of PES University. This edition consists of articles compiled by talented, creative minds of PES during the course of the preceding two years. The student copies shall be passed on to every department soon. We hope you enjoy dwelling into an ocean of thoughts articulated to enlighten, entertain and blow your mind!
-						</div>
-						<div class="conv-right">
-							Noice!! 😃
-						</div>
-						<div class="conv-right">
-							Here's some more stuff:
-						</div>
-						<div class="conv-right">
-							1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea & Infusions Association. 
-						</div>
-						<div class="conv-left">
-							Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.
-						</div>
-						<div class="conv-right">
-							<pre><code class="language-c">
-								int min() {
-									printf("aa");
-								};
-							</code></pre>
-						</div>
-
+						<div class="conv-left">test 123</div>
+						<div class="conv-left">other person</div>
+						<div class="conv-right">hello me</div>
+						<div class="conv-left">On April 3rd, the 2017 edition of éclat was launched by Professor D. Jawahar, Pro Chancellor, PES University and CEO, PES institutions, in the presence of Dr V. Krishna, the Chairperson of the Mechanical Engineering Department of PES University. This edition consists of articles compiled by talented, creative minds of PES during the course of the preceding two years. The student copies shall be passed on to every department soon. We hope you enjoy dwelling into an ocean of thoughts articulated to enlighten, entertain and blow your mind!</div>
+						<div class="conv-right">Noice!! 😃</div>
+						<div class="conv-right">Here's some more stuff:</div>
+						<div class="conv-right">1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea & Infusions Association. </div>
+						<div class="conv-left">Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.</div>
 					</div>
 
 					<!-- input box -->

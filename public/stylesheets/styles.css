@@ -297,15 +297,18 @@ a:hover {
 	border: none;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	white-space: pre-wrap;
 }
 
 /* other person */
 .conv-left {
-	background-color: #cbcac6;
+	background-color: #e7e7e8;
 	margin-left: 5%;
-	padding-left: 15px;
+	text-align: left;
 	
 	/* flex-start (default): items are packed toward the start line 
 	 * more on it:
@@ -317,13 +320,25 @@ a:hover {
 
 /* user */
 .conv-right {
-	background-color: #72a9d1;
+	background-color: #9dcdea;
 	margin-right: 5%;
-	padding-right: 15px;
 	text-align: right;
 
 	float: right;
 	align-self: flex-start;
+}
+
+.code-right {
+	position: relative;
+	width: 60%;
+	font-size: 15px;
+
+	white-space: pre-wrap;
+	margin-right: 5%;
+
+	float: right;
+	align-self: flex-start;
+	text-align: left;
 }
 
 /* field to enter message and send
