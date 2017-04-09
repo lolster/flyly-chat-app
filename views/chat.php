@@ -4,15 +4,21 @@
 	<head>
 		<title>chat</title>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
+		<link rel="stylesheet" href="../public/stylesheets/prism.css">
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script src="../public/javascripts/bootstrap.min.js"></script>
+		<script src="../public/javascripts/prism.js"></script>
 		
 		<script>
+
 			// onload doesn't work on chrom for some reason
 			$(window).on('load', function() {
 				beAtBottom();
@@ -32,11 +38,20 @@
 			// select particular thread for chatting
 			function selectThread() {
 				// test stuff
-				var newMsg = document.createElement('div');
-				newMsg.className = 'conv-left';
-				newMsg.innerHTML = 'test 123';
-				document.getElementById('conversation-area').append(newMsg);
+				// var newMsg = document.createElement('div');
+				// newMsg.className = 'conv-left';
+				// newMsg.innerHTML = '<code class="language-c">int min() {printf("aa");};</code>';
+				// document.getElementById('conversation-area').append(newMsg);
 
+				var $newMsg = $('<div/>', {'class':'conv-left'});
+				var $pre = $('<pre/>', {'class':'language-c code-toolbar'});
+				var $code = $('<code/>', {'class':'language-c'});
+				//$code.text('int main() {\nprintf("Hello world\\n"); }');
+				$code.text();
+				$pre.append($code);
+				$newMsg.append($pre);
+				$('#conversation-area').append($newMsg);
+				$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
 				// go to bottom once a message is added
 				beAtBottom();
 			}
@@ -62,9 +77,19 @@
 						alert('has code');
 						//newMsg = highligtCode(sentMsg);
 					}
-					newMsg.innerHTML = sentMsg;
-					document.getElementById('conversation-area').append(newMsg);
-					document.getElementById('msg-box').value = '';
+					//newMsg.innerHTML = sentMsg;
+					//document.getElementById('conversation-area').append(newMsg);
+					//document.getElementById('msg-box').value = '';
+				
+					var $newMsg = $('<div/>', {'class':'conv-right'});
+					var $pre = $('<pre/>', {'class':'language-python code-toolbar'});
+					var $code = $('<code/>', {'class':'language-c'});
+					//$code.text('int main() {\nprintf("Hello world\\n"); }');
+					$code.text(sentMsg);
+					$pre.append($code);
+					$newMsg.append($pre);
+					$('#conversation-area').append($newMsg);
+					$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
 					beAtBottom();
 				}
 			}
@@ -78,7 +103,7 @@
 			}
 
 			function highlightCode(message) {
-				
+				// TODO
 			}
 
 			function logOut() {
@@ -202,6 +227,13 @@
 						</div>
 						<div class="conv-left">
 							Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.
+						</div>
+						<div class="conv-right">
+							<pre><code class="language-c">
+								int min() {
+									printf("aa");
+								};
+							</code></pre>
 						</div>
 
 					</div>
