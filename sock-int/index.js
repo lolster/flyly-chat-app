@@ -8,6 +8,26 @@ const express = require('express');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io').listen(http);
+const mysql = require('mysql');
+
+// do mysql connection stuff
+var con = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: '',
+	database: 'flyly'
+});
+
+// connect
+// con.connect(function(err) {
+// 	if(err) {
+// 		console.log('error connecting to db');
+// 		return;
+// 	}
+// 	else {
+// 		console.log('connected to flyly db');
+// 	}
+// });
 
 // use the static middleware to serve up
 // static content
@@ -35,11 +55,54 @@ io.on('connection', (socket) => {
 	socket.on('change room', (data) => {
 		console.log(data.room);
 		socket.join(data.room);
+		//TODO update MySQL database to reflect that user is logged in and online
 	});
 
 	socket.on('chat message', (data) => {
-		console.log(data.msg);
-		socket.to(data.receiver/*[data.sender, data.receiver].sort().join('')*/).broadcast.emit('chat message', data);
+		//TODO Send data to mysql database as well before sending to user
+		
+		//get the id of sender and reciever
+		//sender id
+		var s = -1;
+		con.query('SELECT userid FROM users WHERE username = ?', [data.sender], function(error, results, fields) {
+			if(error) {
+				console.log('[ERROR] Cannot get sender id');
+				return;
+			}
+
+		});
+		
+		//recv id
+		var r = -;1
+		con.query('SELECT userid FROM users WHERE username = ?', [data.receiver], function(error, results, fields) {
+			if(error) {
+				console.log('[ERROR] Cannot get receiver id');
+				return;
+			}
+		});
+
+		console.log('[INFO] From database: ');
+		console.log('[INFO] Sender: ' + data.sender + ' id: ' + s);
+		console.log('[INFO] Receiver: ' + data.receiver + ' id: ' + r);
+
+		//insert into message table
+		var message = {
+			body: data.msg,
+			send_id: s,
+			rcv_id: r
+		};
+
+		con.query('INSERT INTO messages SET ?', message, function(err, res) {
+			if(err) {
+				console.log('[ERROR] Cannot insert message into database');
+				return;
+			}
+			console.log('[INFO] Inserted, insert id: ' + res.insertId);
+		});
+
+		console.log('[INFO] ' + 'Message: ' + data.msg);
+		socket.to(data.receiver).broadcast.emit('chat message', data);
+		console.log('\n\n');
 	});
 
 	socket.on('disconnect', () => {
