@@ -22,14 +22,21 @@
 			<div class="card login-card-container">
 				<img id="profile-img" class="profile-img-card" src="../public/images/profile.png">
 				<hr class="colorgraph">
-
-				<form action="///TODO" method="POST" role="form">
+				<?php
+					if(isset($_GET['s']) && $_GET['s'] == 'f') {
+						//write the pretty stuff here css-man
+						?>
+							<h5>Incorrect Credentials!</h5>
+						<?php
+					}
+				?>
+				<form action="../public/phpscripts/login.php" method="POST" role="form">
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon">
 								<i class="glyphicon glyphicon-user"></i>
 							</span> 
-							<input type="text" class="form-control" id="input-username" placeholder="Username" autofocus>
+							<input type="text" class="form-control" name="username" id="input-username" placeholder="Username" autofocus>
 						</div>
 					</div>
 					<div class="form-group">
@@ -37,7 +44,7 @@
 							<span class="input-group-addon">
 								<i class="glyphicon glyphicon-lock"></i>
 							</span>
-							<input type="password" class="form-control" id="password" placeholder="Password">
+							<input type="password" name="password" class="form-control" id="password" placeholder="Password">
 						</div>
 					</div>
 
