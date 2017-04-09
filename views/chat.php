@@ -1,7 +1,12 @@
-<?php session_start() 
-	require('entry_chat.php');
-?>
 <!DOCTYPE html>
+<?php
+	session_start() 
+	//require('../public/phpscripts/entry_chat.php');
+	//require('entry_chat.php');
+	// NOTE!! 
+	// commenting for now since I haven't set uo the database
+?>
+
 <html>
 	<head>
 		<title>chat</title>
@@ -10,10 +15,16 @@
 
 		<link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
+		<link rel="stylesheet" href="../public/stylesheets/prism.css">
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script src="../public/javascripts/bootstrap.min.js"></script>
+		<script src="../public/javascripts/prism.js"></script>
 		<script>
+			// onload doesn't work on chrome for some reason
+			$(window).on('load', function() {
+				beAtBottom();
+			});
 			/*
 			<div class="threads" onclick="selectThread()">
 				<img class="img-circle" src="../public/images/profile.png">
@@ -25,44 +36,49 @@
 			/* EDITED BY MR.HUNTER WILL BE BUGGY PLS FIX OR ELSE RIP*/
 			var userFriendsName = <?php echo json_encode($userFriends);?>;
 			//var mainThread = document.createElement("div");
-			var $mainThread = $("<div>",{id:"threads-list"});
-			var userId = <?php echo $userid;?>
-			for(var i = 0 ; i < userFriendsName.length ; ++i){
-					var $subThread = $("<div>",{class:"threads",id:userFriendsName[i]});
+			var $mainThread = $('<div>', {id:'threads-list'});
+			// NOTE!!
+			// var userId = <?php echo $userid;?>;
+			// PLACEHOLDER
+			var userId = 'user99';
+			for (var i = 0; i < userFriendsName.length; ++i) {
+					var $subThread = $('<div>', {class:'threads', id:userFriendsName[i]});
 					$subThread.on('click', selectThread);
-					var $profImage = $("<img>",{class:"img-circle",src:"../public/images/profile.png"});
+					var $profImage = $('<img>', {class:'img-circle', src:'../public/images/profile.png'});
 					$subThread.append($profImage);
 					var name = userFriendsname[i];
-					var $span_one = $("<span>",{class:"name"});
-					$span_one.text(name);
-					$subThread.append($span_one);
-					var $span_two = $("<span>",{class:"preview",id:userFriendsName[i]+"preview"})
-					$subThread.append($span_two);
-					//$span_two.text() -> need to call later after fetching the messages
-					// call after appending.... 
+					var $spanOne = $('<span>', {class:'name'});
+					$spanOne.text(name);
+					$subThread.append($spanOne);
+					var $spanTwo = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'})
+					$subThread.append($spanTwo);
+					//$spanTwo.text() -> need to call later after fetching the messages
+					// call after appending
 					//getLatestMessage(userId , name);
 					$mainThread.append($subThread);
 			}
-			document.getElementById("left-pane").appendChild($mainThread);
-			for(var i = 0 ; i < userFriendsName.length ; ++i){
-				getLatestMessage(userId,userFriendsName[i]);
+			document.getElementById('left-pane').appendChild($mainThread);
+			for (var i = 0; i < userFriendsName.length; ++i) {
+				getLatestMessage(userId, userFriendsName[i]);
 			}
-		</script>
-		<script>
-			message = ""
+
+			message = ''
 			function getLatestMessage(userId , name){
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = gettingMessage;
-				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xhr.open("POST","getMessage.php",true);
-				var arr = "uid="+encodeURI(userId)+"&name="+encodeURI(name);
+				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				xhr.open('POST', 'getMessage.php', true);
+				var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(name);
 				xhr.send(arr);
 			}
+
 			function gettingMessage(){
 				if(this.readyState == 4 && this.status == 200){
 					document.getElementById(name+"preview").value = this.responseText;
 				}
 			}
+
+			//
 
 			function openPane() {
 				if (window.innerWidth < 992) {
@@ -78,41 +94,101 @@
 			// select particular thread for chatting
 			function selectThread() {
 				// test stuff
-				var newMsg = document.createElement('div');
-				newMsg.className = 'conv-left';
-				newMsg.innerHTML = 'test 123';
-				document.getElementById('conversation-area').append(newMsg);
+				// var newMsg = document.createElement('div');
+				// newMsg.className = 'conv-left';
+				// newMsg.innerHTML = '<code class="language-c">int min() {printf("aa");};</code>';
+				// document.getElementById('conversation-area').append(newMsg);
 
+				var $newMsg = $('<div/>', {'class':'conv-left'});
+				var $pre = $('<pre/>', {'class':'language-c code-toolbar'});
+				var $code = $('<code/>', {'class':'language-c'});
+				//$code.text('int main() {\nprintf("Hello world\\n"); }');
+				$code.text();
+				$pre.append($code);
+				$newMsg.append($pre);
+				$('#conversation-area').append($newMsg);
+				$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
 				// go to bottom once a message is added
 				beAtBottom();
 			}
 
 			function beAtBottom() {
-				document.getElementById('conversation-area').scrollTop = document.getElementById('conversation-area').scrollHeight;
+				//document.getElementById('conversation-area').scrollTop = document.getElementById('conversation-area').scrollHeight;
+				$('#conversation-area').animate({
+					scrollTop:$('#conversation-area')[0].scrollHeight - 400
+				}, 'slow');
+				// 400 is hard coded
+				// works ¯\_(ツ)_/¯
 			}
 
 			function sendMsg() {
 				// test function as well
-				var newMsg = document.createElement('div');
-				newMsg.className = 'conv-right';
 				sentMsg = document.getElementById('msg-box').value;
+				// check if empty
 				if (sentMsg) {
-					// check if empty
-					newMsg.innerHTML = sentMsg;
-					document.getElementById('conversation-area').append(newMsg);
-					document.getElementById('msg-box').value = '';
+					// use regex to search for code
+					if (hasCode(sentMsg)) {
+						newMsg = $('<div/>', {'class':'code-right'});
+						result = sentMsg.match(/```(.*)\n/);
+						language = result[1];
+						console.log('language: ' + language);
+						
+						sentMsg = getCode(sentMsg);
+
+						pre = $('<pre/>', {'class':'code-toolbars line-numbers'});
+						code = $('<code/>', {'class':'language-' + language});
+
+						code.text(sentMsg);
+						pre.append(code);
+
+						newMsg.append(pre);
+						$('#conversation-area').append(newMsg);
+						$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
+					} else {
+						newMsg = $('<div/>', {'class':'conv-right'});
+						newMsg.html(sentMsg);
+						$('#conversation-area').append(newMsg);
+					}
+					
 					beAtBottom();
+					document.getElementById('msg-box').value = '';
 				}
+			}
+
+			function hasCode(message) {
+				n = message.search('```');
+				if (n == -1) {
+					return false;
+				}
+				return true;
+			}
+
+			function getCode(message) {
+				return(message.substring(message.indexOf("\n") + 1, message.lastIndexOf("\n")));
 			}
 
 			function logOut() {
 				console.log('log out');
 				alert('log out');
 			}
+
+			function expandChatArea() {
+				document.getElementById('conversation-area').style.height = '60%';
+				document.getElementById('msg-input').style.height = '30%';
+				document.getElementById('msg-box').style.height = '90%';
+
+				beAtBottom();
+			}
+
+			function contractChatArea() {
+				document.getElementById('conversation-area').style.height = '80%';
+				document.getElementById('msg-input').style.height = '10%';
+				document.getElementById('msg-box').style.height = '50%';
+			}
 		</script>
 	</head>
 
-	<body onload="beAtBottom()">
+	<body>
 		<div class="container">
 			<div class="row" id="area">
 				<!-- threads-list and search left -->
@@ -188,37 +264,20 @@
 					</div>
 
 					<!-- conversation area -->
-					<div id="conversation-area">
-						<div class="conv-left">
-							test 123
-						</div>
-						<div class="conv-left">
-							other person
-						</div>
-						<div class="conv-right">
-							hello me
-						</div>
-						<div class="conv-left">
-							On April 3rd, the 2017 edition of éclat was launched by Professor D. Jawahar, Pro Chancellor, PES University and CEO, PES institutions, in the presence of Dr V. Krishna, the Chairperson of the Mechanical Engineering Department of PES University. This edition consists of articles compiled by talented, creative minds of PES during the course of the preceding two years. The student copies shall be passed on to every department soon. We hope you enjoy dwelling into an ocean of thoughts articulated to enlighten, entertain and blow your mind!
-						</div>
-						<div class="conv-right">
-							Noice!! 😃
-						</div>
-						<div class="conv-right">
-							Here's some more stuff:
-						</div>
-						<div class="conv-right">
-							1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea & Infusions Association. 
-						</div>
-						<div class="conv-left">
-							Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.
-						</div>
-
+					<div id="conversation-area" onclick="contractChatArea()">
+						<div class="conv-left">test 123</div>
+						<div class="conv-left">other person</div>
+						<div class="conv-right">hello me</div>
+						<div class="conv-left">On April 3rd, the 2017 edition of éclat was launched by Professor D. Jawahar, Pro Chancellor, PES University and CEO, PES institutions, in the presence of Dr V. Krishna, the Chairperson of the Mechanical Engineering Department of PES University. This edition consists of articles compiled by talented, creative minds of PES during the course of the preceding two years. The student copies shall be passed on to every department soon. We hope you enjoy dwelling into an ocean of thoughts articulated to enlighten, entertain and blow your mind!</div>
+						<div class="conv-right">Noice!! 😃</div>
+						<div class="conv-right">Here's some more stuff:</div>
+						<div class="conv-right">1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea & Infusions Association. </div>
+						<div class="conv-left">Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.</div>
 					</div>
 
 					<!-- input box -->
 					<div id="msg-input">
-						<input type="text" id="msg-box" class="form-control" required="required" placeholder="type in here..">
+						<textarea id="msg-box" class="form-control" rows="2" required="required" onclick="expandChatArea()" placeholder="type in here.."></textarea>
 						<button type="submit" id="send-btn" class="btn btn-primary" onclick="sendMsg()">Send</button>
 					</div>
 					
