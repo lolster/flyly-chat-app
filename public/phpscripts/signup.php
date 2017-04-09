@@ -28,7 +28,7 @@
             'msg' => 'Could not perform this action! Please check your username!'
         )));
     }
-    header("Location:../../views/login.html");
+    header("Location:../../views/login.php");
     /*
     die(json_encode(array(
         'status' => 'success',

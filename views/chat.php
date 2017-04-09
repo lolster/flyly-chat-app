@@ -1,4 +1,6 @@
-<?php session_start() ?>
+<?php session_start() 
+	require('entry_chat.php');
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,8 +13,57 @@
 		
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script src="../public/javascripts/bootstrap.min.js"></script>
-		
 		<script>
+			/*
+			<div class="threads" onclick="selectThread()">
+				<img class="img-circle" src="../public/images/profile.png">
+				<span class="name">Sushrith Arkal</span>
+				<span class="preview">I am happy</span>
+			</div>
+			*/
+
+			/* EDITED BY MR.HUNTER WILL BE BUGGY PLS FIX OR ELSE RIP*/
+			var userFriendsName = <?php echo json_encode($userFriends);?>;
+			//var mainThread = document.createElement("div");
+			var $mainThread = $("<div>",{id:"threads-list"});
+			var userId = <?php echo $userid;?>
+			for(var i = 0 ; i < userFriendsName.length ; ++i){
+					var $subThread = $("<div>",{class:"threads",id:userFriendsName[i]});
+					$subThread.on('click', selectThread);
+					var $profImage = $("<img>",{class:"img-circle",src:"../public/images/profile.png"});
+					$subThread.append($profImage);
+					var name = userFriendsname[i];
+					var $span_one = $("<span>",{class:"name"});
+					$span_one.text(name);
+					$subThread.append($span_one);
+					var $span_two = $("<span>",{class:"preview",id:userFriendsName[i]+"preview"})
+					$subThread.append($span_two);
+					//$span_two.text() -> need to call later after fetching the messages
+					// call after appending.... 
+					//getLatestMessage(userId , name);
+					$mainThread.append($subThread);
+			}
+			document.getElementById("left-pane").appendChild($mainThread);
+			for(var i = 0 ; i < userFriendsName.length ; ++i){
+				getLatestMessage(userId,userFriendsName[i]);
+			}
+		</script>
+		<script>
+			message = ""
+			function getLatestMessage(userId , name){
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = gettingMessage;
+				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhr.open("POST","getMessage.php",true);
+				var arr = "uid="+encodeURI(userId)+"&name="+encodeURI(name);
+				xhr.send(arr);
+			}
+			function gettingMessage(){
+				if(this.readyState == 4 && this.status == 200){
+					document.getElementById(name+"preview").value = this.responseText;
+				}
+			}
+
 			function openPane() {
 				if (window.innerWidth < 992) {
 					document.getElementById('left-pane').style.width = '100%';
