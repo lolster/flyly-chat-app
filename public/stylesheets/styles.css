@@ -354,6 +354,7 @@ a:hover {
 	z-index: 0;
 	overflow: scroll;
 	align-self: center;
+	resize: none;
 }
 
 #msg-box:hover, #msg-box:focus {

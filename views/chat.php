@@ -42,7 +42,12 @@
 			}
 
 			function beAtBottom() {
-				document.getElementById('conversation-area').scrollTop = document.getElementById('conversation-area').scrollHeight;
+				//document.getElementById('conversation-area').scrollTop = document.getElementById('conversation-area').scrollHeight;
+				$('#conversation-area').animate({
+					scrollTop:$('#conversation-area')[0].scrollHeight - 400
+				}, 'slow');
+				// 400 is hard coded
+				// works ¯\_(ツ)_/¯
 			}
 
 			function sendMsg() {
@@ -55,7 +60,7 @@
 					// use regex to search for code
 					if (hasCode(sentMsg)) {
 						alert('has code');
-						var Msg = highligtCode(sentMsg);
+						//newMsg = highligtCode(sentMsg);
 					}
 					newMsg.innerHTML = sentMsg;
 					document.getElementById('conversation-area').append(newMsg);
@@ -73,7 +78,7 @@
 			}
 
 			function highlightCode(message) {
-
+				
 			}
 
 			function logOut() {
