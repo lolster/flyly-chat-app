@@ -13,6 +13,11 @@
 		<script src="../public/javascripts/bootstrap.min.js"></script>
 		
 		<script>
+			// onload doesn't work on chrom for some reason
+			$(window).on('load', function() {
+				beAtBottom();
+			});
+
 			function openPane() {
 				if (window.innerWidth < 992) {
 					document.getElementById('left-pane').style.width = '100%';
@@ -35,10 +40,6 @@
 				// go to bottom once a message is added
 				beAtBottom();
 			}
-
-			$(window).on('load', function() {
-				beAtBottom();
-			});
 
 			function beAtBottom() {
 				document.getElementById('conversation-area').scrollTop = document.getElementById('conversation-area').scrollHeight;

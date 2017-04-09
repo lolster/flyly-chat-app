@@ -347,7 +347,7 @@ a:hover {
 	width: 70%;
 	margin: 0 auto;
 	padding-left: 15px;
-	background-color: #61686a;
+	background-color: rgb(242, 245, 248);
 	border-radius: 5px;
 	font-size: 2vh;
 	transition: 0.2s ease-in-out;
@@ -358,7 +358,6 @@ a:hover {
 
 #msg-box:hover, #msg-box:focus {
 	/* TODO */
-	background-color: #6A6C75;
 	outline: none;
 }
 
@@ -445,6 +444,11 @@ a:hover {
 	#msg-box {
 		margin-left: 5%;
 		margin-right: 2%;
+		font-size: 17px;
+	}
+
+	#send-btn {
+		height: 30px;
 	}
 
 	/* TODO
