@@ -286,6 +286,7 @@ a:hover {
 	height: 80%;
 	background-color: rgb(242, 245, 248);
 	overflow: scroll;
+	transition: 0.2s ease-in-out;
 }
 
 .conv-left, .conv-right {
@@ -336,36 +337,38 @@ a:hover {
 	background-color: rgb(242, 245, 248);
 	border-bottom-right-radius: 10px;
 	border-top: 2px solid #ccc;
+	transition: 0.2s ease-in-out;
 	display: flex;
-	align-items: center;
 }
 
-#msg-input input {
+#msg-box {
 	/* TODO */
-	display: flex;
-	align-items: center;
+	height: 50%;
 	width: 70%;
 	margin: 0 auto;
-	border: none;
-	color: black;
 	padding-left: 15px;
 	background-color: #61686a;
 	border-radius: 5px;
-	font-size: 17px;
+	font-size: 2vh;
 	transition: 0.2s ease-in-out;
+	z-index: 0;
+	overflow: scroll;
+	align-self: center;
 }
 
-#msg-input input:hover, #msg-input input:focus {
+#msg-box:hover, #msg-box:focus {
 	/* TODO */
-	background-color: white;
+	background-color: #6A6C75;
 	outline: none;
 }
 
 /* send button */
 #send-btn {
+	height: 4vh;
 	margin-right: 5%;
 	background-color: #6A6C75;
 	color: white;
+	align-self: center;
 }
 
 /* button for highlighted code */
@@ -437,6 +440,11 @@ a:hover {
 
 	#conversation-area {
 		height: 80vh;
+	}
+
+	#msg-box {
+		margin-left: 5%;
+		margin-right: 2%;
 	}
 
 	/* TODO

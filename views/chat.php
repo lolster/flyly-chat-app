@@ -47,6 +47,11 @@
 				sentMsg = document.getElementById('msg-box').value;
 				if (sentMsg) {
 					// check if empty
+					// use regex to search for code
+					if (hasCode(sentMsg)) {
+						alert('has code');
+						new Msg = highligtCode(sentMsg);
+					}
 					newMsg.innerHTML = sentMsg;
 					document.getElementById('conversation-area').append(newMsg);
 					document.getElementById('msg-box').value = '';
@@ -54,9 +59,35 @@
 				}
 			}
 
+			function hasCode(message) {
+				n = message.search('```');
+				if (n == -1) {
+					return false;
+				}
+				return true;
+			}
+
+			function highlightCode(message) {
+
+			}
+
 			function logOut() {
 				console.log('log out');
 				alert('log out');
+			}
+
+			function expandChatArea() {
+				document.getElementById('conversation-area').style.height = '60%';
+				document.getElementById('msg-input').style.height = '30%';
+				document.getElementById('msg-box').style.height = '90%';
+
+				beAtBottom();
+			}
+
+			function contractChatArea() {
+				document.getElementById('conversation-area').style.height = '80%';
+				document.getElementById('msg-input').style.height = '10%';
+				document.getElementById('msg-box').style.height = '50%';
 			}
 		</script>
 	</head>
@@ -137,7 +168,7 @@
 					</div>
 
 					<!-- conversation area -->
-					<div id="conversation-area">
+					<div id="conversation-area" onclick="contractChatArea()">
 						<div class="conv-left">
 							test 123
 						</div>
@@ -167,7 +198,7 @@
 
 					<!-- input box -->
 					<div id="msg-input">
-						<input type="text" id="msg-box" class="form-control" required="required" placeholder="type in here..">
+						<textarea id="msg-box" class="form-control" rows="2" required="required" onclick="expandChatArea()" placeholder="type in here.."></textarea>
 						<button type="submit" id="send-btn" class="btn btn-primary" onclick="sendMsg()">Send</button>
 					</div>
 					
