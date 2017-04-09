@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -125,7 +126,7 @@
 					<div id="right-pane-header">
 						<span id="hamburger" onclick="openPane()">&#9776;</span>
 						<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
-						<div id="profile-name">Sushrith</div>
+						<div id="profile-name"><?php echo $_SESSION['username']; ?></div>
 					</div>
 
 					<!-- conversation area -->
