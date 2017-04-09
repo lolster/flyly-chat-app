@@ -143,13 +143,6 @@ a:hover {
 /* -------------------------------------------------------------------------- */
 /* chat page*/ 
 
-/* hamburger menu icon */
-#hamburger {
-	font-size: 17px;
-	cursor: pointer;
-	color: white;
-}
-
 /* left + right
  * used for fixing a bug with mobile view */
 #area {
@@ -261,8 +254,23 @@ a:hover {
 	
 }
 
+/* hamburger menu icon */
+#hamburger {
+	font-size: 17px;
+	cursor: pointer;
+	color: white;
+}
+
+/* settings icon */
+#logout {
+	/* TODO */
+	cursor: pointer;
+	margin-left: 35vw;
+	font-size: 24px;
+}
+
 #profile-pic {
-	height: 6.5vh;
+	height: 6vh;
 	margin-left: 5%;
 }
 
@@ -404,6 +412,13 @@ a:hover {
 		padding-left: 15px;
 	}
 
+	#logout {
+		/* TODO */
+		margin-left: 40vw;
+		font-size: 4vh;
+	}
+
+
 	/* make area full screen */
 	#area {
 		margin-top: 0;
@@ -453,5 +468,23 @@ a:hover {
 	 * feelsbadman */
 	#left-pane {
 		width: 33.33%;
+	}
+}
+
+/*
+@media not all and (min-resolution:.001dpcm) {
+	@media {
+		.chrome_only { 
+			::-webkit-scrollbar { 
+				display: none; 
+			}
+		}
+	}
+}*/
+
+@supports (-webkit-appearance:none) and (not (overflow:-webkit-marquee))
+and (not (-ms-ime-align:auto)) and (not (-moz-appearance:none) {
+	::-webkit-scrollbar { 
+		display: none; 
 	}
 }
