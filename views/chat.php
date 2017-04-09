@@ -36,6 +36,10 @@
 				beAtBottom();
 			}
 
+			$(window).on('load', function() {
+				beAtBottom();
+			});
+
 			function beAtBottom() {
 				document.getElementById('conversation-area').scrollTop = document.getElementById('conversation-area').scrollHeight;
 			}
@@ -50,7 +54,7 @@
 					// use regex to search for code
 					if (hasCode(sentMsg)) {
 						alert('has code');
-						new Msg = highligtCode(sentMsg);
+						var Msg = highligtCode(sentMsg);
 					}
 					newMsg.innerHTML = sentMsg;
 					document.getElementById('conversation-area').append(newMsg);
@@ -92,7 +96,7 @@
 		</script>
 	</head>
 
-	<body onload="beAtBottom()">
+	<body>
 		<div class="container">
 			<div class="row" id="area">
 				<!-- threads-list and search left -->
