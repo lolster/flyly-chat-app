@@ -28,9 +28,11 @@
             'msg' => 'Could not perform this action! Please check your username!'
         )));
     }
-
+    header("Location:../../views/login.html");
+    /*
     die(json_encode(array(
         'status' => 'success',
         'msg' => 'User creation successful!'
     )));
+    */
 ?>
