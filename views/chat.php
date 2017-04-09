@@ -57,6 +57,7 @@
 					//getLatestMessage(userId , name);
 					$mainThread.append($subThread);
 			}
+			
 			document.getElementById('left-pane').appendChild($mainThread);
 			for (var i = 0; i < userFriendsName.length; ++i) {
 				getLatestMessage(userId, userFriendsName[i]);
