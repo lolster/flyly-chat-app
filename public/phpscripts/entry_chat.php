@@ -5,7 +5,7 @@
     $lastname = $_SESSION['lastname'];
     $userid = $_SESSION['id'];
     $email = $_SESSION['email'];
-    if(!$stmnt = $connection->prepare('select username from `users` where userid in (select send_id from `messages` where rcv_id = ? )')){
+    if(!$stmnt = $connection->prepare('SELECT username from users where userid in (select send_id from messages where rcv_id = ? )')){
          die(json_encode(array(
              'status'=>'error',
              'message'=>'query failed!'

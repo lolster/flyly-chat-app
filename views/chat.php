@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <?php
-	session_start() 
+	session_start(); 
 	//require('../public/phpscripts/entry_chat.php');
-	//require('entry_chat.php');
 	// NOTE!! 
 	// commenting for now since I haven't set uo the database
 ?>
@@ -12,11 +11,9 @@
 		<title>chat</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
 		<link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
 		<link rel="stylesheet" href="../public/stylesheets/prism.css">
-		
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script src="../public/javascripts/bootstrap.min.js"></script>
 		<script src="../public/javascripts/prism.js"></script>
@@ -24,6 +21,7 @@
 			// onload doesn't work on chrome for some reason
 			$(window).on('load', function() {
 				beAtBottom();
+				createParallax();
 			});
 			/*
 			<div class="threads" onclick="selectThread()">
@@ -38,18 +36,18 @@
 			//var mainThread = document.createElement("div");
 			var $mainThread = $('<div>', {id:'threads-list'});
 			// NOTE!!
-			// var userId = <?php echo $userid;?>;
+			var userId = <?php echo $userid;?>;
 			// PLACEHOLDER
-			var userId = 'user99';
+			//var userId = 'user99';
 			for (var i = 0; i < userFriendsName.length; ++i) {
 					var $subThread = $('<div>', {class:'threads', id:userFriendsName[i]});
 					$subThread.on('click', selectThread);
 					var $profImage = $('<img>', {class:'img-circle', src:'../public/images/profile.png'});
 					$subThread.append($profImage);
 					var name = userFriendsname[i];
-					var $spanOne = $('<span>', {class:'name'});
-					$spanOne.text(name);
-					$subThread.append($spanOne);
+					var $divOne = $('<div>', {class:'name'});
+					$divOne.text(name);
+					$subThread.append($divOne);
 					var $spanTwo = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'})
 					$subThread.append($spanTwo);
 					//$spanTwo.text() -> need to call later after fetching the messages
@@ -57,17 +55,18 @@
 					//getLatestMessage(userId , name);
 					$mainThread.append($subThread);
 			}
+			
 			document.getElementById('left-pane').appendChild($mainThread);
 			for (var i = 0; i < userFriendsName.length; ++i) {
 				getLatestMessage(userId, userFriendsName[i]);
 			}
 
-			message = ''
+			//function to get the last message sent between this user and 
 			function getLatestMessage(userId , name){
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = gettingMessage;
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				xhr.open('POST', 'getMessage.php', true);
+				xhr.open('POST', '../public/phpscripts/getMessage.php', true);
 				var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(name);
 				xhr.send(arr);
 			}
@@ -98,7 +97,6 @@
 				newMsg.className = 'conv-left';
 				newMsg.innerHTML = 'cool message';
 				document.getElementById('conversation-area').append(newMsg);
-
 				// go to bottom once a message is added
 				beAtBottom();
 			}
@@ -110,6 +108,20 @@
 				}, 'slow');
 				// 400 is hard coded
 				// works ¯\_(ツ)_/¯
+			}
+
+			function createParallax() {
+				var movementStrength = 20;
+				var height = movementStrength / $(window).height();
+				var width = movementStrength / $(window).width();
+
+				$(document.body).mousemove(function(e) {
+					var pageX = e.pageX - ($(window).width() / 2);
+					var pageY = e.pageY - ($(window).height() / 2);
+					var newvalueX = width * pageX * -1 - 25;
+					var newvalueY = height * pageY * -1 - 50;
+					$('#bg-img').css('background-position', newvalueX + 'px     ' + newvalueY + 'px');
+				});
 			}
 
 			function sendMsg() {
@@ -180,6 +192,7 @@
 	</head>
 
 	<body>
+		<div id="bg-img"></div>
 		<div class="container">
 			<div class="row" id="area">
 				<!-- threads-list and search left -->
