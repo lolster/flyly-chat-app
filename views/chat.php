@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <?php
-	session_start() 
-	//require('../public/phpscripts/entry_chat.php');
-	//require('entry_chat.php');
+	session_start(); 
+	require('../public/phpscripts/entry_chat.php');
 	// NOTE!! 
 	// commenting for now since I haven't set uo the database
 ?>
@@ -12,11 +11,9 @@
 		<title>chat</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
 		<link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
 		<link rel="stylesheet" href="../public/stylesheets/prism.css">
-		
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script src="../public/javascripts/bootstrap.min.js"></script>
 		<script src="../public/javascripts/prism.js"></script>
@@ -38,9 +35,9 @@
 			//var mainThread = document.createElement("div");
 			var $mainThread = $('<div>', {id:'threads-list'});
 			// NOTE!!
-			// var userId = <?php echo $userid;?>;
+			var userId = <?php echo $userid;?>;
 			// PLACEHOLDER
-			var userId = 'user99';
+			//var userId = 'user99';
 			for (var i = 0; i < userFriendsName.length; ++i) {
 					var $subThread = $('<div>', {class:'threads', id:userFriendsName[i]});
 					$subThread.on('click', selectThread);
@@ -63,12 +60,12 @@
 				getLatestMessage(userId, userFriendsName[i]);
 			}
 
-			message = ''
+			//function to get the last message sent between this user and 
 			function getLatestMessage(userId , name){
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = gettingMessage;
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				xhr.open('POST', 'getMessage.php', true);
+				xhr.open('POST', '../public/phpscripts/getMessage.php', true);
 				var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(name);
 				xhr.send(arr);
 			}
@@ -99,7 +96,7 @@
 				// newMsg.className = 'conv-left';
 				// newMsg.innerHTML = '<code class="language-c">int min() {printf("aa");};</code>';
 				// document.getElementById('conversation-area').append(newMsg);
-
+				// NEED TO DO A LOT..
 				var $newMsg = $('<div/>', {'class':'conv-left'});
 				var $pre = $('<pre/>', {'class':'language-c code-toolbar'});
 				var $code = $('<code/>', {'class':'language-c'});
