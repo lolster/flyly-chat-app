@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	session_start(); 
-	require('../public/phpscripts/entry_chat.php');
+	//require('../public/phpscripts/entry_chat.php');
 	// NOTE!! 
 	// commenting for now since I haven't set uo the database
 ?>
@@ -26,7 +26,7 @@
 			/*
 			<div class="threads" onclick="selectThread()">
 				<img class="img-circle" src="../public/images/profile.png">
-				<span class="name">Sushrith Arkal</span>
+				<div class="name">Sushrith Arkal</span>
 				<span class="preview">I am happy</span>
 			</div>
 			*/
@@ -93,20 +93,10 @@
 			// select particular thread for chatting
 			function selectThread() {
 				// test stuff
-				// var newMsg = document.createElement('div');
-				// newMsg.className = 'conv-left';
-				// newMsg.innerHTML = '<code class="language-c">int min() {printf("aa");};</code>';
-				// document.getElementById('conversation-area').append(newMsg);
-				// NEED TO DO A LOT..
-				var $newMsg = $('<div/>', {'class':'conv-left'});
-				var $pre = $('<pre/>', {'class':'language-c code-toolbar'});
-				var $code = $('<code/>', {'class':'language-c'});
-				//$code.text('int main() {\nprintf("Hello world\\n"); }');
-				$code.text();
-				$pre.append($code);
-				$newMsg.append($pre);
-				$('#conversation-area').append($newMsg);
-				$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
+				var newMsg = document.createElement('div');
+				newMsg.className = 'conv-left';
+				newMsg.innerHTML = 'cool message';
+				document.getElementById('conversation-area').append(newMsg);
 				// go to bottom once a message is added
 				beAtBottom();
 			}
@@ -216,53 +206,43 @@
 					<div id="threads-list">
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">Sushrith Arkal</span>
-							<span class="preview">I am happy</span>
+							<div class="name">Sushrith Arkal</div>
+							<span class="preview">I actually bought a macbook</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">Sriharsha Hathwar</span>
-							<span class="preview">Hello 😃</span>
+							<div class="name">Sriharsha Hathwar</div>
+							<span class="preview">I like csgo</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">name</span>
-							<span class="preview">&nbsp;</span>
+							<div class="name">Varun Bharadwaj</div>
+							<span class="preview">i got ez cgpa</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">name</span>
-							<span class="preview">&nbsp;</span>
+							<div class="name">Varun M</div>
+							<span class="preview">I also got ez cgpa but I like pikachu</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">name</span>
-							<span class="preview">&nbsp;</span>
+							<div class="name">Sagar</div>
+							<span class="preview">I hate macbook</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">name</span>
-							<span class="preview">&nbsp;</span>
+							<div class="name">Placeholder</div>
+							<span class="preview">Placeholder</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">name</span>
-							<span class="preview">&nbsp;</span>
+							<div class="name">Placeholder</div>
+							<span class="preview">Placeholder</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">name</span>
-							<span class="preview">&nbsp;</span>
-						</div>
-						<div class="threads" onclick="selectThread()">
-							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">name</span>
-							<span class="preview">&nbsp;</span>
-						</div>
-						<div class="threads" onclick="selectThread()">
-							<img class="img-circle" src="../public/images/profile.png">
-							<span class="name">name</span>
-							<span class="preview">&nbsp;</span>
+							<div class="name">Placeholder</div>
+							<span class="preview">Placeholder</span>
 						</div>
 					</div>
 				</div>
