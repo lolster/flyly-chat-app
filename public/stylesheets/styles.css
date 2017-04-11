@@ -237,6 +237,11 @@ a:hover {
 .threads .preview {
 	display: block;
 	margin-left: 22%;
+	width: 60%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	color: #ccc;
 }
 
 /* div containing the threads */

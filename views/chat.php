@@ -207,7 +207,7 @@
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sushrith Arkal</div>
-							<span class="preview">I actually bought a macbook</span>
+							<span class="preview">I actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbook</span>
 						</div>
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
