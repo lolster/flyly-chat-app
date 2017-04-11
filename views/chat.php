@@ -45,9 +45,9 @@
 					var $profImage = $('<img>', {class:'img-circle', src:'../public/images/profile.png'});
 					$subThread.append($profImage);
 					var name = userFriendsname[i];
-					var $spanOne = $('<span>', {class:'name'});
-					$spanOne.text(name);
-					$subThread.append($spanOne);
+					var $divOne = $('<div>', {class:'name'});
+					$divOne.text(name);
+					$subThread.append($divOne);
 					var $spanTwo = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'})
 					$subThread.append($spanTwo);
 					//$spanTwo.text() -> need to call later after fetching the messages
