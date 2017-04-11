@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	session_start(); 
-	//require('../public/phpscripts/entry_chat.php');
+	require('../public/phpscripts/entry_chat.php');
 	// NOTE!! 
 	// commenting for now since I haven't set uo the database
 ?>
@@ -32,19 +32,21 @@
 			*/
 
 			/* EDITED BY MR.HUNTER WILL BE BUGGY PLS FIX OR ELSE RIP*/
+			var userId = <?php echo $userid;?>;
 			var userFriendsName = <?php echo json_encode($userFriends);?>;
 			//var mainThread = document.createElement("div");
-			var $mainThread = $('<div>', {id:'threads-list'});
-			// NOTE!!
-			var userId = <?php echo $userid;?>;
-			// PLACEHOLDER
-			//var userId = 'user99';
-			for (var i = 0; i < userFriendsName.length; ++i) {
+			// var $mainThread = $('<div>', {id:'threads-list'});
+			$(document).ready(() => {
+				var $mainThread = $('#threads-list');
+				// NOTE!!
+				// PLACEHOLDER
+				//var userId = 'user99';
+				for (var i = 0; i < userFriendsName.length; ++i) {
 					var $subThread = $('<div>', {class:'threads', id:userFriendsName[i]});
 					$subThread.on('click', selectThread);
 					var $profImage = $('<img>', {class:'img-circle', src:'../public/images/profile.png'});
 					$subThread.append($profImage);
-					var name = userFriendsname[i];
+					var name = userFriendsName[i];
 					var $divOne = $('<div>', {class:'name'});
 					$divOne.text(name);
 					$subThread.append($divOne);
@@ -54,28 +56,39 @@
 					// call after appending
 					//getLatestMessage(userId , name);
 					$mainThread.append($subThread);
-			}
+				}
+				
 			
-			document.getElementById('left-pane').appendChild($mainThread);
-			for (var i = 0; i < userFriendsName.length; ++i) {
-				getLatestMessage(userId, userFriendsName[i]);
-			}
+				// $('#left-pane').append($mainThread);
+				for (var i = 0; i < userFriendsName.length; ++i) {
+					console.log(userFriendsName[i]);
+					getLatestMessage(userId, userFriendsName[i]);
+				}
+			});
 
 			//function to get the last message sent between this user and 
 			function getLatestMessage(userId , name){
 				var xhr = new XMLHttpRequest();
-				xhr.onreadystatechange = gettingMessage;
-				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				xhr.onreadystatechange = function () {
+					console.log(this);
+					if(this.readyState == 4 && this.status == 200){
+						$('#' + name + "preview").html(this.responseText);
+						console.log('yolo' + this.responseText);
+					}
+				};
 				xhr.open('POST', '../public/phpscripts/getMessage.php', true);
+				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 				var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(name);
 				xhr.send(arr);
 			}
 
-			function gettingMessage(){
-				if(this.readyState == 4 && this.status == 200){
-					document.getElementById(name+"preview").value = this.responseText;
-				}
-			}
+			// function gettingMessage(name) {
+			// 	console.log(this.readyState);
+			// 	if(this.readyState == 4 && this.status == 200){
+			// 		$('#' + name + "preview").html(this.responseText);
+			// 		console.log('yolo' + this.responseText);
+			// 	}
+			// }
 
 			//
 
@@ -204,7 +217,7 @@
 
 					<!-- the threads -->
 					<div id="threads-list">
-						<div class="threads" onclick="selectThread()">
+						<!-- <div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sushrith Arkal</div>
 							<span class="preview">I actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbook</span>
@@ -243,7 +256,7 @@
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Placeholder</div>
 							<span class="preview">Placeholder</span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<!-- chat-are right -->

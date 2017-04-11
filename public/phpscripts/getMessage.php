@@ -35,7 +35,7 @@
     }
     $res = $stmnt->fetch();
     if($res == TRUE){
-        echo $senderID;
+        //secho $senderID;
     }
     elseif($res == NULL){
         die(json_encode(array(
