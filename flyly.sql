@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2017 at 10:28 AM
+-- Generation Time: Apr 11, 2017 at 09:30 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `body` text NOT NULL,
   `send_id` int(11) NOT NULL,
   `rcv_id` int(11) NOT NULL,
-  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `msgTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
