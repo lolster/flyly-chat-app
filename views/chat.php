@@ -21,6 +21,7 @@
 			// onload doesn't work on chrome for some reason
 			$(window).on('load', function() {
 				beAtBottom();
+				createParallax();
 			});
 			/*
 			<div class="threads" onclick="selectThread()">
@@ -119,6 +120,20 @@
 				// works ¯\_(ツ)_/¯
 			}
 
+			function createParallax() {
+				var movementStrength = 20;
+				var height = movementStrength / $(window).height();
+				var width = movementStrength / $(window).width();
+
+				$(document.body).mousemove(function(e) {
+					var pageX = e.pageX - ($(window).width() / 2);
+					var pageY = e.pageY - ($(window).height() / 2);
+					var newvalueX = width * pageX * -1 - 25;
+					var newvalueY = height * pageY * -1 - 50;
+					$('#bg-img').css('background-position', newvalueX + 'px     ' + newvalueY + 'px');
+				});
+			}
+
 			function sendMsg() {
 				// test function as well
 				sentMsg = document.getElementById('msg-box').value;
@@ -187,6 +202,7 @@
 	</head>
 
 	<body>
+		<div id="bg-img"></div>
 		<div class="container">
 			<div class="row" id="area">
 				<!-- threads-list and search left -->

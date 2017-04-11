@@ -13,6 +13,7 @@
 		
 	</head>
 	<body>
+		<div id="bg-img"></div>
 		<div class="jumbotron">
 			<div class="container">
 				<a href="index.html"><h1>flyly</h1></a>
