@@ -220,13 +220,15 @@ a:hover {
 }
 
 .threads .name {
-	margin-left: 2%;
+	display: block;
+	margin-top: -6vh;
+	margin-left: 20%;
 	font-size: 18px;
 }
 
 .threads .preview {
-	/* TODO */
-	/* make it appear in the next line */
+	display: block;
+	margin-left: 22%;
 }
 
 /* div containing the threads */
@@ -476,6 +478,14 @@ a:hover {
 
 	.threads {
 		position: relative;
+	}
+
+	.threads .name {
+		margin-left: 15vw;
+	}
+
+	.threads .preview {
+		margin-left: 16vw;
 	}
 
 	.card {
