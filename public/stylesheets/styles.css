@@ -379,7 +379,7 @@ a:hover {
 	padding-left: 15px;
 	background-color: rgb(242, 245, 248);
 	border-radius: 5px;
-	font-size: 2vh;
+	font-size: 14px;
 	transition: 0.2s ease-in-out;
 	z-index: 0;
 	overflow: scroll;
@@ -532,6 +532,13 @@ a:hover {
 		}
 	}
 }*/
+
+@media all and (min-width: 1300px) {
+	/* for 1366 x 768 windows with chrome */
+	::-webkit-scrollbar { 
+		display: none; 
+	}
+}
 
 @supports (-webkit-appearance:none) and (not (overflow:-webkit-marquee))
 and (not (-ms-ime-align:auto)) and (not (-moz-appearance:none) {

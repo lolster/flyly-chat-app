@@ -52,10 +52,14 @@
 					$subThread.append($divOne);
 					var $spanTwo = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'})
 					$subThread.append($spanTwo);
+
 					//$spanTwo.text() -> need to call later after fetching the messages
 					// call after appending
 					//getLatestMessage(userId , name);
 					$mainThread.append($subThread);
+
+					// update the user name in righht-pane-header
+					$('#profile-name').text(name);
 				}
 				
 			
@@ -264,8 +268,8 @@
 					<div id="right-pane-header">
 						<span id="hamburger" onclick="openPane()">&#9776;</span>
 						<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
-						
-						<div id="profile-name">Sushrith</div>
+						<!-- !!!! -->
+						<div id="profile-name"></div>
 						<!-- settings to log out -->
 						<span id="logout" class="glyphicon glyphicon-log-out" onclick="logOut()"></span>
 					</div>
