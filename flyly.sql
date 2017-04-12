@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 11, 2017 at 06:57 PM
--- Server version: 5.7.17-0ubuntu0.16.04.1
--- PHP Version: 7.0.15-0ubuntu0.16.04.4
+-- Host: localhost:3306
+-- Generation Time: Apr 12, 2017 at 04:32 PM
+-- Server version: 5.6.35
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `flyly`
@@ -39,10 +33,10 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `body`, `send_id`, `rcv_id`, `msgTime`) VALUES
-(1, 'hello hello1', 1, 8, '2017-04-11 18:44:55'),
-(2, 'yello hunter, how many medals tody?', 8, 1, '2017-04-11 18:45:11'),
-(3, 'this is hunter here I got over 9000 medals today', 1, 8, '2017-04-11 18:46:00'),
-(4, 'woowoow', 8, 1, '2017-04-11 18:46:03');
+(1, 'test message please ignore', 9, 10, '2017-04-11 18:44:55'),
+(2, 'this is a pretty good idea', 10, 9, '2017-04-11 18:45:11'),
+(3, 'How do i include long messages?', 9, 11, '2017-04-11 18:46:00'),
+(4, '```css\r\ntext-overflow: ellipsis;\r\noverflow: hidden;\r\n```', 11, 9, '2017-04-11 18:46:03');
 
 -- --------------------------------------------------------
 
@@ -64,12 +58,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userid`, `username`, `firstname`, `lastname`, `email`, `password`) VALUES
-(1, 'hunter', 'Sriharsha', 'Hatwar', 'sriharsha@localhost', '$2y$10$0.MmgYAWfFvosiHp522LZO0viLtNE9eekBlvlzH56v4wvq.wwBYe2'),
-(4, 'randomGuy', 'Suhas', 'kashyap', 'suhaskashyap@localhost.com', '$2y$10$BSvIkKGmyBteA28P/I6bmePjDODZcAaoX.Is4TuvRJn1fDetu1iKa'),
-(5, 'hunterFan', 'Suhass', 'Kashy', 'hunterFan@il.com', '$2y$10$7dFdzXa.Nk/FzqIPcahrX.rQHvuguE.KD5OwsfqziJQlgmgEsn8Qi'),
-(6, 'lolster', 'Sushrith', 'Arkal', 'sush@gmail.com', '$2y$10$evIKN7Cq4.M6fshJef11f.QEfC9jyKn/t0vpFui.1u0EQ1NCzNk4S'),
-(7, 'hello', 'Sriharsha', 'hatwar', 'sriharsha02hatwar+c9@gmail.com', '$2y$10$/VW868N2WeRlLhX449wXOepQTRobrdiF/SKaqyS4.4cTjqH7v2932'),
-(8, 'hello1', 'Sriharsha', 'hatwar', 'sriharsha02hatwa2r+c9@gmail.com', '$2y$10$ZEWLkkPmRW9DWiwFPCjh7.PKhOT73pUUpymZ.fF8CpZHyBxdDhisi');
+(9, 'kashyap07', 'Suhas', 'Kashyap', 'kashyapsuhas07@localhost', '$2y$10$LepCribZnYejxvxA7e0w3eUKwJchshunF1dakgN42OGMFKuz19.W2'),
+(10, 'hunter', 'Sriharsha', 'Hatwar', 'sriharsha02hatwar@localhost', '$2y$10$VomGAYK8jzRBY1TajjTQ6.bem35nB9fGNaMQOFQ6hh.0s1lenDWNe'),
+(11, 'lolster', 'Sushrith', 'Arkal', 'sushi@localhost', '$2y$10$R9ttsdBZcdE6NdsHhPJpHu26qfWnyqwfYtiVyaJrSEEV0A/g6JQvm'),
+(12, 'sreedhar', 'Sreedhar', 'Radhakrishnan', 'sreedhar@localhost', '$2y$10$bmNIdrlYEHu.hGlaoeAjRu8SkqT2VxdPCG1Tsu3dwfOVgLmb/nT4C'),
+(13, 'vb1995', 'Varun', 'Bharadwaj', 'vb@localhost', '$2y$10$MGAHB6vG2izTBSRELWPROOtMJSjQ6mt6D6GEw1TVgMn87wGj3YHY2'),
+(14, 'varunpikachu', 'Varun', 'M', 'varunpikachu@localhost', '$2y$10$RPJoBp9aZUvyL0mA3qOzg.Ql0xJwdNgsA9ElMBUHx7RH5bPKgFnlq');
 
 --
 -- Indexes for dumped tables
@@ -103,7 +97,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --
@@ -114,7 +108,3 @@ ALTER TABLE `users`
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`send_id`) REFERENCES `users` (`userid`),
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`rcv_id`) REFERENCES `users` (`userid`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
