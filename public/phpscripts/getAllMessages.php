@@ -8,7 +8,7 @@ require 'db_connect.php';
 		$n = $_POST['n'];
 	}
 	// Query to retrieve the latest message that was sen by another person----------------------------------------------
-	$senderID =100000 ; // SOME random val to intialize with.
+	$senderID = -1 ; // SOME random val to intialize with.
 	// prepare statement.
 	if(!$stmnt = $connection->prepare('SELECT userid FROM `users` where username = ?')){
 		//echo "ohh no";
@@ -58,7 +58,7 @@ require 'db_connect.php';
 	$stmnt->close();
 
 	######This much working perfect.
-	$stmnt2 = $connection->prepare('SELECT body FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime <= FROM_UNIXTIME(?) ORDER BY msgTime DESC LIMIT ?');
+	$stmnt2 = $connection->prepare('SELECT body, msgTime FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime <= FROM_UNIXTIME(?) ORDER BY msgTime DESC LIMIT ?');
 	if(!$stmnt2) {
 		echo "hello there";
 		die(json_encode(array(
