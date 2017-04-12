@@ -533,7 +533,7 @@ a:hover {
 	}
 }*/
 
-@media all and (min-width: 1300px) {
+@media screen and (min-width: 1360px) and (max-width:1370px){
 	/* for 1366 x 768 windows with chrome */
 	::-webkit-scrollbar { 
 		display: none; 
