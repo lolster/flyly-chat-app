@@ -23,13 +23,6 @@
 				beAtBottom();
 				createParallax();
 			});
-			/*
-			<div class="threads" onclick="selectThread()">
-				<img class="img-circle" src="../public/images/profile.png">
-				<div class="name">Sushrith Arkal</span>
-				<span class="preview">I am happy</span>
-			</div>
-			*/
 
 			/* EDITED BY MR.HUNTER WILL BE BUGGY PLS FIX OR ELSE RIP*/
 			var userId = <?php echo $userid;?>;
@@ -108,7 +101,7 @@
 			}
 
 			// select particular thread for chatting
-			function selectThread() {
+			function selectThread(obj) {
 				// test stuff
 				var newMsg = document.createElement('div');
 				newMsg.className = 'conv-left';
@@ -221,46 +214,46 @@
 
 					<!-- the threads -->
 					<div id="threads-list">
-						<!-- <div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(this)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sushrith Arkal</div>
 							<span class="preview">I actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbook</span>
 						</div>
-						<div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(this)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sriharsha Hathwar</div>
 							<span class="preview">I like csgo</span>
 						</div>
-						<div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(this)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Varun Bharadwaj</div>
 							<span class="preview">i got ez cgpa</span>
 						</div>
-						<div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(this)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Varun M</div>
 							<span class="preview">I also got ez cgpa but I like pikachu</span>
 						</div>
-						<div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(this)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sagar</div>
 							<span class="preview">I hate macbook</span>
 						</div>
-						<div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(this)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Placeholder</div>
 							<span class="preview">Placeholder</span>
 						</div>
-						<div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(this)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Placeholder</div>
 							<span class="preview">Placeholder</span>
 						</div>
-						<div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(this)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Placeholder</div>
 							<span class="preview">Placeholder</span>
-						</div> -->
+						</div>
 					</div>
 				</div>
 				<!-- chat-are right -->
@@ -269,7 +262,7 @@
 						<span id="hamburger" onclick="openPane()">&#9776;</span>
 						<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
 						<!-- !!!! -->
-						<div id="profile-name"></div>
+						<div id="profile-name">Sushrith</div>
 						<!-- settings to log out -->
 						<span id="logout" class="glyphicon glyphicon-log-out" onclick="logOut()"></span>
 					</div>
@@ -282,7 +275,7 @@
 						<div class="conv-left">On April 3rd, the 2017 edition of éclat was launched by Professor D. Jawahar, Pro Chancellor, PES University and CEO, PES institutions, in the presence of Dr V. Krishna, the Chairperson of the Mechanical Engineering Department of PES University. This edition consists of articles compiled by talented, creative minds of PES during the course of the preceding two years. The student copies shall be passed on to every department soon. We hope you enjoy dwelling into an ocean of thoughts articulated to enlighten, entertain and blow your mind!</div>
 						<div class="conv-right">Noice!! 😃</div>
 						<div class="conv-right">Here's some more stuff:</div>
-						<div class="conv-right">1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea & Infusions Association. </div>
+						<div class="conv-right">1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea Infusions Association. </div>
 						<div class="conv-left">Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.</div>
 					</div>
 
