@@ -5,7 +5,8 @@
     $lastname = $_SESSION['lastname'];
     $userid = $_SESSION['id'];
     $email = $_SESSION['email'];
-    if(!$stmnt = $connection->prepare('SELECT username from users where userid in (select send_id from messages where rcv_id = ? )')){
+    #Changes -> need to get the first name , lastname of a particular username
+    if(!$stmnt = $connection->prepare('SELECT username,firstname,lastname from users where userid in (select send_id from messages where rcv_id = ? )')){
          die(json_encode(array(
              'status'=>'error',
              'message'=>'query failed!'
@@ -24,8 +25,13 @@
         )));
     }
     // variables to hold the result.
+    $userFriend = '';
+    $userFriendFirstN = '';
+    $userFriendLastN = '';
     $userFriends = array();
-    if(!$stmnt->bind_result($user)){
+    $userFriendsFirstName = array();
+    $userFriendsLastName = array();
+    if(!$stmnt->bind_result($userFriend,$userFriendFirstN,$userFriendLastN)){
         die(json_encode(array(
             'status'=>'error',
             'msg'=>'binding failed'
@@ -33,6 +39,8 @@
     }
     while($stmnt->fetch()){
         //array_push($userFriends,$user); //waste time and stack space by making function call
-        $userFriends[] = $user;
+        $userFriends[] = $userFriend;
+        $userFriendsFirstName[] = $userFriendFirstN;
+        $userFriendsLastName[] = $userFriendLastN;
     }
 ?>
