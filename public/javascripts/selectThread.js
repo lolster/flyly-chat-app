@@ -45,21 +45,26 @@ function selectThread(event) {
 	//getMessages(userId, userName, currTime, noOfMsgs);
 	getMessages(userId, userName, currTime);
 
+	var timer;
 	// check if tbere are messages (i.e. overflown)
 	$('#conversation-area').bind('mousewheel', function(event) {
+		// PROBLEM: fires scroll event too many times
+		// no idea how to fix this TODO
+		// USE jquery .prepend()
 		if (event.originalEvent.wheelDelta >= 0) {
 			// scrolling up
-			if ($('#conversation-area').scrollTop() == 0) {
-				//console.log($('#conversation-area').scrollTop());
-				//getMessages(userId, userName, currTime);
-
-				// convert time from mysql to seconds
-				var ts = new Date(window.lastTime.replace(' ', 'T')).getTime() / 1000;
-				//console.log(ts);
-				// PROBLEM: fires scroll event too many times
-				// _.throttle(getMessages(userId, userName, ts), 3000);
-				getMessages(userId, userName, ts);
+			if(timer) {
+				window.clearTimeout(timer);
 			}
+			timer = window.setTimeout(function() {
+				if ($('#conversation-area').scrollTop() == 0) {
+					// convert time from mysql to seconds
+					var ts = new Date(window.lastTime.replace(' ', 'T')).getTime() / 1000;
+					//console.log(ts);
+					
+					getMessages(userId, userName, ts);
+				}
+			}, 300);
 		}
 		else {
 			// scrolling down
@@ -106,14 +111,25 @@ function getMessages(userId, otherUser, time) {
 				}
 			}
 			beAtBottom();
-			//var lastTime = responseObject[responseObject.length-1].time;
-			var lastTime = responseObject[0].time;
+			var lastTime = responseObject[responseObject.length-1].time;
 			window.lastTime = lastTime;
-			//console.log('last: ' + lastTime);
+			//console.log('last time: ' + lastTime);
 		}
 	}
 	xhr.open('POST', '../public/phpscripts/getAllMessages.php', true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(otherUser) + '&time=' + encodeURI(time);
 	xhr.send(arr)
+}
+
+// to throttle scroll even firing
+function throttle(fn, wait) {
+	var time = Date.now();
+	return function() {
+		if ((time + wait - Date.now()) < 0) {
+			console.log('kkk')
+			fn();
+			time = Date.now();
+		}
+	}
 }

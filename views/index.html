@@ -17,15 +17,17 @@
 	<body>
 		<div class="jumbotron" id="header">
 			<div class="container">
-				<a href="index.html"><h1>flyly</h1></a>
+				<a href="index.html"><h1 id="flyly">flyly</h1></a>
+				<input type="button" id="login-prompt" class="btn" value="LOGIN" onclick="window.location = 'login.php'";>
 			</div>
 		</div>
 		<div class="container-fluid" id="body">
 			<div class="container">
+				<div id="blank"></div>
 
 				<div id="description">
 					<div class="jumbotron text-center">
-						<h2>flyly the chat app<br>this does this stuff and this stuff</h2>
+						<h2>flyly - a chat app<br><br>built on an unholy amalgamation of Node.js and socket.io and PHP</h2>
 					</div>
 				</div>
 
@@ -35,15 +37,15 @@
 						<img class="front-page-elem-left" src="../public/images/loading.gif">
 					</div>
 					<div class="col-xs-12 col-sm-8 col-md-8">
-						<h2>has ez login</h2>
-						<p>yeah dude</p>
+						<h2>Built on nodejs</h2>
+						<p class="extra-info">Node.js is a server side framework build on Chrome's V8 JavaScript Engine.<br>Is fast, built for real-time web apps and has evergrowing npm.<br>Way too many frameworks that are built on Node.js</p>
 					</div>
 				</div>
 				<!-- 2 -->
 				<div class="row front-page-elem">
 					<div class="col-xs-12 col-sm-8 col-md-8">
-						<h2>uses sockets</h2>
-						<p>so ez comet</p>
+						<h2>Uses socket.io</h2>
+						<p class="extra-info">A framework for real time web applications.<br>It enables realtime, bi-directional communication between web clients and servers.<br>Essentially acts like a websocket.<br>Has fallback patterns included.<br>Runs on Node</p>
 					</div>
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<img class="front-page-elem-right" src="../public/images/loading.gif">
@@ -55,38 +57,77 @@
 						<img class="front-page-elem-left" src="../public/images/loading.gif">
 					</div>
 					<div class="col-xs-12 col-sm-8 col-md-8">
-						<h2>does ajax stuff</h2>
-						<p>4 of them</p>
+						<h2>Responsive Design</h2>
+						<p class="extra-info">Works perfectly well on mobile devices.<br>Home, login and signup pages scale with the help of bootstrap.<br>chat page does so without bootstrap.<br>Even has a different ui/ux for mobile devices!</p>
 					</div>
 				</div>
 				<!-- 4 -->
 				<div class="row front-page-elem">
 					<div class="col-xs-12 col-sm-8 col-md-8">
-						<h2>watsapp webb like</h2>
-						<p>FeelsGoodMan 🙃</p>
+						<h2>Does code highlight</h2>
+						<p class="extra-info">Just include three ticks ``` followed by language name before code and 3 ticks after code to see highlighted code!.<br>uses prism.js.<br>Supports most majpr languages.</p>
 					</div>
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<img class="front-page-elem-right" src="../public/images/loading.gif">
 					</div>
 				</div>
-
-				<br>
-				<hr class="colorgraph">
-				<div class="jumbotron text-center">
-					<div class="container">
-						<a href="login.php"><h1>LOGIN</h1></a>
+				<!-- 5 -->
+				<div class="row front-page-elem">
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<img class="front-page-elem-left" src="../public/images/loading.gif">
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<h2>MYSQL Database</h2>
+						<p class="extra-info">The simplest and most common database to use.<br>We don't have any form of complex database thus the simple mysql.<br>Is fast for small databses like this.</p>
 					</div>
 				</div>
-				<hr class="colorgraph">
-				<div class="jumbotron text-center">
-					<div class="container">
-						<a href="chat.php"><h1>GO TO CHAT PAGE!</h1></a>
+				<!-- 6 -->
+				<div class="row front-page-elem">
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<h2>Uses simple BootStrap for front-end</h2>
+						<p class="extra-info">Bootstrap is a mobile-first free and open-source front-end web framework for designing websites and web applications.<br>Makes things look neat while also making it simpler for the developer.</p>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<img class="front-page-elem-right" src="../public/images/loading.gif">
+					</div>
+				</div>
+				<!-- 7 -->
+				<div class="row front-page-elem">
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<img class="front-page-elem-left" src="../public/images/loading.gif">
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<h2>Apache PHP node backend</h2>
+						<p class="extra-info">Not exactly a beautiful amalgamation</p>
+					</div>
+				</div>
+				<!-- 8 -->
+				<div class="row front-page-elem">
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<h2>Usage of git for project management</h2>
+						<p class="extra-info">A defentie lot of git was learnt.<br>Uhg conflicts!</p>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<img class="front-page-elem-right" src="../public/images/loading.gif">
+					</div>
+				</div>
+				<!-- 7 -->
+				<div class="row front-page-elem">
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<img class="front-page-elem-left" src="../public/images/loading.gif">
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<h2>Includes multiple ajax patterns</h2>
+						<p class="extra-info">Multi-stage download of profile pictures and feature list.<br>Predictive Fetch of older messages.<br>Delayed send in searching through contacts.<br>Fallback patterns through sockets.</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script src="../public/javascripts/index-multistage-download.js">
-			
-		</script>
+		<br><br>
+		<hr class="colorgraph" id="footer-hr">
+		<div class="container-fluid" id="footer">
+			<p id="footer-p">Made by Sushrith Arkal, Suhas S Kashyap and Sriharsha Hatwar &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  PES University</p>
+		</div>
+		<script src="../public/javascripts/index-multistage-download.js"></script>
 	</body>
 </html>
