@@ -24,6 +24,7 @@
 			$(window).on('load', function() {
 				beAtBottom();
 				createParallax();
+				populateThreadsList();
 			});
 
 			var userId = <?php echo $userid;?>;
@@ -31,31 +32,32 @@
 			var userFriendsFirstName = <?php echo json_encode($userFriendsFirstName);?>;
 			var userFriendsLastName = <?php echo json_encode($userFriendsLastName);?>;
 
-			$(document).ready(() => {
-				var $mainThread = $('#threads-list');
+			function populateThreadsList() {
+				var threadsList = $('#threads-list');
 				for (var i = 0; i < userFriendsName.length; ++i) {
-					var $subThread = $('<div>', {class:'threads', id:userFriendsName[i]});
-					$subThread.on('click', selectThread);
-					var $profImage = $('<img>', {class:'img-circle', src:'../public/images/profile.png'});
-					$subThread.append($profImage);
+					// individual thread
+					// TODO: change profile image
+					var thread = $('<div>', {class: 'threads', id:userFriendsName[i]});
+					var profileImg = $('<img>', {class: 'img-circle', src:'../public/images/profile.png'});
 					var name = userFriendsFirstName[i] + ' ' + userFriendsLastName[i];
-					var $divOne = $('<div>', {class:'name'});
-					$divOne.text(name);
-					$subThread.append($divOne);
-					var $spanTwo = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'})
-					$subThread.append($spanTwo);
-					// $spanTwo.text() -> need to call later after fetching the messages
-					// call after appending
-					// getPreview(userId , name);
-					$mainThread.append($subThread);
+					var nameDiv = $('<div>', {class:'name'});
+					nameDiv.text(name);
+					var previewSpan = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'});
+					previewSpan.text('select thread to chat!');
+
+					thread.append(profileImg);
+					thread.append(nameDiv);
+					thread.append(previewSpan);
+
+					threadsList.append(thread);
 				}
-				
-				// $('#left-pane').append($mainThread);
+
+				// replace placeholder previews with actual
 				for (var i = 0; i < userFriendsName.length; ++i) {
 					console.log(userFriendsName[i]);
 					getPreview(userId, userFriendsName[i]);
 				}
-			});
+			}
 
 			function logOut() {
 				alert('logout');
@@ -77,12 +79,7 @@
 
 					<!-- the threads -->
 					<div id="threads-list">
-						<div class="threads" onclick="selectThread(event)">
-							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">placeholder</div>
-							<span class="preview">placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder </span>
-						</div>
-
+						<!-- div to append theads to -->
 					</div>
 				</div>
 				<!-- chat-are right -->
@@ -120,10 +117,11 @@
 			</div>
 		</div>
 		<script>
+		/*
 			var currActiveThread = userFriendsName[0];
 			function getMessages(otherUser, time) {
 				//get messages between otherUser and userId
-			}
+			}*/
 
 		</script>
 	</body>

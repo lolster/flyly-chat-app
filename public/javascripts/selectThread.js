@@ -14,14 +14,17 @@ function getPreview(userId , name) {
 		// console.log('error! ' + 'getPreview: userid: ' + userId + ' name: ' + name);
 		return;
 	}
+
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
 		//console.log(this);
 		if(this.readyState == 4 && this.status == 200){
+			console.log('#' + name + 'preview');
 			$('#' + name + 'preview').html(this.responseText);
-			console.log('yolo' + this.responseText);
+			console.log('=> ' + this.responseText);
 		}
 	};
+
 	xhr.open('POST', '../public/phpscripts/getMessage.php', true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(name);
