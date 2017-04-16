@@ -3,7 +3,20 @@ function selectThread(event) {
 	// MASSIVE TODO
 	//getPreview(1, 'hunter');
 	// TODO 
-	$('#profile-name').text($(event.target).text());
+	var name = $(event.target).attr('id');
+	
+	if(name.substr('preview'.length * -1) == 'preview') {
+		name = name.substr(0, name.length - 'preview'.length) + 'name';
+	}
+
+	if(name.substr('name'.length * -1) != 'name') {
+		name += 'name';
+	}
+
+	name = $('#'+name).text();
+	
+	console.log(name);
+	$('#profile-name').text(name);
 	beAtBottom();
 }
 

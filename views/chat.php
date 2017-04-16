@@ -18,7 +18,7 @@
 		<script src="../public/javascripts/prism.js"></script>
 		<script src="../public/javascripts/ui.js"></script>
 		<script src="../public/javascripts/sendMsg.js"></script>
-		<script src="../public/javascripts/selectThread.js"></script>
+		<!-- <script src="../public/javascripts/selectThread.js"></script> -->
 
 		<script>
 			$(window).on('load', function() {
@@ -40,7 +40,7 @@
 					var thread = $('<div>', {class: 'threads', id:userFriendsName[i]});
 					var profileImg = $('<img>', {class: 'img-circle', src:'../public/images/profile.png'});
 					var name = userFriendsFirstName[i] + ' ' + userFriendsLastName[i];
-					var nameDiv = $('<div>', {class:'name'});
+					var nameDiv = $('<div>', {class:'name', id:userFriendsName[i] + 'name'});
 					nameDiv.text(name);
 					var previewSpan = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'});
 					previewSpan.text('select thread to chat!');
@@ -48,6 +48,7 @@
 					thread.append(profileImg);
 					thread.append(nameDiv);
 					thread.append(previewSpan);
+					thread.on('click', selectThread);
 
 					threadsList.append(thread);
 				}
@@ -116,12 +117,11 @@
 				</div>
 			</div>
 		</div>
-		<script>
-		/*
-			var currActiveThread = userFriendsName[0];
-			function getMessages(otherUser, time) {
-				//get messages between otherUser and userId
-			}*/
+		<script src='../public/javascripts/selectThread.js'>
+			// var currActiveThread = userFriendsName[0];
+			// function getMessages(otherUser, time) {
+			// 	//get messages between otherUser and userId
+			// }
 
 		</script>
 	</body>
