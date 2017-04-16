@@ -69,7 +69,7 @@
 
 	// #####This much working perfect.
 	// FROM_UNIXTIME => automatically converts to required time format
-	$stmnt2 = $connection->prepare('SELECT body, msgTime FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime <= FROM_UNIXTIME(?) ORDER BY msgTime DESC LIMIT ?');
+	$stmnt2 = $connection->prepare('SELECT body, msgTime, send_id, rcv_id FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime <= FROM_UNIXTIME(?) ORDER BY msgTime DESC LIMIT ?');
 
 	if (!$stmnt2) {
 		die(json_encode(array(
@@ -80,6 +80,8 @@
 
 	$latestmessage = '';
 	$timeMessage = '';
+	$msg_send_id = '';
+	$msg_recv_id = '';
 
 	if (!$stmnt2->bind_param('iiiiii', $senderID, $recieverID, $recieverID, $senderID, $time, $n)) {
 		die(json_encode(array(
@@ -95,7 +97,7 @@
 		)));
 	}
 
-	if (!$stmnt2->bind_result($latestmessage, $timeMessage)) {
+	if (!$stmnt2->bind_result($latestmessage, $timeMessage, $msg_send_id, $msg_recv_id)) {
 		die(json_encode(array(
 			'status' => 'error',
 			'msg' => 'binding failed'
@@ -105,9 +107,18 @@
 	$messages = array();
 
 	while ($stmnt2->fetch()) {
+		if( ((int)$msg_send_id) == ((int)$recieverID) ) {
+			//user sent it
+			$res = true;
+		}
+		else {
+			//other guy sent it
+			$res = false;
+		}
 		$messages[] = array(
 			'msg' => $latestmessage,
-			'time' => $timeMessage
+			'time' => $timeMessage,
+			'i_sent' => $res
 		);
 	}
 
@@ -115,6 +126,6 @@
 
 	die(json_encode(array(
 		'status' => 'success',
-		'msgs' => $messages
+		'msgs' => $messages,
 	)));
 ?>
