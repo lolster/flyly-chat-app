@@ -215,6 +215,7 @@ a:hover {
 	padding-left: 10%;
 	padding-top: 2vh;
 	padding-bottom: 8vh;
+	transition: 0.3s;
 }
 
 .threads:hover {

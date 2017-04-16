@@ -25,6 +25,7 @@
 				beAtBottom();
 				createParallax();
 				populateThreadsList();
+				document.title = 'Select a thread to start chatting...';
 			});
 
 			var userId = <?php echo $userid;?>;
@@ -58,6 +59,11 @@
 					console.log(userFriendsName[i]);
 					getPreview(userId, userFriendsName[i]);
 				}
+
+				// TODO: checl if this breaks later
+				// act like manual click
+				var latest = userFriendsName[0] + 'name';
+				$('#' + latest).trigger('click');
 			}
 
 			function logOut() {
