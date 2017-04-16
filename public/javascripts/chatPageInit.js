@@ -40,6 +40,8 @@ function populateThreadsList() {
 }
 
 function logOut() {
-	alert('logout');
-	window.location = '../public/phpscripts/logout.php';
+	var response = confirm('Are you sure you want to log out?');
+	if (response) {
+		window.location = '../public/phpscripts/logout.php';
+	}
 }

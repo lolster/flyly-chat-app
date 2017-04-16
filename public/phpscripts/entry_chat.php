@@ -136,7 +136,6 @@
 	for($i = 0 ; $i < $length ; ++$i) {
 		// Mr. Hunter, why thou must force me to do this egregious deed?;
 		$index = array_search($friend_wid_time[$i]['name'], $userFriends);
-		echo $index;
 		if(!$index) {
 			die(json_encode(array(
 				'status' => 'serror',
