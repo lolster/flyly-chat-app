@@ -1,5 +1,5 @@
 <?php
-require 'db_connect.php';
+	require 'db_connect.php';
 	$recieverID = $_POST['uid'];
 	$friendName = $_POST['name'];
 	$time = $_POST['time'];
@@ -15,7 +15,7 @@ require 'db_connect.php';
 		die(json_encode(array(
 			 'status'=>'error',
 			 'message'=>'query failed!'
-		 )));
+		)));
 	}
 	//binding the '?' with $friendName.
 	 if(!$stmnt->bind_param('s',$friendName)){
