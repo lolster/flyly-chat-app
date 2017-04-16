@@ -25,6 +25,7 @@
 				beAtBottom();
 				createParallax();
 				populateThreadsList();
+				document.title = 'Select a thread to start chatting...';
 			});
 
 			var userId = <?php echo $userid;?>;

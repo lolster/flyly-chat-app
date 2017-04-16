@@ -1,8 +1,4 @@
-function selectThread(event) {
-	//getPreview(userId, name);
-	// MASSIVE TODO
-	//getPreview(1, 'hunter');
-	// TODO 
+function selectThread(event) { 
 	var name = $(event.target).attr('id');
 	
 	if(name.substr('preview'.length * -1) == 'preview') {
@@ -17,6 +13,10 @@ function selectThread(event) {
 	
 	console.log(name);
 	$('#profile-name').text(name);
+
+	document.title = 'chatting with ' + name;
+
+
 	beAtBottom();
 }
 
