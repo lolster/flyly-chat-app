@@ -5,10 +5,6 @@
 	4. (very low priority) Change the change room event to a handshake time (on connection)
 */
 
-//var ip = require('ip');
-//console.dir(ip.address());
-// somehow find a way to automatically get ip address
-
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);

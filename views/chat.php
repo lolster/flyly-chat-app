@@ -20,6 +20,7 @@
 		<script src="../public/javascripts/chatPageInit.js"></script>
 		<script src="../public/javascripts/ui.js"></script>
 		<script src="../public/javascripts/socket.io.js"></script>
+		<script src="../public/javascripts/underscore-min.js"></script>
 		<script>
 			var username = <?php echo "'$user'"; ?>;
 			var userId = <?php echo $userid;?>;

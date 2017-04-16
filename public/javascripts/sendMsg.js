@@ -11,7 +11,7 @@ var currRoom = username;
 socket.emit('change room', {room:currRoom});
 
 socket.on('chat message', (data) => {
-	console.log(data);
+	//console.log(data);
 	//$('#messages').append($('<li>').text(data.sender + ': ' + data.msg));
 	if(highlightedId == data.sender) {
 		appendMsg(data.msg, 'left');
@@ -23,6 +23,7 @@ socket.on('chat message', (data) => {
 	// 	FOL
 });
 
+// send message on button click
 function sendMsg() {
 	sentMsg = $('#msg-box').val();
 	var data = {
@@ -30,11 +31,12 @@ function sendMsg() {
 		sender: username,
 		receiver: highlightedId
 	};
-	console.log('sending:');
-	console.log('data');
+	//console.log('sending:');
+	//console.log('data');
 	socket.emit('chat message', data);
-	console.log('sentMsg: ' + sentMsg);
+	//console.log('sentMsg: ' + sentMsg);
 	appendMsg(sentMsg, 'right');
+	beAtBottom();
 }
 
 function appendMsg(message, leftOrRight) {
@@ -43,11 +45,8 @@ function appendMsg(message, leftOrRight) {
 		// use regex to search for code
 		if (hasCode(message)) {
 			newMsg = $('<div/>', {'class':'code-' + leftOrRight});
-			console.log(message);
 			result = message.match(/```(.*)(\r\n|\r|\n)/);
-			console.log(result);
 			language = result[1];
-			console.log('language: ' + language);
 			
 			message = getCode(message);
 
@@ -66,7 +65,6 @@ function appendMsg(message, leftOrRight) {
 			$('#conversation-area').append(newMsg);
 		}
 		
-		beAtBottom();
 		document.getElementById('msg-box').value = '';
 	}
 }

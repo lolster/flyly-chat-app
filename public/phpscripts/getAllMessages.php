@@ -14,7 +14,6 @@
 	}
 
 	// Query to retrieve the latest message that was sen by another person----------------------------------------------
-
 	$senderID = - 1; // SOME random val to intialize with.
 
 	// prepare statement.
@@ -67,7 +66,6 @@
 
 	$stmnt->close();
 
-	// #####This much working perfect.
 	// FROM_UNIXTIME => automatically converts to required time format
 	$stmnt2 = $connection->prepare('SELECT body, msgTime, send_id, rcv_id FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime <= FROM_UNIXTIME(?) ORDER BY msgTime DESC LIMIT ?');
 

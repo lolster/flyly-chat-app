@@ -40,8 +40,32 @@ function selectThread(event) {
 	var userName = idToHighlight;
 	var currTime = Math.round(Date.now()/1000);
 
-	// get Messages
+	// get 10 Messages
+	//var noOfMsgs = 10
+	//getMessages(userId, userName, currTime, noOfMsgs);
 	getMessages(userId, userName, currTime);
+
+	// check if tbere are messages (i.e. overflown)
+	$('#conversation-area').bind('mousewheel', function(event) {
+		if (event.originalEvent.wheelDelta >= 0) {
+			// scrolling up
+			if ($('#conversation-area').scrollTop() == 0) {
+				//console.log($('#conversation-area').scrollTop());
+				//getMessages(userId, userName, currTime);
+
+				// convert time from mysql to seconds
+				var ts = new Date(window.lastTime.replace(' ', 'T')).getTime() / 1000;
+				//console.log(ts);
+				// PROBLEM: fires scroll event too many times
+				// _.throttle(getMessages(userId, userName, ts), 3000);
+				getMessages(userId, userName, ts);
+			}
+		}
+		else {
+			// scrolling down
+			// do nothing
+		}
+	});
 }
 
 
@@ -65,7 +89,6 @@ function getPreview(userId , name) {
 	xhr.send(arr);
 }
 
-
 function getMessages(userId, otherUser, time) {
 	// self-userID
 	// friend's username
@@ -75,15 +98,18 @@ function getMessages(userId, otherUser, time) {
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			responseObject = JSON.parse(this.responseText).msgs;
-			console.log(responseObject.length);
 			for (var i = responseObject.length-1; i > -1; i--) {
-				console.log(responseObject[i]);
 				if (responseObject[i].i_sent) {
 					appendMsg(responseObject[i].msg, 'right');
 				} else {
 					appendMsg(responseObject[i].msg, 'left');
 				}
 			}
+			beAtBottom();
+			//var lastTime = responseObject[responseObject.length-1].time;
+			var lastTime = responseObject[0].time;
+			window.lastTime = lastTime;
+			//console.log('last: ' + lastTime);
 		}
 	}
 	xhr.open('POST', '../public/phpscripts/getAllMessages.php', true);

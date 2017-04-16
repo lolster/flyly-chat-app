@@ -30,7 +30,6 @@ function populateThreadsList() {
 
 	// replace placeholder previews with actual
 	for (var i = 0; i < userFriendsName.length; ++i) {
-		console.log(userFriendsName[i]);
 		getPreview(userId, userFriendsName[i]);
 	}
 
