@@ -342,18 +342,26 @@ a:hover {
 	align-self: flex-start;
 }
 
-.code-right {
+/* user and other person - code */
+.code-left, .code-right {
 	position: relative;
 	width: 60%;
 	font-size: 15px;
-
 	white-space: pre-wrap;
-	margin-right: 5%;
-
-	float: right;
 	align-self: flex-start;
 	text-align: left;
 }
+
+.code-left {
+	margin-left: 5%;
+	float: left;
+}
+
+.code-right {
+	margin-right: 5%;
+	float: right;
+}
+
 
 #msg-input {
 	height: 10%;

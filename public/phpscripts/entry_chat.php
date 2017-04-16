@@ -4,18 +4,18 @@
 	//mysqli_report((MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 	require 'db_connect.php';
-	/*
+	
 	$user = $_SESSION['username'];
 	$firstname = $_SESSION['firstname'];
 	$lastname = $_SESSION['lastname'];
 	$userid = $_SESSION['id'];
 	$email = $_SESSION['email'];
-	*/
-	$user = 'hunter';
+	
+	/*$user = 'hunter';
 	$firstname = 'Sriharsha';
 	$lastname = 'Hatwar';
 	$userid = 10;
-	$email = 'whocares@gmail.com';
+	$email = 'whocares@gmail.com';*/
 	#Changes -> need to get the first name , lastname of a particular username
 	if(!$stmnt = $connection->prepare('SELECT userid, username, firstname, lastname from users where userid in (select send_id from messages where rcv_id = ? )')){
 		 die(json_encode(array(
@@ -136,7 +136,7 @@
 	for($i = 0 ; $i < $length ; ++$i) {
 		// Mr. Hunter, why thou must force me to do this egregious deed?;
 		$index = array_search($friend_wid_time[$i]['name'], $userFriends);
-		if(!$index) {
+		if($index === false) {
 			die(json_encode(array(
 				'status' => 'serror',
 				'msg' => 'kill me'
