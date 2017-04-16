@@ -77,7 +77,11 @@ function getMessages(userId, otherUser, time) {
 			responseObject = JSON.parse(this.responseText).msgs;
 	
 			for (var i = 0; i < responseObject.length; ++i) {
-				appendMsg(responseObject[i].msg, 'left');
+				if (responseObject[i].i_sent) {
+					appendMsg(responseObject[i].msg, 'right');
+				} else {
+					appendMsg(responseObject[i].msg, 'left');
+				}
 			}
 		}
 	}
