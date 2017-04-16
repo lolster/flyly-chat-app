@@ -24,5 +24,5 @@
     echo "Redirecting...";
 ?>
 <script>
-    window.location = "/flyly-chat-app/views";
+    window.location = "/flyly-chat-app/views/#flyly";
 </script>
