@@ -1,23 +1,33 @@
+var highlightedId = null;
+
 function selectThread(event) { 
 	var name = $(event.target).attr('id');
+	var idToHighlight = name;
 	
 	if(name.substr('preview'.length * -1) == 'preview') {
+		idToHighlight = name.substr(0, name.length - 'preview'.length);
 		name = name.substr(0, name.length - 'preview'.length) + 'name';
 	}
-
 	if(name.substr('name'.length * -1) != 'name') {
 		name += 'name';
 	}
+	if(name.substr('name'.length * -1) == 'name') {
+		idToHighlight = name.substr(0, name.length - 'name'.length);
+	}
+	name = $('#' + name).text();
 
-	name = $('#'+name).text();
-	
-	console.log(name);
 	$('#profile-name').text(name);
+
+	beAtBottom();
 
 	document.title = 'chatting with ' + name;
 
-
-	beAtBottom();
+	// revert previously highlighted to normal
+	$('#' + window.highlightedId).css('background-color', '#322e32');
+	// on click change highlight thread
+	$('#' + idToHighlight).css('background-color', '#6a6b75');
+	// use window.var to make local variable global
+	window.highlightedId = idToHighlight;
 }
 
 //function to get the last message sent between this user and person
