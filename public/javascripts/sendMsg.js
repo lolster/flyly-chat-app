@@ -4,28 +4,34 @@ $(document).ready(() => {
 
 function sendMsg() {
 	sentMsg = $('#msg-box').val();
-	if (sentMsg) {
+	console.log('sentMsg: ' + sentMsg);
+	appendMsg(sentMsg, 'right');
+}
+
+function appendMsg(message, leftOrRight) {
+	// leftOrRight => left or right side of the conversation
+	if (message) {
 		// use regex to search for code
-		if (hasCode(sentMsg)) {
-			newMsg = $('<div/>', {'class':'code-right'});
-			result = sentMsg.match(/```(.*)\n/);
+		if (hasCode(message)) {
+			newMsg = $('<div/>', {'class':'code-' + leftOrRight});
+			result = message.match(/```(.*)\n/);
 			language = result[1];
 			console.log('language: ' + language);
 			
-			sentMsg = getCode(sentMsg);
+			message = getCode(message);
 
 			pre = $('<pre/>', {'class':'code-toolbars line-numbers'});
 			code = $('<code/>', {'class':'language-' + language});
 
-			code.text(sentMsg);
+			code.text(message);
 			pre.append(code);
 
 			newMsg.append(pre);
 			$('#conversation-area').append(newMsg);
 			$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
 		} else {
-			newMsg = $('<div/>', {'class':'conv-right'});
-			newMsg.html(sentMsg);
+			newMsg = $('<div/>', {'class':'conv-' + leftOrRight});
+			newMsg.html(message);
 			$('#conversation-area').append(newMsg);
 		}
 		

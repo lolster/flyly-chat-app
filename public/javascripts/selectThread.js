@@ -1,6 +1,9 @@
 var highlightedId = null;
 
-function selectThread(event) { 
+function selectThread(event) {
+	// clear conversation-area
+	$('#conversation-area').empty();
+
 	var name = $(event.target).attr('id');
 	var idToHighlight = name;
 	
@@ -29,19 +32,23 @@ function selectThread(event) {
 	$('#' + window.highlightedId).css('background-color', '#322e32');
 	// on click change highlight thread
 	$('#' + idToHighlight).css('background-color', '#6a6b75');
+	// TODO CHANGE TRANSPARENCY I MOBILE VIEW
+
 	// use window.var to make local variable global
 	window.highlightedId = idToHighlight;
 
+	// friend's name is same as idToHighlight
+	var userName = idToHighlight;
+	var currTime = Math.round(Date.now()/1000);
+
 	// get Messages
-	getMessages();
+	getMessages(userId, userName, currTime);
 }
 
 
 //function to get the last message sent between this user and person
 function getPreview(userId , name) {
-	//console.log('getPreview: userid: ' + userId + 'name: ' + name);
 	if(!userId || !name) {
-		// console.log('error! ' + 'getPreview: userid: ' + userId + ' name: ' + name);
 		return;
 	}
 
@@ -49,9 +56,7 @@ function getPreview(userId , name) {
 	xhr.onreadystatechange = function () {
 		//console.log(this);
 		if(this.readyState == 4 && this.status == 200){
-			console.log('#' + name + 'preview');
 			$('#' + name + 'preview').html(this.responseText);
-			console.log('=> ' + this.responseText);
 		}
 	};
 
@@ -62,6 +67,23 @@ function getPreview(userId , name) {
 }
 
 
-function getMessages(otherUser, time) {
-	// TODO
+function getMessages(userId, otherUser, time) {
+	// self-userID
+	// friend's username
+
+	// time now or timestamp received
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			responseObject = JSON.parse(this.responseText).msgs;
+	
+			for (var i = 0; i < responseObject.length; ++i) {
+				appendMsg(responseObject[i].msg, 'left');
+			}
+		}
+	}
+	xhr.open('POST', '../public/phpscripts/getAllMessages.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(otherUser) + '&time=' + encodeURI(time);
+	xhr.send(arr)
 }

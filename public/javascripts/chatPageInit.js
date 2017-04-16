@@ -7,6 +7,7 @@ $(window).on('load', function() {
 
 
 function populateThreadsList() {
+	// TODO: show all friends at first and have preview as select thread t ostart chatting
 	var threadsList = $('#threads-list');
 	for (var i = 0; i < userFriendsName.length; ++i) {
 		// individual thread

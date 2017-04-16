@@ -13,7 +13,6 @@
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
 		<link rel="stylesheet" href="../public/stylesheets/prism.css">
 
-
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script src="../public/javascripts/bootstrap.min.js"></script>
 		<script src="../public/javascripts/prism.js"></script>
@@ -21,15 +20,14 @@
 		<script src="../public/javascripts/chatPageInit.js"></script>
 		<script src="../public/javascripts/ui.js"></script>
 		<script src="../public/javascripts/sendMsg.js"></script>
+		<script>
+			var userId = <?php echo $userid;?>;
+			var userFriendsName = <?php echo json_encode($userFriends);?>;
+			var userFriendsFirstName = <?php echo json_encode($userFriendsFirstName);?>;
+			var userFriendsLastName = <?php echo json_encode($userFriendsLastName);?>;
+		</script>
 		<script src="../public/javascripts/selectThread.js"></script>
 	</head>
-
-	<script>
-		var userId = <?php echo $userid;?>;
-		var userFriendsName = <?php echo json_encode($userFriends);?>;
-		var userFriendsFirstName = <?php echo json_encode($userFriendsFirstName);?>;
-		var userFriendsLastName = <?php echo json_encode($userFriendsLastName);?>;
-	</script>
 
 	<body>
 		<div id="bg-img"></div>
