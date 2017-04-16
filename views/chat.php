@@ -138,6 +138,7 @@
 
 					<!-- conversation area -->
 					<div id="conversation-area" onclick="contractChatArea()">
+						<!--
 						<div class="conv-left">test 123</div>
 						<div class="conv-left">other person</div>
 						<div class="conv-right">hello me</div>
@@ -145,7 +146,7 @@
 						<div class="conv-right">Noice!! 😃</div>
 						<div class="conv-right">Here's some more stuff:</div>
 						<div class="conv-right">1. The bags decompose: Did you know that most British tea bags are made from a relative of the banana? Manila hemp is made from the fiber of abaca leaf stalks. The bag itself will break down and the very little plastic they use to seal the tea bags virtually disappears within 6 months, according to the UK Tea Infusions Association. </div>
-						<div class="conv-left">Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.</div>
+						<div class="conv-left">Abstract—The following mini-project hopes to recommend the user about the value of a car that he/she plans to buy from a 2nd- hand car reseller. A statistical approach is used to give a guideline to the buyer to purchase a car based on different parameters like location of the car, year of manufacture, car-name, model and variant, fuel-type and kilometers on the odometer. We web scraped to get the data sets, extracted traits from it, fit a model to it and created a simple recommendation system.</div>	-->
 					</div>
 
 					<!-- input box -->
