@@ -18,6 +18,7 @@
 		<script src="../public/javascripts/prism.js"></script>
 		<script src="../public/javascripts/ui.js"></script>
 		<script src="../public/javascripts/sendMsg.js"></script>
+		<script src="../public/javascripts/selectThread.js"></script>
 
 		<script>
 			$(window).on('load', function() {
@@ -25,13 +26,10 @@
 				createParallax();
 			});
 
-			/* EDITED BY MR.HUNTER WILL BE BUGGY PLS FIX OR ELSE RIP*/
 			var userId = <?php echo $userid;?>;
 			var userFriendsName = <?php echo json_encode($userFriends);?>;
 			var userFriendsFirstName = <?php echo json_encode($userFriendsFirstName);?>;
 			var userFriendsLastName = <?php echo json_encode($userFriendsLastName);?>;
-			//var mainThread = document.createElement('div');
-			//var $mainThread = $('<div>', {id:'threads-list'});
 
 			$(document).ready(() => {
 				var $mainThread = $('#threads-list');
@@ -50,51 +48,14 @@
 					// call after appending
 					// getPreview(userId , name);
 					$mainThread.append($subThread);
-
-					// update the user name in righht-pane-header
-					// TODO
-					//$('#profile-name').text(name);
 				}
 				
-			
 				// $('#left-pane').append($mainThread);
 				for (var i = 0; i < userFriendsName.length; ++i) {
-					console.log('yolo');
 					console.log(userFriendsName[i]);
 					getPreview(userId, userFriendsName[i]);
 				}
 			});
-
-			//function to get the last message sent between this user and person
-			function getPreview(userId , name) {
-				//console.log('getPreview: userid: ' + userId + 'name: ' + name);
-				if(!userId || !name) {
-					console.log('error! ' + 'getPreview: userid: ' + userId + ' name: ' + name);
-					return;
-				}
-				var xhr = new XMLHttpRequest();
-				xhr.onreadystatechange = function () {
-					console.log(this);
-					if(this.readyState == 4 && this.status == 200){
-						$('#' + name + 'preview').html(this.responseText);
-						console.log('yolo' + this.responseText);
-					}
-				};
-				xhr.open('POST', '../public/phpscripts/getMessage.php', true);
-				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(name);
-				xhr.send(arr);
-			}
-
-			// select particular thread for chatting
-			function selectThread() {
-				//getPreview(userId, name);
-				// MASSIVE TODO
-				getPreview(1, 'hunter');
-				// TODO 
-				//$('#profile-name').text('poop');
-				beAtBottom();
-			}
 
 			function logOut() {
 				alert('logout');
@@ -116,7 +77,7 @@
 
 					<!-- the threads -->
 					<div id="threads-list">
-						<div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread(event)">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">placeholder</div>
 							<span class="preview">placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder </span>
