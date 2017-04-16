@@ -279,8 +279,8 @@ a:hover {
 /* settings icon */
 #logout {
 	/* TODO */
+	margin-left: 67%;
 	cursor: pointer;
-	margin-left: 35vw;
 	font-size: 24px;
 }
 
@@ -379,7 +379,7 @@ a:hover {
 	padding-left: 15px;
 	background-color: rgb(242, 245, 248);
 	border-radius: 5px;
-	font-size: 2vh;
+	font-size: 14px;
 	transition: 0.2s ease-in-out;
 	z-index: 0;
 	overflow: scroll;
@@ -400,13 +400,6 @@ a:hover {
 	color: white;
 	align-self: center;
 }
-
-/* button for highlighted code */
-#sned-code-btn {
-	/* TODO */
-	/* prism.js or highlight.js */
-}
-
 
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
@@ -532,6 +525,13 @@ a:hover {
 		}
 	}
 }*/
+
+@media screen and (min-width: 1360px) and (max-width:1370px){
+	/* for 1366 x 768 windows with chrome */
+	::-webkit-scrollbar { 
+		display: none; 
+	}
+}
 
 @supports (-webkit-appearance:none) and (not (overflow:-webkit-marquee))
 and (not (-ms-ime-align:auto)) and (not (-moz-appearance:none) {
