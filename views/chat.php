@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <?php
 	session_start(); 
 	require('../public/phpscripts/entry_chat.php');
 	// NOTE!! 
 	// commenting for now since I haven't set up the database
 ?>
-
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>chat</title>
@@ -54,9 +53,9 @@
 					$subThread.append($divOne);
 					var $spanTwo = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'})
 					$subThread.append($spanTwo);
-					//$spanTwo.text() -> need to call later after fetching the messages
+					// $spanTwo.text() -> need to call later after fetching the messages
 					// call after appending
-					//getLatestMessage(userId , name);
+					// getLatestMessage(userId , name);
 					$mainThread.append($subThread);
 				}
 				
@@ -295,5 +294,14 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			var currActiveThread = userFriendsName[0];
+			function getMessages(otherUser, time) {
+				//get messages between otherUser and userId
+			}
+
+			
+
+		</script>
 	</body>
 </html>
