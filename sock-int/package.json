@@ -1,0 +1,24 @@
+{
+  "name": "flyly-chat-app",
+  "version": "1.0.0",
+  "description": "Slack + WhatsApp like chat platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lolster/flyly-chat-app.git"
+  },
+  "author": "Sushrith Arkal",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/lolster/flyly-chat-app/issues"
+  },
+  "homepage": "https://github.com/lolster/flyly-chat-app#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mysql": "^2.13.0",
+    "socket.io": "^1.7.3"
+  }
+}
