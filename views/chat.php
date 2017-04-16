@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <?php
 	session_start(); 
 	require('../public/phpscripts/entry_chat.php');
 	// NOTE!! 
-	// commenting for now since I haven't set uo the database
+	// commenting for now since I haven't set up the database
 ?>
-
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>chat</title>
@@ -27,6 +26,8 @@
 			/* EDITED BY MR.HUNTER WILL BE BUGGY PLS FIX OR ELSE RIP*/
 			var userId = <?php echo $userid;?>;
 			var userFriendsName = <?php echo json_encode($userFriends);?>;
+			var userFriendsFirstName = <?php echo json_encode($userFriendsFirstName);?>;
+			var userFriendsLastName = <?php echo json_encode($userFriendsLastName);?>;
 			//var mainThread = document.createElement("div");
 			// var $mainThread = $('<div>', {id:'threads-list'});
 			$(document).ready(() => {
@@ -39,16 +40,15 @@
 					$subThread.on('click', selectThread);
 					var $profImage = $('<img>', {class:'img-circle', src:'../public/images/profile.png'});
 					$subThread.append($profImage);
-					var name = userFriendsName[i];
+					var name = userFriendsFirstName[i]+" "+userFriendsLastName[i];
 					var $divOne = $('<div>', {class:'name'});
 					$divOne.text(name);
 					$subThread.append($divOne);
 					var $spanTwo = $('<span>', {class:'preview', id:userFriendsName[i] + 'preview'})
 					$subThread.append($spanTwo);
-
-					//$spanTwo.text() -> need to call later after fetching the messages
+					// $spanTwo.text() -> need to call later after fetching the messages
 					// call after appending
-					//getLatestMessage(userId , name);
+					// getLatestMessage(userId , name);
 					$mainThread.append($subThread);
 
 					// update the user name in righht-pane-header
@@ -101,12 +101,15 @@
 			}
 
 			// select particular thread for chatting
-			function selectThread(obj) {
+			function selectThread() {
+				//getLatestMessage(userId, name);
+				getLatestMessage(1, 'hunter');
 				// test stuff
 				var newMsg = document.createElement('div');
 				newMsg.className = 'conv-left';
 				newMsg.innerHTML = 'cool message';
 				document.getElementById('conversation-area').append(newMsg);
+				*/
 				// go to bottom once a message is added
 				beAtBottom();
 			}
@@ -214,12 +217,13 @@
 
 					<!-- the threads -->
 					<div id="threads-list">
-						<div class="threads" onclick="selectThread(this)">
+						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sushrith Arkal</div>
 							<span class="preview">I actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbook</span>
 						</div>
-						<div class="threads" onclick="selectThread(this)">
+						<!--
+						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sriharsha Hathwar</div>
 							<span class="preview">I like csgo</span>
@@ -253,7 +257,7 @@
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Placeholder</div>
 							<span class="preview">Placeholder</span>
-						</div>
+						</div>-->
 					</div>
 				</div>
 				<!-- chat-are right -->
@@ -261,8 +265,9 @@
 					<div id="right-pane-header">
 						<span id="hamburger" onclick="openPane()">&#9776;</span>
 						<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
-						<!-- !!!! -->
-						<div id="profile-name">Sushrith</div>
+						<!-- THIS BELOW THING SHOULD BE CHANGED SUHAS!!!!!!!!!!!!!!!!
+							THIS SHOULD BE BASED UPON THE THREADS THAT GET SELECTED..	-->
+						<div id="profile-name">Placeholder Name</div>
 						<!-- settings to log out -->
 						<span id="logout" class="glyphicon glyphicon-log-out" onclick="logOut()"></span>
 					</div>
@@ -288,5 +293,14 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			var currActiveThread = userFriendsName[0];
+			function getMessages(otherUser, time) {
+				//get messages between otherUser and userId
+			}
+
+			
+
+		</script>
 	</body>
 </html>
