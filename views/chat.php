@@ -29,6 +29,7 @@
 		</script>
 		<script src="../public/javascripts/sendMsg.js"></script>
 		<script src="../public/javascripts/selectThread.js"></script>
+		<script src="../public/javascripts/search.js"></script>
 	</head>
 
 	<body>

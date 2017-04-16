@@ -3,8 +3,9 @@ $(document).ready(() => {
 });
 
 var socket = null;
+var hostname = 'localhost'
 // change ip address here
-socket = io('http://192.168.0.5:3000');
+socket = io('http://' + hostname + ':3000');
 var currRoom = username;
 
 socket.emit('change room', {room:currRoom});
