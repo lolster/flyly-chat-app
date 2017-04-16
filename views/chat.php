@@ -1,8 +1,6 @@
 <?php
 	session_start(); 
 	require('../public/phpscripts/entry_chat.php');
-	// NOTE!! 
-	// commenting for now since I haven't set up the database
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,14 +8,16 @@
 		<title>chat</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
 		<link rel="stylesheet" href="../public/stylesheets/styles.css">
 		<link rel="stylesheet" href="../public/stylesheets/prism.css">
+
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script src="../public/javascripts/bootstrap.min.js"></script>
 		<script src="../public/javascripts/prism.js"></script>
+
 		<script>
-			// onload doesn't work on chrome for some reason
 			$(window).on('load', function() {
 				beAtBottom();
 				createParallax();
@@ -28,19 +28,17 @@
 			var userFriendsName = <?php echo json_encode($userFriends);?>;
 			var userFriendsFirstName = <?php echo json_encode($userFriendsFirstName);?>;
 			var userFriendsLastName = <?php echo json_encode($userFriendsLastName);?>;
-			//var mainThread = document.createElement("div");
-			// var $mainThread = $('<div>', {id:'threads-list'});
+			//var mainThread = document.createElement('div');
+			//var $mainThread = $('<div>', {id:'threads-list'});
+
 			$(document).ready(() => {
 				var $mainThread = $('#threads-list');
-				// NOTE!!
-				// PLACEHOLDER
-				//var userId = 'user99';
 				for (var i = 0; i < userFriendsName.length; ++i) {
 					var $subThread = $('<div>', {class:'threads', id:userFriendsName[i]});
 					$subThread.on('click', selectThread);
 					var $profImage = $('<img>', {class:'img-circle', src:'../public/images/profile.png'});
 					$subThread.append($profImage);
-					var name = userFriendsFirstName[i]+" "+userFriendsLastName[i];
+					var name = userFriendsFirstName[i] + ' ' + userFriendsLastName[i];
 					var $divOne = $('<div>', {class:'name'});
 					$divOne.text(name);
 					$subThread.append($divOne);
@@ -52,7 +50,8 @@
 					$mainThread.append($subThread);
 
 					// update the user name in righht-pane-header
-					$('#profile-name').text(name);
+					// TODO
+					//$('#profile-name').text(name);
 				}
 				
 			
@@ -69,7 +68,7 @@
 				xhr.onreadystatechange = function () {
 					console.log(this);
 					if(this.readyState == 4 && this.status == 200){
-						$('#' + name + "preview").html(this.responseText);
+						$('#' + name + 'preview').html(this.responseText);
 						console.log('yolo' + this.responseText);
 					}
 				};
@@ -91,12 +90,12 @@
 
 			function openPane() {
 				if (window.innerWidth < 992) {
-					document.getElementById('left-pane').style.width = '100%';
+					$('#left-pane').css('width', '100%');
 				}
 			}
 			function closePane() {
 				if (window.innerWidth < 992) {
-					document.getElementById('left-pane').style.width = '0%';
+					$('#left-pane').css('width', '0%');
 				}
 			}
 
@@ -104,6 +103,7 @@
 			function selectThread() {
 				//getLatestMessage(userId, name);
 				getLatestMessage(1, 'hunter');
+				/*
 				// test stuff
 				var newMsg = document.createElement('div');
 				newMsg.className = 'conv-left';
@@ -180,7 +180,7 @@
 			}
 
 			function getCode(message) {
-				return(message.substring(message.indexOf("\n") + 1, message.lastIndexOf("\n")));
+				return(message.substring(message.indexOf('\n') + 1, message.lastIndexOf('\n')));
 			}
 
 			function logOut() {
@@ -192,7 +192,6 @@
 				document.getElementById('conversation-area').style.height = '60%';
 				document.getElementById('msg-input').style.height = '30%';
 				document.getElementById('msg-box').style.height = '90%';
-
 				beAtBottom();
 			}
 
@@ -212,7 +211,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-4" id="left-pane">
 					<div id="search">
 						<span id="hamburger-left" onclick="closePane()">&#9776;</span>
-						<input type="text" placeholder="search">
+						<input type="text" placeholder="search" id="search-box">
 					</div>
 
 					<!-- the threads -->
@@ -264,12 +263,12 @@
 				<div class="col-xs-12 col-sm-12 col-md-8" id="right-pane">
 					<div id="right-pane-header">
 						<span id="hamburger" onclick="openPane()">&#9776;</span>
-						<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
-						<!-- THIS BELOW THING SHOULD BE CHANGED SUHAS!!!!!!!!!!!!!!!!
-							THIS SHOULD BE BASED UPON THE THREADS THAT GET SELECTED..	-->
-						<div id="profile-name">Placeholder Name</div>
-						<!-- settings to log out -->
-						<span id="logout" class="glyphicon glyphicon-log-out" onclick="logOut()"></span>
+							<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
+							<!-- THIS BELOW THING SHOULD BE CHANGED SUHAS!!!!!!!!!!!!!!!!
+								THIS SHOULD BE BASED UPON THE THREADS THAT GET SELECTED..	-->
+							<div id="profile-name">Placeholder Name</div>
+							<!-- settings to log out -->
+							<span id="logout" class="glyphicon glyphicon-log-out" onclick="logOut()"></span>
 					</div>
 
 					<!-- conversation area -->
@@ -298,8 +297,6 @@
 			function getMessages(otherUser, time) {
 				//get messages between otherUser and userId
 			}
-
-			
 
 		</script>
 	</body>
