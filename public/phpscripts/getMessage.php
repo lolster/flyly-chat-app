@@ -6,7 +6,7 @@
     $recieverID = $_POST['uid'];
     $friendName = $_POST['name'];
     // Query to retrieve the latest message that was sen by another person----------------------------------------------
-    $senderID =100000 ; // SOME random val to intialize with.
+    $senderID = -1 ; // SOME random val to intialize with.
     // prepare statement.
     if(!$stmnt = $connection->prepare('SELECT userid FROM `users` where username = ?')){
         //echo "ohh no";

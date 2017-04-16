@@ -46,7 +46,7 @@
 					$subThread.append($spanTwo);
 					// $spanTwo.text() -> need to call later after fetching the messages
 					// call after appending
-					// getLatestMessage(userId , name);
+					// getPreview(userId , name);
 					$mainThread.append($subThread);
 
 					// update the user name in righht-pane-header
@@ -58,12 +58,12 @@
 				// $('#left-pane').append($mainThread);
 				for (var i = 0; i < userFriendsName.length; ++i) {
 					console.log(userFriendsName[i]);
-					getLatestMessage(userId, userFriendsName[i]);
+					getPreview(userId, userFriendsName[i]);
 				}
 			});
 
-			//function to get the last message sent between this user and 
-			function getLatestMessage(userId , name){
+			//function to get the last message sent between this user and person
+			function getPreview(userId , name){
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = function () {
 					console.log(this);
@@ -78,16 +78,6 @@
 				xhr.send(arr);
 			}
 
-			// function gettingMessage(name) {
-			// 	console.log(this.readyState);
-			// 	if(this.readyState == 4 && this.status == 200){
-			// 		$('#' + name + "preview").html(this.responseText);
-			// 		console.log('yolo' + this.responseText);
-			// 	}
-			// }
-
-			//
-
 			function openPane() {
 				if (window.innerWidth < 992) {
 					$('#left-pane').css('width', '100%');
@@ -101,8 +91,8 @@
 
 			// select particular thread for chatting
 			function selectThread() {
-				//getLatestMessage(userId, name);
-				getLatestMessage(1, 'hunter');
+				//getPreview(userId, name);
+				getPreview(1, 'hunter');
 				/*
 				// test stuff
 				var newMsg = document.createElement('div');
@@ -117,7 +107,7 @@
 			function beAtBottom() {
 				//document.getElementById('conversation-area').scrollTop = document.getElementById('conversation-area').scrollHeight;
 				$('#conversation-area').animate({
-					scrollTop:$('#conversation-area')[0].scrollHeight - 400
+					scrollTop:$('#conversation-area')[0].scrollHeight - 300
 				}, 'slow');
 				// 400 is hard coded
 				// works ¯\_(ツ)_/¯
