@@ -1,4 +1,8 @@
 <?php
+	error_reporting(E_ALL);
+	ini_set('display_errors',1);
+	//mysqli_report((MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 	require 'db_connect.php';
 	$user = $_SESSION['username'];
 	$firstname = $_SESSION['firstname'];
@@ -7,7 +11,7 @@
 	$email = $_SESSION['email'];
 
 	#Changes -> need to get the first name , lastname of a particular username
-	if(!$stmnt = $connection->prepare('SELECT username,firstname,lastname from users where userid in (select send_id from messages where rcv_id = ? )')){
+	if(!$stmnt = $connection->prepare('SELECT username, firstname, lastname from users where userid in (select send_id from messages where rcv_id = ? )')){
 		 die(json_encode(array(
 			 'status'=>'error',
 			 'message'=>'query failed!'
@@ -46,6 +50,7 @@
 	}
 
 	$stmnt->close();
+
 	$friend_wid_time = array();
 	// get the latest timestamp associated with the userFriend and build an array contaning userFriend and the timestamp.
 	// sort the array on the basis of the timestamp in descending order.
@@ -55,13 +60,14 @@
 	
 	for($i = 0 ; $i < $length ; $i++){
 		//get the latest timestamp by querying.
-		$frID = $userFriendsID[$i];
+		$frID = $userFriends[$i];
 		$time_friend = "";
 		
-		if(!$stmnt = $connection->prepare('SELECT msgTime from messages where ((send_id = ? and rcv_id = ?) or (send_id = ? and rcv_id = ?)) ORDER BY msgTime DESC LIMIT 1')){
+		if(!($stmnt = $connection->prepare('SELECT msgTime FROM messages WHERE ((send_id = ? AND rcv_id = ?) OR (send_id = ? AND rcv_id = ?)) ORDER BY msgTime DESC LIMIT 1'))) {
 			die(json_encode(array(
 				'status'=>'error getting timestamp',
-				'message'=>'query failed!'
+				'message'=>'query failed!',
+				'msg' => $connection->error
 			)));
 		}
 		
@@ -86,7 +92,8 @@
 			)));
 		}
 		
-		$friend_wid_time[] = array('name'=>$userFriends[i],'timestamp'=>$time_friend);
+		$friend_wid_time[] = array('name'=>$userFriends[$i],'timestamp'=>$time_friend);
+		$stmnt->close();
 	}
 	
 	function build_sorter($key){
@@ -96,8 +103,6 @@
 	}
 	
 	usort($friend_wid_time, build_sorter('timestamp'));
-	
-	$stmnt->close();
 	
 	for($i = 0 ; $i < $length ; ++$i) {
 		$userFriends[$i] = $friend_wid_time[$i]['name'];

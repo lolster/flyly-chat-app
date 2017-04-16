@@ -16,6 +16,8 @@
 		<script src="../public/javascripts/jquery.min.js"></script>
 		<script src="../public/javascripts/bootstrap.min.js"></script>
 		<script src="../public/javascripts/prism.js"></script>
+		<script src="../public/javascripts/ui.js"></script>
+		<script src="../public/javascripts/sendMsg.js"></script>
 
 		<script>
 			$(window).on('load', function() {
@@ -57,13 +59,19 @@
 			
 				// $('#left-pane').append($mainThread);
 				for (var i = 0; i < userFriendsName.length; ++i) {
+					console.log('yolo');
 					console.log(userFriendsName[i]);
 					getPreview(userId, userFriendsName[i]);
 				}
 			});
 
 			//function to get the last message sent between this user and person
-			function getPreview(userId , name){
+			function getPreview(userId , name) {
+				//console.log('getPreview: userid: ' + userId + 'name: ' + name);
+				if(!userId || !name) {
+					console.log('error! ' + 'getPreview: userid: ' + userId + ' name: ' + name);
+					return;
+				}
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = function () {
 					console.log(this);
@@ -78,117 +86,19 @@
 				xhr.send(arr);
 			}
 
-			function openPane() {
-				if (window.innerWidth < 992) {
-					$('#left-pane').css('width', '100%');
-				}
-			}
-			function closePane() {
-				if (window.innerWidth < 992) {
-					$('#left-pane').css('width', '0%');
-				}
-			}
-
 			// select particular thread for chatting
 			function selectThread() {
 				//getPreview(userId, name);
+				// MASSIVE TODO
 				getPreview(1, 'hunter');
-				/*
-				// test stuff
-				var newMsg = document.createElement('div');
-				newMsg.className = 'conv-left';
-				newMsg.innerHTML = 'cool message';
-				document.getElementById('conversation-area').append(newMsg);
-				*/
-				// go to bottom once a message is added
+				// TODO 
+				//$('#profile-name').text('poop');
 				beAtBottom();
-			}
-
-			function beAtBottom() {
-				//document.getElementById('conversation-area').scrollTop = document.getElementById('conversation-area').scrollHeight;
-				$('#conversation-area').animate({
-					scrollTop:$('#conversation-area')[0].scrollHeight - 300
-				}, 'slow');
-				// 400 is hard coded
-				// works ¯\_(ツ)_/¯
-			}
-
-			function createParallax() {
-				var movementStrength = 20;
-				var height = movementStrength / $(window).height();
-				var width = movementStrength / $(window).width();
-
-				$(document.body).mousemove(function(e) {
-					var pageX = e.pageX - ($(window).width() / 2);
-					var pageY = e.pageY - ($(window).height() / 2);
-					var newvalueX = width * pageX * -1 - 25;
-					var newvalueY = height * pageY * -1 - 50;
-					$('#bg-img').css('background-position', newvalueX + 'px     ' + newvalueY + 'px');
-				});
-			}
-
-			function sendMsg() {
-				// test function as well
-				sentMsg = document.getElementById('msg-box').value;
-				// check if empty
-				if (sentMsg) {
-					// use regex to search for code
-					if (hasCode(sentMsg)) {
-						newMsg = $('<div/>', {'class':'code-right'});
-						result = sentMsg.match(/```(.*)\n/);
-						language = result[1];
-						console.log('language: ' + language);
-						
-						sentMsg = getCode(sentMsg);
-
-						pre = $('<pre/>', {'class':'code-toolbars line-numbers'});
-						code = $('<code/>', {'class':'language-' + language});
-
-						code.text(sentMsg);
-						pre.append(code);
-
-						newMsg.append(pre);
-						$('#conversation-area').append(newMsg);
-						$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
-					} else {
-						newMsg = $('<div/>', {'class':'conv-right'});
-						newMsg.html(sentMsg);
-						$('#conversation-area').append(newMsg);
-					}
-					
-					beAtBottom();
-					document.getElementById('msg-box').value = '';
-				}
-			}
-
-			function hasCode(message) {
-				n = message.search('```');
-				if (n == -1) {
-					return false;
-				}
-				return true;
-			}
-
-			function getCode(message) {
-				return(message.substring(message.indexOf('\n') + 1, message.lastIndexOf('\n')));
 			}
 
 			function logOut() {
-				console.log('log out');
-				alert('log out');
-			}
-
-			function expandChatArea() {
-				document.getElementById('conversation-area').style.height = '60%';
-				document.getElementById('msg-input').style.height = '30%';
-				document.getElementById('msg-box').style.height = '90%';
-				beAtBottom();
-			}
-
-			function contractChatArea() {
-				document.getElementById('conversation-area').style.height = '80%';
-				document.getElementById('msg-input').style.height = '10%';
-				document.getElementById('msg-box').style.height = '50%';
+				alert('logout');
+				window.location = '../public/phpscripts/logout.php';
 			}
 		</script>
 	</head>
@@ -208,45 +118,10 @@
 					<div id="threads-list">
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">Sushrith Arkal</div>
-							<span class="preview">I actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbook</span>
+							<div class="name">placeholder</div>
+							<span class="preview">placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder </span>
 						</div>
-						<!--
-						<div class="threads" onclick="selectThread()">
-							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">Sriharsha Hathwar</div>
-							<span class="preview">I like csgo</span>
-						</div>
-						<div class="threads" onclick="selectThread(this)">
-							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">Varun Bharadwaj</div>
-							<span class="preview">i got ez cgpa</span>
-						</div>
-						<div class="threads" onclick="selectThread(this)">
-							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">Varun M</div>
-							<span class="preview">I also got ez cgpa but I like pikachu</span>
-						</div>
-						<div class="threads" onclick="selectThread(this)">
-							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">Sagar</div>
-							<span class="preview">I hate macbook</span>
-						</div>
-						<div class="threads" onclick="selectThread(this)">
-							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">Placeholder</div>
-							<span class="preview">Placeholder</span>
-						</div>
-						<div class="threads" onclick="selectThread(this)">
-							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">Placeholder</div>
-							<span class="preview">Placeholder</span>
-						</div>
-						<div class="threads" onclick="selectThread(this)">
-							<img class="img-circle" src="../public/images/profile.png">
-							<div class="name">Placeholder</div>
-							<span class="preview">Placeholder</span>
-						</div>-->
+
 					</div>
 				</div>
 				<!-- chat-are right -->
@@ -276,7 +151,7 @@
 					<!-- input box -->
 					<div id="msg-input">
 						<textarea id="msg-box" class="form-control" rows="2" required="required" onclick="expandChatArea()" placeholder="type in here.."></textarea>
-						<button type="submit" id="send-btn" class="btn btn-primary" onclick="sendMsg()">Send</button>
+						<button type="submit" id="send-btn" class="btn btn-primary">Send</button>
 					</div>
 					
 				</div>
