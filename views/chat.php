@@ -266,9 +266,8 @@
 						<span id="hamburger" onclick="openPane()">&#9776;</span>
 						<img class="img img-circle" id="profile-pic" src="../public/images/profile.png">
 						<!-- THIS BELOW THING SHOULD BE CHANGED SUHAS!!!!!!!!!!!!!!!!
-							THIS SHOULD BE BASED UPON THE THREADS THAT GET SELECTED..
-						-->
-						<div id="profile-name">Sushrith</div>
+							THIS SHOULD BE BASED UPON THE THREADS THAT GET SELECTED..	-->
+						<div id="profile-name">Placeholder Name</div>
 						<!-- settings to log out -->
 						<span id="logout" class="glyphicon glyphicon-log-out" onclick="logOut()"></span>
 					</div>
