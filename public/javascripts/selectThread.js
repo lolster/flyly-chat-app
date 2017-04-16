@@ -32,7 +32,6 @@ function selectThread(event) {
 	$('#' + window.highlightedId).css('background-color', '#322e32');
 	// on click change highlight thread
 	$('#' + idToHighlight).css('background-color', '#6a6b75');
-	// TODO CHANGE TRANSPARENCY I MOBILE VIEW
 
 	// use window.var to make local variable global
 	window.highlightedId = idToHighlight;

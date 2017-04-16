@@ -415,7 +415,6 @@ a:hover {
 		z-index: 1;
 		border-bottom-left-radius: 0px;
 		border-top-left-radius: 0px;
-		background-color: rgba(68, 70, 83, 0.95);
 		transition: 0.5s ease-in-out;
 	}
 
