@@ -3,7 +3,8 @@ $(document).ready(() => {
 });
 
 var socket = null;
-socket = io('http://localhost:3000');
+// change ip address here
+socket = io('http://192.168.0.5:3000');
 var currRoom = username;
 
 socket.emit('change room', {room:currRoom});
@@ -15,10 +16,10 @@ socket.on('chat message', (data) => {
 		appendMsg(data.msg, 'left');
 	}
 	// TODO:
-	// Push the message to localstorage
-	// Bring the left side panel box of the thread to the 
-	// top of the left side pane
-	// FOL
+	// 	Push the message to localstorage
+	// 	Bring the left side panel box of the thread to the 
+	// 	top of the left side pane
+	// 	FOL
 });
 
 function sendMsg() {
