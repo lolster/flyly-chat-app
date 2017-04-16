@@ -14,7 +14,9 @@ function appendMsg(message, leftOrRight) {
 		// use regex to search for code
 		if (hasCode(message)) {
 			newMsg = $('<div/>', {'class':'code-' + leftOrRight});
-			result = message.match(/```(.*)\n/);
+			console.log(message);
+			result = message.match(/```(.*)(\r\n|\r|\n)/);
+			console.log(result);
 			language = result[1];
 			console.log('language: ' + language);
 			
