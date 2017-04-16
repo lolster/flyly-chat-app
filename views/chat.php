@@ -106,11 +106,17 @@
 
 			// select particular thread for chatting
 			function selectThread() {
+				//getLatestMessage(userId, name);
+				getLatestMessage(1, 'hunter');
+
+
+				/*
 				// test stuff
 				var newMsg = document.createElement('div');
 				newMsg.className = 'conv-left';
 				newMsg.innerHTML = 'cool message';
 				document.getElementById('conversation-area').append(newMsg);
+				*/
 				// go to bottom once a message is added
 				beAtBottom();
 			}
@@ -218,11 +224,12 @@
 
 					<!-- the threads -->
 					<div id="threads-list">
-						<!-- <div class="threads" onclick="selectThread()">
+						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sushrith Arkal</div>
 							<span class="preview">I actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbookI actually bought a macbook</span>
 						</div>
+						<!--
 						<div class="threads" onclick="selectThread()">
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Sriharsha Hathwar</div>
@@ -257,7 +264,7 @@
 							<img class="img-circle" src="../public/images/profile.png">
 							<div class="name">Placeholder</div>
 							<span class="preview">Placeholder</span>
-						</div> -->
+						</div>-->
 					</div>
 				</div>
 				<!-- chat-are right -->
