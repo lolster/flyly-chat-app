@@ -11,11 +11,11 @@
 	$userid = $_SESSION['id'];
 	$email = $_SESSION['email'];
 	
-	/*$user = 'hunter';
-	$firstname = 'Sriharsha';
-	$lastname = 'Hatwar';
-	$userid = 10;
-	$email = 'whocares@gmail.com';*/
+	// $user = 'hunter';
+	// $firstname = 'Sriharsha';
+	// $lastname = 'Hatwar';
+	// $userid = 10;
+	// $email = 'whocares@gmail.com';
 	#Changes -> need to get the first name , lastname of a particular username
 	if(!$stmnt = $connection->prepare('SELECT userid, username, firstname, lastname from users where userid in (select send_id from messages where rcv_id = ? )')){
 		 die(json_encode(array(

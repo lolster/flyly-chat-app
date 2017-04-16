@@ -14,7 +14,7 @@ const mysql = require('mysql');
 var con = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: '123',
+	password: 'root',
 	database: 'flyly'
 });
 
@@ -66,7 +66,8 @@ io.on('connection', (socket) => {
 		var s = -1;
 		con.query('SELECT userid FROM users WHERE username = ?', [data.sender], function(error, results, fields) {
 			if(error || results.length == 0) {
-				console.log('[ERROR] Cannot get sender id');
+				console.log(error);
+				console.log('[ERROR] Cannot get sender id for value ' + data.sender);
 				return;
 			}
 			s = results[0].userid;
@@ -74,7 +75,7 @@ io.on('connection', (socket) => {
 			var r = -1
 			con.query('SELECT userid FROM users WHERE username = ?', [data.receiver], function(error, results, fields) {
 				if(error || results.length == 0) {
-					console.log('[ERROR] Cannot get receiver id');
+					console.log('[ERROR] Cannot get receiver id for value ' + data.receiver);
 					return;
 				}
 				r = results[0].userid;

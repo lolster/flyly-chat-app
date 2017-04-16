@@ -2,8 +2,35 @@ $(document).ready(() => {
 	$('#send-btn').on('click', sendMsg);
 });
 
+var socket = null;
+socket = io('http://localhost:3000');
+var currRoom = username;
+
+socket.emit('change room', {room:currRoom});
+
+socket.on('chat message', (data) => {
+	console.log(data);
+	//$('#messages').append($('<li>').text(data.sender + ': ' + data.msg));
+	if(highlightedId == data.sender) {
+		appendMsg(data.msg, 'left');
+	}
+	// TODO:
+	// Push the message to localstorage
+	// Bring the left side panel box of the thread to the 
+	// top of the left side pane
+	// FOL
+});
+
 function sendMsg() {
 	sentMsg = $('#msg-box').val();
+	var data = {
+		msg:sentMsg,
+		sender: username,
+		receiver: highlightedId
+	};
+	console.log('sending:');
+	console.log('data');
+	socket.emit('chat message', data);
 	console.log('sentMsg: ' + sentMsg);
 	appendMsg(sentMsg, 'right');
 }
