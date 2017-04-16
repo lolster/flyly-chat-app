@@ -75,8 +75,9 @@ function getMessages(userId, otherUser, time) {
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			responseObject = JSON.parse(this.responseText).msgs;
-	
-			for (var i = 0; i < responseObject.length; ++i) {
+			console.log(responseObject.length);
+			for (var i = responseObject.length-1; i > -1; i--) {
+				console.log(responseObject[i]);
 				if (responseObject[i].i_sent) {
 					appendMsg(responseObject[i].msg, 'right');
 				} else {
