@@ -7,8 +7,12 @@
 	$recieverID = $_POST['uid'];
 	$friendName = $_POST['name'];
 	$time = $_POST['time'];
-	$n = $_POST['n'];
-	//$n = 3;
+	if(isset($_POST['n'])) {
+		$n = (int) $_POST['n'];
+	}
+	else {
+		$n = 3;
+	}
 
 	if (isset($_POST['n'])) {
 		$n = $_POST['n'];

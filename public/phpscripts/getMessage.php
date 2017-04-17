@@ -104,7 +104,7 @@
 
 	}
 	elseif ($res == NULL) {
-		die('select thread to start chatting');
+		die('<em>select thread to start chatting</em>');
 	}
 	else {
 		die(json_encode(array(

@@ -1,9 +1,17 @@
 $(document).ready(() => {
 	$('#send-btn').on('click', sendMsg);
+	$('#msg-box').on('keyup', (event) => {
+		console.log('yello');
+		console.log(event.keyCode);
+		if(event.keyCode == 27) {
+			$('#msg-box').val('');
+			contractChatArea();
+		}
+	})
 });
 
 var socket = null;
-var hostname = 'localhost'
+var hostname = '192.168.43.238';
 // change ip address here
 socket = io('http://' + hostname + ':3000');
 var currRoom = username;
@@ -15,6 +23,11 @@ socket.on('chat message', (data) => {
 	//$('#messages').append($('<li>').text(data.sender + ': ' + data.msg));
 	if(highlightedId == data.sender) {
 		appendMsg(data.msg, 'left', 'append');
+		beAtBottom();
+	}
+	else {
+		//show pop up
+
 	}
 	// TODO:
 	// 	Push the message to localstorage
@@ -36,6 +49,7 @@ function sendMsg() {
 	socket.emit('chat message', data);
 	//console.log('sentMsg: ' + sentMsg);
 	appendMsg(sentMsg, 'right', 'append');
+	$('#msg-box').val('');
 	beAtBottom();
 }
 
@@ -73,8 +87,6 @@ function appendMsg(message, leftOrRight, appendOrPrepend) {
 				$('#conversation-area').prepend(newMsg);
 			}
 		}
-		
-		document.getElementById('msg-box').value = '';
 	}
 }
 

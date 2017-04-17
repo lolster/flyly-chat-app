@@ -36,6 +36,8 @@ function selectThread(event) {
 	}
 	name = $('#' + name).text();
 
+	closePane();
+
 	$('#profile-name').text(name);
 
 	beAtBottom();
@@ -54,10 +56,13 @@ function selectThread(event) {
 
 	// friend's name is same as idToHighlight
 	var userName = idToHighlight;
-	var currTime = (new Date()).toMysqlFormat();
+	// NOTE: hardcoded for demo
+	// TODO: use IST
+	var currTime = '2017-04-20 12:43:33';//(new Date()).toMysqlFormat();
 
 	// initially load certain messages
-	getMessages(userId, userName, currTime, true, 3);
+	console.log('whyyyy');
+	getMessages(userId, userName, currTime, false, 10);
 
 	// predictive fetch part
 	// NOTE: lots of bamboozle
@@ -106,6 +111,7 @@ function getPreview(userId , name) {
 }
 
 function getMessages(userId, otherUser, time, hack, n) {
+	console.log('whyyyyyy');
 	var xhr = new XMLHttpRequest();
 	if(!hack) {
 		xhr.onreadystatechange = function() {
@@ -119,6 +125,7 @@ function getMessages(userId, otherUser, time, hack, n) {
 					}
 				};
 				beAtBottom();
+				console.log(responseObject);
 				try {
 					lastTime = responseObject[responseObject.length-1].time;
 				} catch(e) {
@@ -139,6 +146,7 @@ function getMessages(userId, otherUser, time, hack, n) {
 						appendMsg(responseObject[i].msg, 'left', 'prepend');
 					}
 				};
+				console.log(responseObject);
 				try {
 					lastTime = responseObject[responseObject.length-1].time;
 				} catch(e) {
