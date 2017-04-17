@@ -67,7 +67,7 @@
 	$stmnt->close();
 
 	// FROM_UNIXTIME => automatically converts to required time format
-	$stmnt2 = $connection->prepare('SELECT body, msgTime, send_id, rcv_id FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime <= FROM_UNIXTIME(?) ORDER BY msgTime DESC LIMIT ?');
+	$stmnt2 = $connection->prepare('SELECT body, msgTime, send_id, rcv_id FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime <= ? ORDER BY msgTime DESC LIMIT ?');
 
 	if (!$stmnt2) {
 		die(json_encode(array(
@@ -81,7 +81,7 @@
 	$msg_send_id = '';
 	$msg_recv_id = '';
 
-	if (!$stmnt2->bind_param('iiiiii', $senderID, $recieverID, $recieverID, $senderID, $time, $n)) {
+	if (!$stmnt2->bind_param('iiiisi', $senderID, $recieverID, $recieverID, $senderID, $time, $n)) {
 		die(json_encode(array(
 			'status' => 'error in second part',
 			'message' => 'binding unsuccessful in second part!'
@@ -126,4 +126,4 @@
 		'status' => 'success',
 		'msgs' => $messages,
 	)));
-?>
+?>na

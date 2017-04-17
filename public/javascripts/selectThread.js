@@ -1,5 +1,15 @@
 var highlightedId = null;
 
+function twoDigits(d) {
+    if(0 <= d && d < 10) return "0" + d.toString();
+    if(-10 < d && d < 0) return "-0" + (-1*d).toString();
+    return d.toString();
+}
+
+Date.prototype.toMysqlFormat = function() {
+    return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
+};
+
 function selectThread(event) {
 	// clear conversation-area
 	$('#conversation-area').empty();
@@ -38,7 +48,8 @@ function selectThread(event) {
 
 	// friend's name is same as idToHighlight
 	var userName = idToHighlight;
-	var currTime = Math.round(Date.now()/1000);
+	var currTime = (new Date()).toMysqlFormat();
+	console.log('currTime: ' + currTime);
 
 	// get 10 Messages
 	//var noOfMsgs = 10
@@ -59,12 +70,12 @@ function selectThread(event) {
 			timer = window.setTimeout(function() {
 				if ($('#conversation-area').scrollTop() == 0) {
 					// convert time from mysql to seconds
-					var ts = new Date(window.lastTime.replace(' ', 'T')).getTime() / 1000;
-					//console.log(ts);
+					var ts = window.lastTime;
+					console.log("lastTime : " + lastTime);
 					
-					getMessages(userId, userName, ts);
+					getMessages(userId, userName, ts, true);
 				}
-			}, 300);
+			}, 1);
 		}
 		else {
 			// scrolling down
@@ -94,27 +105,53 @@ function getPreview(userId , name) {
 	xhr.send(arr);
 }
 
-function getMessages(userId, otherUser, time) {
+function getMessages(userId, otherUser, time, hack) {
 	// self-userID
 	// friend's username
 
 	// time now or timestamp received
+	console.log('getting messages');
 	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			responseObject = JSON.parse(this.responseText).msgs;
-			for (var i = responseObject.length-1; i > -1; i--) {
-				if (responseObject[i].i_sent) {
-					appendMsg(responseObject[i].msg, 'right');
-				} else {
-					appendMsg(responseObject[i].msg, 'left');
-				}
+	if(!hack) {
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				responseObject = JSON.parse(this.responseText).msgs;
+				for (var i = responseObject.length-1; i > -1; i--) {
+					if (responseObject[i].i_sent) {
+						appendMsg(responseObject[i].msg, 'right');
+					} else {
+						appendMsg(responseObject[i].msg, 'left');
+					}
+				};
+				beAtBottom();
+				var lastTime = responseObject[responseObject.length-1].time;
+				window.lastTime = lastTime;
+				console.log('last time: ' + lastTime);
+				console.log('responseObject: ');
+				console.log(responseObject);
 			}
-			beAtBottom();
-			var lastTime = responseObject[responseObject.length-1].time;
-			window.lastTime = lastTime;
-			//console.log('last time: ' + lastTime);
-		}
+		};
+	}
+	else {
+		console.log('fml');
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				responseObject = JSON.parse(this.responseText).msgs;
+				for (var i = responseObject.length-1; i > -1; i--) {
+					if (responseObject[i].i_sent) {
+						appendMsg(responseObject[i].msg, 'right');
+					} else {
+						appendMsg(responseObject[i].msg, 'left');
+					}
+				};
+				//beAtBottom();
+				var lastTime = responseObject[responseObject.length-1].time;
+				window.lastTime = lastTime;
+				console.log('responseObject: ');
+				console.log(responseObject);
+				console.log('bamboozle last time: ' + lastTime);
+			}
+		};
 	}
 	xhr.open('POST', '../public/phpscripts/getAllMessages.php', true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
