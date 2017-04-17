@@ -1,22 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 17, 2017 at 01:41 AM
+-- Host: localhost:3306
+-- Generation Time: Apr 17, 2017 at 09:28 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `flyly`
@@ -45,25 +37,18 @@ INSERT INTO `messages` (`id`, `body`, `send_id`, `rcv_id`, `msgTime`) VALUES
 (2, 'this is a pretty good idea', 10, 9, '2017-04-11 18:45:11'),
 (3, 'How do i include long messages?', 9, 11, '2017-04-11 18:46:00'),
 (4, '```css\r\ntext-overflow: ellipsis;\r\noverflow: hidden;\r\n```', 11, 9, '2017-04-11 18:46:03'),
-(5, 'this is trippy', 10, 11, '2017-04-16 13:26:20'),
-(6, 'phpmyadmin sql editor is retarded', 11, 10, '2017-04-16 13:28:42'),
-(7, 'I think we\'ve taken up too big a project', 11, 10, '2017-04-16 14:28:42'),
-(8, 'Hey check out this cool car', 9, 11, '2017-04-16 15:21:42'),
-(9, 'also check out this cool dog', 9, 11, '2017-04-16 15:22:12'),
-(10, 'cool!', 11, 9, '2017-04-16 15:22:52'),
-(11, 'test message', 12, 10, '2017-04-16 15:22:52'),
-(12, 'this is a test message as well', 13, 10, '2017-04-16 15:23:12'),
-(13, 'flyly works!', 14, 10, '2017-04-16 15:23:52'),
-(14, '```css\r\ntext-overflow: ellipsis;\r\noverflow: hidden;\r\n```', 9, 10, '2017-04-16 17:47:32'),
-(15, 'a', 10, 11, '2017-04-16 21:30:56'),
-(16, '```php\n<?php\n    $servername = \'localhost\';\n    $username = \'root\';\n    $password = \'123\';\n    $database = \'flyly\';\n    $connection = new mysqli($servername, $username, $password, $database);\n    if($connection->connect_error){\n        die(json_encode(array(\n            \'status\'=>\'error\',\n            \'msg\'=> \'Could not connect to server!\'\n        )));\n    }\n?>\n```', 10, 11, '2017-04-16 21:31:29'),
-(17, 'aa', 10, 11, '2017-04-16 21:33:44'),
-(18, 'asdfasdfasdf', 11, 10, '2017-04-16 21:33:51'),
-(19, '```c\nint main() {\n    printf(\"hello world!\");\n}\n```', 11, 10, '2017-04-16 21:34:51'),
-(20, 'Ok', 9, 10, '2017-04-16 21:35:07'),
-(21, 'feelsgoodman', 10, 9, '2017-04-16 21:35:19'),
-(22, 'Jkk', 9, 10, '2017-04-16 21:35:33'),
-(23, 'adff', 10, 9, '2017-04-16 21:35:36');
+(5, 'one', 10, 11, '2017-04-16 13:26:20'),
+(6, 'ptwo', 11, 10, '2017-04-16 13:28:42'),
+(7, 'three', 11, 10, '2017-04-16 21:16:04'),
+(8, 'four', 11, 10, '2017-04-16 21:17:06'),
+(9, 'five', 10, 11, '2017-04-16 21:17:10'),
+(10, '6', 11, 10, '2017-04-16 21:17:25'),
+(11, '7', 11, 10, '2017-04-16 21:17:32'),
+(12, '8', 11, 10, '2017-04-16 21:29:58'),
+(13, 'nine', 11, 10, '2017-04-16 21:31:15'),
+(14, 'ten', 10, 11, '2017-04-16 23:42:05'),
+(15, 'eleven', 10, 11, '2017-04-16 23:42:23'),
+(16, 'twelve', 10, 11, '2017-04-16 23:43:09');
 
 -- --------------------------------------------------------
 
@@ -119,7 +104,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -135,8 +120,3 @@ ALTER TABLE `users`
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`send_id`) REFERENCES `users` (`userid`),
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`rcv_id`) REFERENCES `users` (`userid`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
