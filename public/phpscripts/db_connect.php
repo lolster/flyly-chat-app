@@ -1,7 +1,7 @@
 <?php
     $servername = 'localhost';
     $username = 'root';
-    $password = '123';
+    $password = '';
     $database = 'flyly';
     $connection = new mysqli($servername, $username, $password, $database);
     if($connection->connect_error){

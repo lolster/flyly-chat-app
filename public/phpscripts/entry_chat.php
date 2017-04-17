@@ -155,4 +155,46 @@
 		$userFriends[$i] = $friend_wid_time[$i]['name'];
 		$userFriends[$index] = $temp;
 	}
+	//echo json_encode($userFriends);
+	//now get all friends and then store it in all the userfriends , ...
+	if(!$stmnt = $connection->prepare('SELECT username,firstname,lastname from users')){
+		die(json_encode(array(
+			'status'=>'lets see',
+			'message'=>'error'
+		)));
+	}
+	/*
+	if($stmnt->bind_param()){
+		die(json_encode(array(
+			'message'=>'helloo',
+			'status'=>'error'
+		)));
+	}
+	*/
+	if(!$stmnt->execute()){
+		die(json_encode(array(
+			'message'=>'helloo',
+			'status'=>'error'
+		)));
+	}
+	$userN ='';
+	$firstN='';
+	$lastN = '';
+	if(!$stmnt->bind_result($userN,$firstN,$lastN)){
+		die(json_encode(array(
+			'message'=>'bind',
+			'status'=>'error'
+		)));
+	}
+	$new_friends = array();
+	while($stmnt->fetch()){
+		$new_friends[] = array('username'=>$userN,'firstname'=>$firstN , 'lastname'=>$lastN);
+	}
+	for($i = 0 ; $i <sizeof($new_friends); ++$i ){
+		if(!in_array($new_friends[$i]['username'],$userFriends) && $new_friends[$i]['username'] != $user){
+			$userFriends[] = $new_friends[$i]['username'];
+			$userFriendsFirstName[] = $new_friends[$i]['firstname'];
+			$userFriendsLastName[] = $new_friends[$i]['lastname'];
+		}
+	}
 ?>

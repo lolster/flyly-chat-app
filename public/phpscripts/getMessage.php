@@ -104,10 +104,7 @@
 
 	}
 	elseif ($res == NULL) {
-		die(json_encode(array(
-			'status' => 'Could not fetch the sender userID',
-			'message' => 'execution falied!'
-		)));
+		die('You have not chatted with this user yet.');
 	}
 	else {
 		die(json_encode(array(
