@@ -7,7 +7,8 @@
 	$recieverID = $_POST['uid'];
 	$friendName = $_POST['name'];
 	$time = $_POST['time'];
-	$n = 10;
+	$n = $_POST['n'];
+	//$n = 3;
 
 	if (isset($_POST['n'])) {
 		$n = $_POST['n'];
@@ -67,7 +68,7 @@
 	$stmnt->close();
 
 	// FROM_UNIXTIME => automatically converts to required time format
-	$stmnt2 = $connection->prepare('SELECT body, msgTime, send_id, rcv_id FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime <= ? ORDER BY msgTime DESC LIMIT ?');
+	$stmnt2 = $connection->prepare('SELECT body, msgTime, send_id, rcv_id FROM messages where ((send_id = ? and rcv_id = ?) OR (send_id = ? and rcv_id = ?)) and msgTime < ? ORDER BY msgTime DESC LIMIT ?');
 
 	if (!$stmnt2) {
 		die(json_encode(array(

@@ -14,7 +14,7 @@ socket.on('chat message', (data) => {
 	//console.log(data);
 	//$('#messages').append($('<li>').text(data.sender + ': ' + data.msg));
 	if(highlightedId == data.sender) {
-		appendMsg(data.msg, 'left');
+		appendMsg(data.msg, 'left', 'append');
 	}
 	// TODO:
 	// 	Push the message to localstorage
@@ -35,11 +35,11 @@ function sendMsg() {
 	//console.log('data');
 	socket.emit('chat message', data);
 	//console.log('sentMsg: ' + sentMsg);
-	appendMsg(sentMsg, 'right');
+	appendMsg(sentMsg, 'right', 'append');
 	beAtBottom();
 }
 
-function appendMsg(message, leftOrRight) {
+function appendMsg(message, leftOrRight, appendOrPrepend) {
 	// leftOrRight => left or right side of the conversation
 	if (message) {
 		// use regex to search for code
@@ -57,12 +57,21 @@ function appendMsg(message, leftOrRight) {
 			pre.append(code);
 
 			newMsg.append(pre);
-			$('#conversation-area').append(newMsg);
-			$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
+			if (appendOrPrepend == 'append') {
+				$('#conversation-area').append(newMsg);
+				$('#conversation-area').append($('<script/>', { 'src':'../public/javascripts/prism.js' }));
+			} else {
+				$('#conversation-area').prepend(newMsg);
+				$('#conversation-area').prepend($('<script/>', { 'src':'../public/javascripts/prism.js' }));
+			}
 		} else {
 			newMsg = $('<div/>', {'class':'conv-' + leftOrRight});
 			newMsg.html(message);
-			$('#conversation-area').append(newMsg);
+			if (appendOrPrepend == 'append') {
+				$('#conversation-area').append(newMsg);
+			} else {
+				$('#conversation-area').prepend(newMsg);
+			}
 		}
 		
 		document.getElementById('msg-box').value = '';

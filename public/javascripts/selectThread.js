@@ -1,4 +1,6 @@
 var highlightedId = null;
+var lastTime = null;
+var timer;
 
 function twoDigits(d) {
     if(0 <= d && d < 10) return "0" + d.toString();
@@ -10,7 +12,11 @@ Date.prototype.toMysqlFormat = function() {
     return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
 };
 
+
 function selectThread(event) {
+	var n = 2;
+	// predictive fetch
+
 	// clear conversation-area
 	$('#conversation-area').empty();
 
@@ -49,19 +55,15 @@ function selectThread(event) {
 	// friend's name is same as idToHighlight
 	var userName = idToHighlight;
 	var currTime = (new Date()).toMysqlFormat();
-	console.log('currTime: ' + currTime);
 
-	// get 10 Messages
-	//var noOfMsgs = 10
-	//getMessages(userId, userName, currTime, noOfMsgs);
-	getMessages(userId, userName, currTime);
+	// initially load certain messages
+	getMessages(userId, userName, currTime, true, 3);
 
-	var timer;
+	// predictive fetch part
+	// NOTE: lots of bamboozle
 	// check if tbere are messages (i.e. overflown)
 	$('#conversation-area').bind('mousewheel', function(event) {
-		// PROBLEM: fires scroll event too many times
-		// no idea how to fix this TODO
-		// USE jquery .prepend()
+		// compare times to see if already at bottom
 		if (event.originalEvent.wheelDelta >= 0) {
 			// scrolling up
 			if(timer) {
@@ -69,15 +71,14 @@ function selectThread(event) {
 			}
 			timer = window.setTimeout(function() {
 				if ($('#conversation-area').scrollTop() == 0) {
-					// convert time from mysql to seconds
 					var ts = window.lastTime;
-					console.log("lastTime : " + lastTime);
-					
-					getMessages(userId, userName, ts, true);
+					// actual => n = n * 2;
+					// for demo =>
+					getMessages(userId, userName, ts, true, n);
+					n = n + 2;
 				}
-			}, 1);
-		}
-		else {
+			}, 150);
+		} else {
 			// scrolling down
 			// do nothing
 		}
@@ -93,7 +94,6 @@ function getPreview(userId , name) {
 
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
-		//console.log(this);
 		if(this.readyState == 4 && this.status == 200){
 			$('#' + name + 'preview').html(this.responseText);
 		}
@@ -105,12 +105,7 @@ function getPreview(userId , name) {
 	xhr.send(arr);
 }
 
-function getMessages(userId, otherUser, time, hack) {
-	// self-userID
-	// friend's username
-
-	// time now or timestamp received
-	console.log('getting messages');
+function getMessages(userId, otherUser, time, hack, n) {
 	var xhr = new XMLHttpRequest();
 	if(!hack) {
 		xhr.onreadystatechange = function() {
@@ -118,53 +113,53 @@ function getMessages(userId, otherUser, time, hack) {
 				responseObject = JSON.parse(this.responseText).msgs;
 				for (var i = responseObject.length-1; i > -1; i--) {
 					if (responseObject[i].i_sent) {
-						appendMsg(responseObject[i].msg, 'right');
+						appendMsg(responseObject[i].msg, 'right', 'append');
 					} else {
-						appendMsg(responseObject[i].msg, 'left');
+						appendMsg(responseObject[i].msg, 'left', 'append');
 					}
 				};
 				beAtBottom();
-				var lastTime = responseObject[responseObject.length-1].time;
+				try {
+					lastTime = responseObject[responseObject.length-1].time;
+				} catch(e) {
+					// no change in lastTime
+				}
 				window.lastTime = lastTime;
-				console.log('last time: ' + lastTime);
-				console.log('responseObject: ');
-				console.log(responseObject);
 			}
 		};
 	}
 	else {
-		console.log('fml');
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				responseObject = JSON.parse(this.responseText).msgs;
-				for (var i = responseObject.length-1; i > -1; i--) {
+				for (var i = 0; i < responseObject.length; ++i) {
 					if (responseObject[i].i_sent) {
-						appendMsg(responseObject[i].msg, 'right');
+						appendMsg(responseObject[i].msg, 'right', 'prepend');
 					} else {
-						appendMsg(responseObject[i].msg, 'left');
+						appendMsg(responseObject[i].msg, 'left', 'prepend');
 					}
 				};
-				//beAtBottom();
-				var lastTime = responseObject[responseObject.length-1].time;
+				try {
+					lastTime = responseObject[responseObject.length-1].time;
+				} catch(e) {
+					// no change in lastTime
+				}
 				window.lastTime = lastTime;
-				console.log('responseObject: ');
-				console.log(responseObject);
-				console.log('bamboozle last time: ' + lastTime);
 			}
 		};
 	}
 	xhr.open('POST', '../public/phpscripts/getAllMessages.php', true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(otherUser) + '&time=' + encodeURI(time);
+	var arr = 'uid=' + encodeURI(userId) + '&name=' + encodeURI(otherUser) + '&time=' + encodeURI(time) + '&n=' + encodeURI(n);
 	xhr.send(arr)
 }
+
 
 // to throttle scroll even firing
 function throttle(fn, wait) {
 	var time = Date.now();
 	return function() {
 		if ((time + wait - Date.now()) < 0) {
-			console.log('kkk')
 			fn();
 			time = Date.now();
 		}
