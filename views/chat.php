@@ -31,6 +31,7 @@
 		<script src="../public/javascripts/sendMsg.js"></script>
 		<script src="../public/javascripts/selectThread.js"></script>
 		<script src="../public/javascripts/search.js"></script>
+		<script src="../public/javascripts/fileRead.js"></script>
 	</head>
 
 	<body>
@@ -69,9 +70,12 @@
 					<div id="msg-input">
 						<textarea id="msg-box" class="form-control" rows="2" required="required" onclick="expandChatArea()" placeholder="type in here.."></textarea>
 						<!-- button to attach file to send code -->
-						<button type="submit" id="code-btn" class="btn btn-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Click to send program file/code snippet">&#9839;</button>
+						<!-- <input type="file" id="code-btn" class="btn btn-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Click to send program file/code snippet" value=""> -->
 						<!-- send message -->
 						<button type="submit" id="send-btn" class="btn btn-primary">Send</button>
+						<label class="btn btn-default btn-file">
+    						Upload File <input type="file" id="file-in" hidden>
+						</label>
 					</div>
 					
 				</div>

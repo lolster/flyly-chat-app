@@ -469,7 +469,8 @@ a:hover {
 /* send button */
 #send-btn {
 	height: 4vh;
-	margin-right: 2vw;
+	margin-right: 1vw;
+	margin-left: 1vw;
 	background-color: #6A6C75;
 	color: white;
 	align-self: center;
