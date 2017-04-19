@@ -68,6 +68,9 @@
 					<!-- input box -->
 					<div id="msg-input">
 						<textarea id="msg-box" class="form-control" rows="2" required="required" onclick="expandChatArea()" placeholder="type in here.."></textarea>
+						<!-- button to attach file to send code -->
+						<button type="submit" id="code-btn" class="btn btn-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Click to send program file/code snippet">&#9839;</button>
+						<!-- send message -->
 						<button type="submit" id="send-btn" class="btn btn-primary">Send</button>
 					</div>
 					

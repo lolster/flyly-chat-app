@@ -48,8 +48,10 @@ function selectThread(event) {
 	// on focus change background color
 	// revert previously highlighted to normal
 	$('#' + window.highlightedId).css('background-color', '#322e32');
+	$('#' + window.highlightedId).css('box-shadow', 'none');
 	// on click change highlight thread
 	$('#' + idToHighlight).css('background-color', '#6a6b75');
+	$('#' + idToHighlight).css('box-shadow', '0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)');
 
 	// use window.var to make local variable global
 	window.highlightedId = idToHighlight;
@@ -58,7 +60,7 @@ function selectThread(event) {
 	var userName = idToHighlight;
 	// NOTE: hardcoded for demo
 	// TODO: use IST
-	var currTime = '2017-04-20 12:43:33';//(new Date()).toMysqlFormat();
+	var currTime = '2017-04-21 12:43:33';//(new Date()).toMysqlFormat();
 
 	// initially load certain messages
 	console.log('whyyyy');

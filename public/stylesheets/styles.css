@@ -272,7 +272,6 @@ a:hover {
 #search input:focus, #search input:hover {
 	/* TODO */
 	outline: none;
-	background-color: rgb(204, 204, 204);
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	transition: 0.2s ease-in-out;
 }
@@ -291,6 +290,7 @@ a:hover {
 	background-color: #6A6C75;
 	cursor: pointer;
 	transition: 0.3s;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .threads img {
@@ -350,6 +350,12 @@ a:hover {
 #profile-pic {
 	height: 6vh;
 	margin-left: 2vw;
+	transition: 0.3s;
+}
+
+#profile-pic:hover {
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.17), 0 10px 10px rgba(0, 0, 0, 0.17);
+	transition: 0.3s;
 }
 
 #profile-name {
@@ -453,6 +459,7 @@ a:hover {
 	overflow: scroll;
 	align-self: center;
 	resize: none;
+	margin-left: 3vw;
 }
 
 #msg-box:hover, #msg-box:focus {
@@ -461,11 +468,25 @@ a:hover {
 
 /* send button */
 #send-btn {
-	height: 50%;
-	margin-right: 4vw;
+	height: 4vh;
+	margin-right: 2vw;
 	background-color: #6A6C75;
 	color: white;
 	align-self: center;
+}
+
+/* send code button */
+#code-btn {
+	height: 4vh;
+	margin-right: 2vw;
+	background-color: #6A6C75;
+	color: white;
+	align-self: center;
+	font-size: 2.2vh;
+}
+
+#code-btn:hover, #send-btn:hover {
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -548,9 +569,9 @@ a:hover {
 		font-size: 17px;
 	}
 
-	#send-btn {
-		height: 50%;
-		margin-right: 1vw;
+	#send-btn, #code-btn {
+		height: 4.80vh;
+		margin-right: 2vw;
 	}
 
 	.front-page-elem-left, .front-page-elem-right {
@@ -596,16 +617,6 @@ a:hover {
 	}
 }
 
-/*
-@media not all and (min-resolution:.001dpcm) {
-	@media {
-		.chrome_only { 
-			::-webkit-scrollbar { 
-				display: none; 
-			}
-		}
-	}
-}*/
 
 @media screen and (min-width: 1360px) and (max-width:1370px){
 	/* for 1366 x 768 windows with chrome */
