@@ -60,10 +60,9 @@ function selectThread(event) {
 	var userName = idToHighlight;
 	// NOTE: hardcoded for demo
 	// TODO: use IST
-	var currTime = '2017-04-21 12:43:33';//(new Date()).toMysqlFormat();
+	var currTime = '2017-04-22 12:43:33';//(new Date()).toMysqlFormat();
 
 	// initially load certain messages
-	console.log('whyyyy');
 	getMessages(userId, userName, currTime, false, 10);
 
 	// predictive fetch part

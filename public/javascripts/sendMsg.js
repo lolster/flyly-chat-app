@@ -11,7 +11,7 @@ $(document).ready(() => {
 });
 
 var socket = null;
-var hostname = 'localhost';
+var hostname = '192.168.43.238';
 // change ip address here
 socket = io('http://' + hostname + ':3000');
 var currRoom = username;

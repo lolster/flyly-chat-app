@@ -24,7 +24,9 @@ $(window).on('load', ()=>{
 				// console.log(ext);
 				// console.log(mappings[ext]);
 				// console.log(this.result);
-				expandChatArea();
+				if (window.innerWidth > 992) {
+					expandChatArea();
+				}
 				if(mappings[ext])
 					$('#msg-box').val('```' + mappings[ext] + '\n' + this.result + '\n```\n');
 				else 

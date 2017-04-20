@@ -71,7 +71,8 @@
 						<textarea id="msg-box" class="form-control" rows="2" required="required" onclick="expandChatArea()" placeholder="type in here.."></textarea>
 						<!-- button to attach file to send code -->
 						<input type="file" id="file-in">
-						<button class="btn btn-primary" id="code-btn" data-trigger="hover" data-placement="top" data-content="Click to send program file/code snippet that will automatically be highlighted" onclick="$('#file-in').click();">Upload File</button>
+						<!--<button class="btn btn-primary" id="code-btn" data-trigger="hover" data-placement="top" data-content="Click to send program file/code snippet that will automatically be highlighted" onclick="$('#file-in').click();">Upload File</button> -->
+						<button class="btn btn-primary" id="code-btn" onclick="$('#file-in').click();">Upload File</button>
 						<!-- send message -->
 						<button type="submit" id="send-btn" class="btn btn-primary">Send</button>
 					</div>

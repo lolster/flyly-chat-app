@@ -2,7 +2,7 @@ $(window).on('load', function() {
 	beAtBottom();
 	createParallax();
 	populateThreadsList();
-	$('#code-btn').popover('toggle');
+	//$('#code-btn').popover('show');
 	document.title = 'Select a thread to start chatting...';
 });
 
