@@ -16,7 +16,7 @@ $(window).on('load', ()=>{
 	$('#file-in').on('change', (event) => {
 		if(event.target.value && event.target.value.length != 0) {
 			var ext = re.exec(event.target.value)[1];
-			console.log("filename ext: " + ext);
+			console.log('filename ext: ' + ext);
 			var file = event.target.files[0];
 			var reader = new FileReader();
 			reader.onload = function(e) {
@@ -30,7 +30,7 @@ $(window).on('load', ()=>{
 					$('#msg-box').val('```' + '\n' + this.result + '\n```\n');
 			}
 			reader.readAsText(file);
-			event.target.value = "";
+			event.target.value = '';
 		}
 	})
 });

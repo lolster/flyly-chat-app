@@ -70,12 +70,10 @@
 					<div id="msg-input">
 						<textarea id="msg-box" class="form-control" rows="2" required="required" onclick="expandChatArea()" placeholder="type in here.."></textarea>
 						<!-- button to attach file to send code -->
-						<!-- <input type="file" id="code-btn" class="btn btn-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Click to send program file/code snippet" value=""> -->
+						<input type="file" id="file-in">
+						<button class="btn btn-primary" id="code-btn" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Click to send program file/code snippet that will automatically be highlighted" onclick="$('#file-in').click()">Upload File</button>
 						<!-- send message -->
 						<button type="submit" id="send-btn" class="btn btn-primary">Send</button>
-						<label class="btn btn-default btn-file">
-    						Upload File <input type="file" id="file-in" hidden>
-						</label>
 					</div>
 					
 				</div>
