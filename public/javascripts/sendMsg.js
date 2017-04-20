@@ -11,7 +11,7 @@ $(document).ready(() => {
 });
 
 var socket = null;
-var hostname = '192.168.43.238';
+var hostname = 'localhost';
 // change ip address here
 socket = io('http://' + hostname + ':3000');
 var currRoom = username;
@@ -50,6 +50,7 @@ function sendMsg() {
 	//console.log('sentMsg: ' + sentMsg);
 	appendMsg(sentMsg, 'right', 'append');
 	$('#msg-box').val('');
+	contractChatArea();
 	beAtBottom();
 }
 
