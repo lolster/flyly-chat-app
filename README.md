@@ -12,7 +12,7 @@ Yes, I know.
 
 ## Authors
 ```
-	Sushrith Arkal (sushrith.arkal@gmail.com)
-	Suhas S Kashyap (kashyapsuhas07@gmail.com)
-	Sriharsha Hatwar(sriharsha02hatwar@gmail.com)
+	Sushrith Arkal    <sushrith.arkal@gmail.com>
+	Suhas S Kashyap   <kashyapsuhas07@gmail.com>
+	Sriharsha Hatwar  <sriharsha02hatwar@gmail.com>
 ```
